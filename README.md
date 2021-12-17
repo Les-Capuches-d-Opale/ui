@@ -21,7 +21,7 @@ You will also see any lint errors in the console.
 ## Folders :
 
 ### `components` : pour les composants lieu au métier (ex: Formulaire, modal...)
-### `pages` : pour les pages princiales du projet (ex: Login, Home...) 
+### `pages` : pour les pages principales du projet (ex: Login, Home...) 
 ### `router` : pour implémentation de la logique des routes (Privates routes)
 ### `sdk` : pour les interfaces des types
-### `uikit` : pour les composanst basiques que l'on peut réutiliser 
+### `uikit` : pour les composants basiques que l'on peut réutiliser 
