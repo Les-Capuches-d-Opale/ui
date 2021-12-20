@@ -16,6 +16,13 @@ h1 {
   margin: 25px 0 !important;
 }
 
+h1 {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: 900 !important;
+  font-size: 2em !important;
+  margin: 25px 0 !important;
+}
+
 .formLayout {
   text-align: center;
   display: flex;
