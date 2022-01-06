@@ -8,26 +8,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #eeeeee;
 }
-
-h1 {
-  font-family: "Cinzel Decorative", cursive;
-  font-weight: 900 !important;
-  font-size: 2em !important;
-  margin: 25px 0 !important;
+*{
+  padding: 0;
+  margin: 0;
 }
 
 h1 {
   font-family: "Cinzel Decorative", cursive;
   font-weight: 900 !important;
   font-size: 2em !important;
-  margin: 25px 0 !important;
-}
-
-h1 {
-  font-family: "Cinzel Decorative", cursive;
-  font-weight: 900 !important;
-  font-size: 2em !important;
-  margin: 25px 0 !important;
 }
 
 .formLayout {
@@ -82,4 +71,21 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.status {
+  position: relative;
+  margin-right: 20px;
+  color: grey;
+}
+.status::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background-color: grey;
 }
