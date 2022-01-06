@@ -3,6 +3,7 @@ import { Button, Modal, Input } from 'react-rainbow-components';
 import request from '../axios'
 
 interface Props {
+    xp: number
     adventurerId: string
 }
 
@@ -15,7 +16,7 @@ const inputStyles = {
     width: '80%',
 };
 
-const AdventurerXpPopup = ({adventurerId="61bf9b9b0be9cf45263b6f2d"}: Props) => {
+const AdventurerXpPopup = ({xp=20, adventurerId="61bf9b9b0be9cf45263b6f2d"}: Props) => {
     const [isOpen, setOpen] = useState(false)
     const [xpValue, setXpValue] = useState(0)
 
@@ -49,6 +50,7 @@ const AdventurerXpPopup = ({adventurerId="61bf9b9b0be9cf45263b6f2d"}: Props) => 
                 <h3 style={h3Styles}>EXP</h3>
                 <Input
                     type="number"
+                    label={`${xp} XP`}
                     placeholder="EXP"
                     style={inputStyles}
                     className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
