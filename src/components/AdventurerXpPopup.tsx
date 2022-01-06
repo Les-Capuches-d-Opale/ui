@@ -25,6 +25,7 @@ const AdventurerXpPopup = ({adventurerId="61bf9b9b0be9cf45263b6f2d"}: Props) => 
 
     const closeXpPopup = () => {
         setOpen(false)
+        setXpValue(0)
     }
 
     const updateXpValue = (e: number) => {
@@ -34,6 +35,7 @@ const AdventurerXpPopup = ({adventurerId="61bf9b9b0be9cf45263b6f2d"}: Props) => 
     const updateXp = async () => {
         await request.put(`https://les-capuches-d-opale.herokuapp.com/adventurers/${adventurerId}`, {experience: xpValue})
         setOpen(false)
+        setXpValue(0)
     }
 
     return (
