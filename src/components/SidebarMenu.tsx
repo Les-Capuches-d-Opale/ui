@@ -10,21 +10,21 @@ const menuItem: MenuItem[] = [
     label: "Requêtes",
     to: Routes.REQUESTS,
   },
-  {
-    label: "Aventuriers",
-    to: Routes.ADVENTURERS,
-  },
+  // {
+  //   label: "Aventuriers",
+  //   to: Routes.ADVENTURERS,
+  // },
   {
     label: "Quêtes",
     to: Routes.QUESTS,
   },
-  {
-    label: "Equipements",
-    to: Routes.ITEMS,
-  },
+  // {
+  //   label: "Equipements",
+  //   to: Routes.ITEMS,
+  // },
 ];
 
-const aside = {
+const aside: React.CSSProperties = {
   height: "100vh",
 };
 

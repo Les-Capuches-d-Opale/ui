@@ -5,29 +5,23 @@ import {
   Avatar,
   Button,
 } from "react-rainbow-components";
+import { Request, RequestListType } from "../types/request";
 import Container from "./Container";
 import ModalAffectAdventers from "./ModalAffectAdventers";
 
-type Request = {
-  profilPicture: string;
-  name: string;
-  questGiver: string;
-  bounty: number;
-  duration: number;
-  startDate: Date;
-};
-
-type RequestListType = {
-  requests: Request[];
-};
-
-const Label: FC<Request> = ({ profilPicture, name, questGiver }) => {
+const Label: FC<Request> = ({
+  pictureUrl,
+  name,
+  questGiver,
+  _id,
+  requiredProfiles,
+}) => {
   const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
     <div className="label-request">
       <div className="label-request-info">
-        <Avatar src={profilPicture} size="medium" />
+        <Avatar src={pictureUrl} size="medium" style={{ objectFit: "cover" }} />
         <div>
           <p>{name}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>{questGiver}</p>
@@ -37,26 +31,38 @@ const Label: FC<Request> = ({ profilPicture, name, questGiver }) => {
       <Button variant="brand" onClick={() => setOpen(!isOpen)}>
         Affecter des aventuriers
       </Button>
-      <ModalAffectAdventers isOpen={isOpen} setOpen={setOpen} />
+      {isOpen && (
+        <ModalAffectAdventers
+          isOpen={isOpen}
+          setOpen={setOpen}
+          requestId={_id}
+          requiredProfiles={requiredProfiles}
+        />
+      )}
     </div>
   );
 };
 
 const RequestList: FC<RequestListType> = ({ requests }) => {
+  console.log("request", requests);
   return (
     <Container>
       <h1>Liste des requètes</h1>
-      <Accordion>
-        {requests.map((req) => {
-          return (
-            <AccordionSection label={<Label {...req} />}>
-              A rainbow is a meteorological phenomenon that is caused by
-              reflection, refraction and dispersion of light in water droplets
-              resulting in a spectrum of light appearing in the sky.
-            </AccordionSection>
-          );
-        })}
-      </Accordion>
+      {!requests ||
+        (requests.length === 0 && <p> Pas de requètes à affecter</p>)}
+      {requests && requests.length > 0 && (
+        <Accordion>
+          {requests.map((req) => {
+            return (
+              <AccordionSection label={<Label {...req} />}>
+                A rainbow is a meteorological phenomenon that is caused by
+                reflection, refraction and dispersion of light in water droplets
+                resulting in a spectrum of light appearing in the sky.
+              </AccordionSection>
+            );
+          })}
+        </Accordion>
+      )}
     </Container>
   );
 };
