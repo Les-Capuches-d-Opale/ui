@@ -1,8 +1,12 @@
+html {
+  background-color: #303030 !important;
+}
 body {
-  height: 100vh;
+  height: 100%;
   font-family: "Cantarell";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 .formLayout {
@@ -10,12 +14,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h1 {
   font-family: "Cinzel Decorative", cursive;
   font-weight: 900 !important;
   font-size: 2em !important;
-  margin: 25px 0!important; 
+  margin: 25px 0 !important;
 }
