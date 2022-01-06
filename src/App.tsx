@@ -1,11 +1,19 @@
-import { Application } from 'react-rainbow-components';
-import Router from './router';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Application } from "react-rainbow-components";
+import { AuthProvider } from "./contexts/auth";
+import Router from "./router";
+
+const queryClient = new QueryClient({})
 
 function App() {
   return (
-    <Application>
-      <Router />
-    </Application>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <Application>
+          <Router />
+        </Application>
+      </QueryClientProvider>
+    </AuthProvider>
   );
 }
 
