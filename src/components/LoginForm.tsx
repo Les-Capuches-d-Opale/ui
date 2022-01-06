@@ -80,12 +80,14 @@ const LoginForm = () => {
           />
         )}
       />
-      {wrongCredentials && error && <p>L'email ou le mot de passe est incorrect</p>}
+      {wrongCredentials && error && (
+        <p>L'email ou le mot de passe est incorrect</p>
+      )}
       <Button
         type="submit"
         label="Valider"
         shaded
-        variant="border-filled"
+        variant="brand"
         className="rainbow-m-around_medium"
         isLoading={isLoading}
       />
