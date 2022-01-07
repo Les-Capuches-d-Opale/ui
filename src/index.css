@@ -19,6 +19,13 @@ h1 {
   font-size: 2em !important;
 }
 
+h1 {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: 900 !important;
+  font-size: 2em !important;
+  margin: 25px 0 !important;
+}
+
 .formLayout {
   text-align: center;
   display: flex;
@@ -63,10 +70,10 @@ a:hover {
 
 .label-request-info {
   display: flex;
-  gap: 10px;
   align-items: center;
   width: 60%;
   justify-content: space-around;
+  gap: 20px;
 }
 
 .label-request {
