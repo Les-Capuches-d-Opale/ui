@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { useQuery } from "react-query";
 import {
   Badge,
+  Button,
   CheckboxGroup,
   Chip,
   Modal,
@@ -29,13 +30,28 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
     data: dataAdventurers,
   } = useQuery("fetchAdventurers", () => request.get("/adventurers"));
 
-  const renderOptions = () => {
-    return dataAdventurers?.data.map((adv: Adventurer) => {
-      return { value: adv._id, label: adv.name, disabled: false };
+  const getFiltredAdventurers = () => {
+    return requiredProfiles.map((reqProfile) => {
+      return dataAdventurers?.data.filter((ad: Adventurer) => {
+        return (
+          ad.experience >= reqProfile.experience &&
+          ad.speciality.name === reqProfile.speciality.name
+        );
+      });
     });
   };
 
+  const renderOptions = () => {
+    return getFiltredAdventurers()
+      .flat()
+      .map((adv: Adventurer) => {
+        return { value: adv._id, label: adv.name, disabled: false };
+      });
+  };
+
   const [values, setValues] = useState<any>([]);
+
+  console.log(values);
 
   return (
     <Modal isOpen={isOpen} onRequestClose={() => setOpen(false)}>
@@ -51,8 +67,14 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
             <Chip
               key={i}
               className="rainbow-m-around_medium"
-              label={`${profile.speciality.name} avec au moins ${profile.experience}XP`}
+              label={`${profile.speciality?.name} avec au moins ${profile.experience}XP`}
               variant="outline-brand"
+              style={{
+                marginTop: 5,
+                marginBottom: 5,
+                marginRight: 10,
+                marginLeft: 0,
+              }}
             />
           );
         })}
@@ -61,7 +83,17 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
         options={renderOptions()}
         value={values}
         onChange={(values) => setValues(values)}
+        style={{ marginTop: 20 }}
       />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          variant="brand"
+          onClick={() => console.log("hello")}
+          style={{ marginTop: 20 }}
+        >
+          Affecter ces aventuriers
+        </Button>
+      </div>
     </Modal>
   );
 };

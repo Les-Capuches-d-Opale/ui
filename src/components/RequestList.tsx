@@ -44,7 +44,6 @@ const Label: FC<Request> = ({
 };
 
 const RequestList: FC<RequestListType> = ({ requests }) => {
-  console.log("request", requests);
   return (
     <Container>
       <h1>Liste des requètes</h1>
