@@ -1,28 +1,19 @@
-import RequestList from "../components/RequestList";
+import { useQuery } from "react-query";
+import { Spinner } from "react-rainbow-components";
+import request from "../axios";
+import RequestList from "../components/Home/RequestList/RequestList";
 
 const Home = () => {
-  const requests = [
-    {
-      profilPicture: "https://picsum.photos/200/300",
-      name: "Ma requète trop cool",
-      questGiver: "Tartin",
-      bounty: 20.3,
-      duration: 5,
-      startDate: new Date(),
-    },
-    {
-      profilPicture: "https://picsum.photos/200/300",
-      name: "Ma requète trop cool 2",
-      questGiver: "Tartin",
-      bounty: 20.3,
-      duration: 5,
-      startDate: new Date(),
-    },
-  ];
+  const {
+    isLoading,
+    error,
+    data: dataRequest,
+  } = useQuery("fetchRequest", () => request.get("/requests"));
 
   return (
     <div>
-      <RequestList requests={requests} />
+      {isLoading && <Spinner />}
+      <RequestList requests={dataRequest?.data} />
     </div>
   );
 };
