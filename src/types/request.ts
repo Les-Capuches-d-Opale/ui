@@ -1,3 +1,4 @@
+import { QuestStatus } from "../sdk/quest";
 import { AdventurerProfile } from "./adventurers";
 
 export type Request = {
@@ -10,6 +11,7 @@ export type Request = {
   dateDebut: Date;
   requiredProfiles: AdventurerProfile[];
   description: string;
+  status: QuestStatus;
 };
 
 export type RequestListType = {
