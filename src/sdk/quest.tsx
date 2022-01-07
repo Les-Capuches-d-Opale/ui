@@ -1,18 +1,10 @@
-import { Request } from "../components/RequestList";
+import { Adventurer } from "../types/adventurers";
+import { Request } from "../types/request";
 
 export type Quests = {
   request: Request;
   groups: Adventurer[];
-};
-
-export type Adventurer = {
-  baseDailyRate: number;
-  createdAt: string;
-  experience: number;
-  name: string;
-  pictureUrl: string;
-  speciality: string;
-  updatedAt: string;
+  questStatus: string;
 };
 
 export type Transaction = { amount: number; type: string; date: string };

@@ -55,11 +55,11 @@ const ChooseAventurersInList: FC<ChooseAventurersInListProps> = ({
 
   return (
     <>
-      {true ? (
+      {getFiltredAdventurers() && getFiltredAdventurers().length > 0 ? (
         <>
           <CheckboxGroup
             label="Voici les aventuriers qui sont disponibles et qui correspondent aux critères demandés"
-            options={[{ value: "1", label: "Coucou" }]}
+            options={renderOptions()}
             value={values}
             onChange={(values) => setValues(values)}
             style={{ marginTop: 20 }}

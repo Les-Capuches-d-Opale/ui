@@ -28,7 +28,7 @@ export type Adventurer = {
   baseDailyRate: number;
   experience: number;
   name: string;
-  pictureURL: string;
+  pictureUrl: string;
   speciality: Speciality;
   isAvailableNow: boolean;
   _id: string;

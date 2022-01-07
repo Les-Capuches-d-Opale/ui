@@ -1,6 +1,6 @@
-import { SetStateAction, useState } from 'react';
-import { Button, Modal, Input } from 'react-rainbow-components';
-import request from '../axios'
+import { useState } from 'react';
+import { Button, Input, Modal } from 'react-rainbow-components';
+import request from '../axios';
 
 interface Props {
     xp: number

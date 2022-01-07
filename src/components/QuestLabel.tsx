@@ -1,5 +1,6 @@
 import { AvatarGroup } from "react-rainbow-components";
-import { Adventurer, QuestStatus } from "../sdk/quest";
+import { QuestStatus } from "../sdk/quest";
+import { Adventurer } from "../types/adventurers";
 import StatusIndicator from "./StatusIndicator";
 
 interface Props {
@@ -16,10 +17,10 @@ const QuestLabel = ({ label, adventurers, questStatus }: Props) => {
 
   const avatars: AvatarGroupType[] = [];
 
-  adventurers.forEach((adventurer) => {
+  adventurers.forEach((adventurer) => {    
     avatars.push({ src: adventurer.pictureUrl });
   });
-
+ 
   return (
     <div className="quest-label">
       <p>{label}</p>
