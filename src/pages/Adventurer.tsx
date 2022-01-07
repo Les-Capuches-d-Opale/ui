@@ -4,15 +4,17 @@ import request from "../axios";
 import AdventurersList from "../components/AdventurersList";
 
 const Adventurer = () => {
+  const { isLoading, data: dataAdventurers } = useQuery(
+    "fetchAdventurers",
+    () => request.get("/adventurers")
+  );
 
-  const { isLoading, error, data: dataAdventurers } = useQuery("fetchAdventurers", () => request.get("/adventurers"));
-  
   return [
     <div>
       {isLoading && <Spinner />}
       <AdventurersList adventurers={dataAdventurers?.data} />
-    </div>
-  ]
+    </div>,
+  ];
 };
 
 export default Adventurer;

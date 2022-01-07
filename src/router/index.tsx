@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Login from "../pages/Login";
 import MainLayout from "../router/MainLayout";
 import Routes from "../sdk/routes";
@@ -8,6 +8,9 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
         <Route path={Routes.LOGIN} component={Login} />
         <PrivateRoute path={"/"} component={MainLayout} />
       </Switch>

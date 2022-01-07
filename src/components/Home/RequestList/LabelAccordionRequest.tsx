@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { FC, useState } from "react";
 import { Avatar, Button } from "react-rainbow-components";
 import { Request } from "../../../types/request";
+import { secondsToDays } from "../../../utils/secondsToDays";
 import ModalAffectAdventurers from "./ModalAffectAdventurers";
 
 const Label: FC<Request> = ({
@@ -25,7 +26,7 @@ const Label: FC<Request> = ({
           <p style={{ opacity: 0.5, marginTop: 5 }}>{questGiver}</p>
         </div>
         <div>
-          <p>Durée : {duration}</p>
+          <p>Durée : {secondsToDays(duration)}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>
             Début :{" "}
             {dateDebut ? format(new Date(dateDebut), "MM/dd/yyyy") : "?"}
@@ -36,9 +37,11 @@ const Label: FC<Request> = ({
         </div>
       </div>
 
-      <Button variant="brand" onClick={() => setOpen(!isOpen)}>
-        Affecter des aventuriers
-      </Button>
+      {requiredProfiles && requiredProfiles.length > 0 && (
+        <Button variant="brand" onClick={() => setOpen(!isOpen)}>
+          Affecter des aventuriers
+        </Button>
+      )}
       {isOpen && (
         <ModalAffectAdventurers
           isOpen={isOpen}

@@ -4,11 +4,9 @@ import request from "../axios";
 import RequestList from "../components/Home/RequestList/RequestList";
 
 const Home = () => {
-  const {
-    isLoading,
-    error,
-    data: dataRequest,
-  } = useQuery("fetchRequest", () => request.get("/requests"));
+  const { isLoading, data: dataRequest } = useQuery("fetchRequest", () =>
+    request.get("/requests")
+  );
 
   return (
     <div>
