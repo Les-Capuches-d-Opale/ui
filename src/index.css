@@ -89,3 +89,14 @@ a:hover {
   border-radius: 10px;
   background-color: grey;
 }
+
+.Succeeded::after {
+  background-color: green;
+}
+.Failed::after {
+  background-color: red;
+}
+.Pending::after {
+  background-color: orange;
+}
+

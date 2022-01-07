@@ -1,4 +1,7 @@
-import { Avatar, Button } from 'react-rainbow-components';
+import { useQuery } from 'react-query';
+import { Avatar, Button, Table, Column } from 'react-rainbow-components';
+import { useParams } from 'react-router-dom';
+import request from '../axios'
 
 //Styles
 const avatarLarge = { 
@@ -47,8 +50,27 @@ const buttonAssign = {
     marginLeft: '30px'
 }
 
+//Function
+const durationConvert = (s: number) => {
+    const h = Math.round(s/3600%24)
+    const jrs = Math.round(s/3600/24)
+    return `${jrs}j${h}h`
+}
+
 const QuestDetails = () => {
     const isRequest = window.location.pathname.includes('/requests/') ? true : false
+    interface RouteParams {
+      id: string;
+    }
+    const { id } = useParams<RouteParams>()
+    const {
+        isLoading,
+        error,
+        data: quest,
+    } = useQuery("fetchRequest", () => request.get(`https://les-capuches-d-opale.herokuapp.com/quests/${id}`));
+    console.log(quest?.data)
+
+    const AvatarTable = ({ value }: any) => <Avatar src={value} />
 
     return (
       <div style={{padding: '30px 50px'}}>
@@ -56,29 +78,32 @@ const QuestDetails = () => {
             <Avatar
                 style={avatarLarge}
                 src="https://picsum.photos/150/150"
-                assistiveText="Jane Doe"
-                title="Jane Doe"
             />
             <div style={headerRightStyles}>
                 <div style={headerTitle}>
-                    <h1>Titre de la quête</h1>
-                    <div className='status'>Status</div>
+                    <h1>{quest?.data.request.name}</h1>
+                    <div className={'status '+quest?.data.request.status}>{quest?.data.request.status}</div>
                 </div>
-                <p style={questDescriptionStyles}>Description de la quête...</p>
-                <p style={{fontSize: '10px', color: 'grey'}}>Demande effectué par <strong style={{color: 'white'}}>[Nom du commenditaire]</strong></p>
+                <p style={questDescriptionStyles}>{quest?.data.request.description}</p>
+                <p style={{fontSize: '10px', color: 'grey'}}>Demande effectué par <strong style={{color: 'white'}}>{quest?.data.request.questGiver}</strong></p>
             </div>
         </div>
         <div style={principalInfos}>
-            <p style={info}><strong>Prime: </strong>1000</p>
-            <p style={info}><strong>EXP: </strong>126</p>
-            <p style={info}><strong>Durée: </strong>5j</p>
+            <p style={info}><strong>Prime: </strong>{quest?.data.request.bounty}</p>
+            <p style={info}><strong>EXP: </strong>{quest?.data.request.awardedExperience}</p>
+            <p style={info}><strong>Durée: </strong>{durationConvert(quest?.data.request.duration)}</p>
         </div>
         <div style={{marginBottom: '50px'}}>
             <div style={titleAssign}>
                 <h3 style={{fontSize: '24px'}}>Aventurier Assignés</h3>
-                <Button style={buttonAssign} label="Assigner" variant="border" className="rainbow-m-around_medium"/>
+                {isRequest && <Button style={buttonAssign} label="Assigner" variant="border" className="rainbow-m-around_medium"/>}
             </div>
-            <div className="table"></div>
+            <Table data={quest?.data.groups} keyField="id">
+                <Column header="Avatar" field="pictureUrl" component={AvatarTable} />
+                <Column header="Name" field="name" />
+                <Column header="Expérience" field="experience" />
+                <Column header="Spécialité" field="speciality" />
+            </Table>
             <p><strong>Coût max. de la missions: </strong> 2500</p>
         </div>
         <div style={{display: 'flex', justifyContent: 'center'}}>
