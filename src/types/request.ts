@@ -7,8 +7,9 @@ export type Request = {
   questGiver: string;
   bounty: number;
   duration: number;
-  startDate: Date;
+  dateDebut: Date;
   requiredProfiles: AdventurerProfile[];
+  description: string;
 };
 
 export type RequestListType = {
