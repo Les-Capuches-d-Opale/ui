@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { FC, useState } from "react";
 import { Avatar, Button } from "react-rainbow-components";
 import { Request } from "../../../types/request";
-import ModalAffectAdventers from "../../ModalAffectAdventers";
+import ModalAffectAdventurers from "./ModalAffectAdventurers";
 
 const Label: FC<Request> = ({
   pictureUrl,
@@ -15,6 +15,7 @@ const Label: FC<Request> = ({
   dateDebut,
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
+
   return (
     <div className="label-request">
       <div className="label-request-info">
@@ -39,7 +40,7 @@ const Label: FC<Request> = ({
         Affecter des aventuriers
       </Button>
       {isOpen && (
-        <ModalAffectAdventers
+        <ModalAffectAdventurers
           isOpen={isOpen}
           setOpen={setOpen}
           requestId={_id}
