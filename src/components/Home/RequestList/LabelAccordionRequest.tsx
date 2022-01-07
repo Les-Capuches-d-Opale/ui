@@ -1,9 +1,8 @@
+import { format } from "date-fns";
 import { FC, useState } from "react";
-import { useQuery } from "react-query";
 import { Avatar, Button } from "react-rainbow-components";
-import request from "../../../axios";
 import { Request } from "../../../types/request";
-import ModalAffectAdventers from "./ModalAffectAdventers";
+import ModalAffectAdventers from "../../ModalAffectAdventers";
 
 const Label: FC<Request> = ({
   pictureUrl,
@@ -11,22 +10,28 @@ const Label: FC<Request> = ({
   questGiver,
   _id,
   requiredProfiles,
+  bounty,
+  duration,
+  dateDebut,
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
-
-  const {
-    isLoading,
-    error,
-    data: dataAdventurers,
-  } = useQuery("fetchAdventurers", () => request.get("/adventurers"));
-
   return (
     <div className="label-request">
       <div className="label-request-info">
-        <Avatar src={pictureUrl} size="medium" style={{ objectFit: "cover" }} />
+        <Avatar src={pictureUrl} size="medium" />
         <div>
           <p>{name}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>{questGiver}</p>
+        </div>
+        <div>
+          <p>Durée : {duration}</p>
+          <p style={{ opacity: 0.5, marginTop: 5 }}>
+            Début :{" "}
+            {dateDebut ? format(new Date(dateDebut), "MM/dd/yyyy") : "?"}
+          </p>
+        </div>
+        <div>
+          <p>Prime : {bounty} PO</p>
         </div>
       </div>
 
