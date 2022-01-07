@@ -32,15 +32,11 @@ type Adventurer = {
 type AdventurersListType = {
   adventurers: Adventurer[]
 }
-const AvatarAdventurer: FC<Adventurer> = ({ pictureURL }) => {
-  return (
-    <div>
-      <Avatar src={pictureURL} size='medium' />
-    </div>
-  )
-}
 
 const AdventurersList: FC<AdventurersListType> = ({ adventurers }) => {
+    
+    const AvatarTable = ({ value }: any) => <Avatar src={value} />
+
   return (
     <Container>
       <h1>Liste des aventuriers</h1>
@@ -50,11 +46,11 @@ const AdventurersList: FC<AdventurersListType> = ({ adventurers }) => {
           pageSize={10}
           data={adventurers}
           keyField='_id'>
-          {/* <Column
+          <Column
             header='Avatar'
             field='pictureUrl'
-            component={AvatarAdventurer}
-          /> */}
+            component={AvatarTable}
+          />
           <Column header='Name' field='name' />
           <Column header='Spécialité' field='speciality.name' />
           <Column header='Experience' field='experience' />
