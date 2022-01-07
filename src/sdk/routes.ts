@@ -1,8 +1,6 @@
 enum Routes {
   HOME = "/",
   LOGIN = "/login",
-  REQUESTS = "/requests",
-  REQUEST = "/requests/:id",
   ADVENTURERS = "/adventurers",
   ADVENTURER = "/adventurers/:id",
   ITEMS = "/items",

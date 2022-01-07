@@ -110,5 +110,18 @@ a:hover {
 }
 
 img {
-  object-fit: cover;
+  object-fit: cover
+}
+
+.quest-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+.quest-label > div {
+  width: 50%;
+  display: flex;
 }

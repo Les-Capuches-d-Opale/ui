@@ -7,13 +7,9 @@ const menuItem: MenuItem[] = [
     to: Routes.HOME,
   },
   {
-    label: "Requêtes",
-    to: Routes.REQUESTS,
+    label: "Aventuriers",
+    to: Routes.ADVENTURERS,
   },
-  // {
-  //   label: "Aventuriers",
-  //   to: Routes.ADVENTURERS,
-  // },
   {
     label: "Quêtes",
     to: Routes.QUESTS,

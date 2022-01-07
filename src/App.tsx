@@ -8,8 +8,8 @@ const queryClient = new QueryClient({});
 const theme = {
   rainbow: {
     palette: {
-      brand: "#80deea",
-      mainBackground: "#303030",
+      brand: "#00CDA5",
+      mainBackground: "#222930",
     },
   },
 };

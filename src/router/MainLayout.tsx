@@ -5,7 +5,6 @@ import Home from "../pages/Home";
 import Item from "../pages/Item";
 import Quest from "../pages/Quest";
 import QuestDetails from "../pages/QuestDetails";
-import Request from "../pages/Request";
 import Routes from "../sdk/routes";
 import PrivateRoute from "./PrivateRoutes";
 
@@ -23,7 +22,6 @@ const MainLayout = () => {
           <Redirect to={Routes.HOME} />
         </Route>
         <PrivateRoute path={Routes.HOME} component={Home} />
-        <PrivateRoute path={Routes.REQUESTS} component={Request} />
         <PrivateRoute path={Routes.ADVENTURERS} component={Adventurer} />
         <PrivateRoute exact path={Routes.QUESTS} component={Quest} />
         <PrivateRoute exact path={Routes.QUEST} component={QuestDetails} />
