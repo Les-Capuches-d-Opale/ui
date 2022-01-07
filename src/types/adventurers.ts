@@ -30,5 +30,6 @@ export type Adventurer = {
   name: string;
   pictureURL: string;
   speciality: Speciality;
+  isAvailableNow: boolean;
   _id: string;
 };

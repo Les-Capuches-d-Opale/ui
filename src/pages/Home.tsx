@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { Spinner } from "react-rainbow-components";
 import request from "../axios";
-import RequestList from "../components/RequestList";
+import RequestList from "../components/Home/RequestList/RequestList";
 
 const Home = () => {
   const {
