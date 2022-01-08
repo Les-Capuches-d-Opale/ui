@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tab, Tabset } from "react-rainbow-components";
 import { Adventurer, AdventurerProfile } from "../../../../sdk/adventurers";
+import AllTable from "./AllTable";
 import CriteresTable from "./CriteresTable";
 import SuggestionTable from "./SuggestionTable";
 
@@ -39,6 +40,13 @@ const TablesTab = ({
           id="criteres"
           ariaControls="criteresTab"
         />
+
+        <Tab
+          label="Tous les aventuriers disponibles"
+          name="all"
+          id="all"
+          ariaControls="allTab"
+        />
       </Tabset>
 
       {selectedTab === "suggestion" && (
@@ -51,6 +59,14 @@ const TablesTab = ({
 
       {selectedTab === "criteres" && (
         <CriteresTable
+          requestId={requestId}
+          requiredProfiles={requiredProfiles}
+          adventurers={adventurers}
+        />
+      )}
+
+      {selectedTab === "all" && (
+        <AllTable
           requestId={requestId}
           requiredProfiles={requiredProfiles}
           adventurers={adventurers}
