@@ -68,7 +68,6 @@ const QuestDetails = () => {
   const { data: quest } = useQuery("fetchRequest", () =>
     request.get(`https://les-capuches-d-opale.herokuapp.com/quests/${id}`)
   );
-  console.log(quest?.data);
 
   const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 

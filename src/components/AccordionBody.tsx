@@ -1,6 +1,6 @@
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Request } from "../types/request";
+import { Request } from "../sdk/request";
 import { secondsToDays } from "../utils/secondsToDays";
 
 interface Props {

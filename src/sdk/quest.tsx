@@ -1,5 +1,5 @@
-import { Adventurer } from "../types/adventurers";
-import { Request } from "../types/request";
+import { Adventurer } from "./adventurers";
+import { Request } from "./request";
 
 export type Quests = {
   request: Request;
