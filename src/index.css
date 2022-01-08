@@ -14,10 +14,10 @@ body {
   margin: 0;
 }
 
-h1 {
+h2 {
   font-family: "Cinzel Decorative", cursive;
   font-weight: 900 !important;
-  font-size: 2em !important;
+  font-size: 1.5em !important;
 }
 
 h1 {
@@ -125,4 +125,19 @@ img {
 .quest-label > div {
   width: 50%;
   display: flex;
+}
+
+.tablist {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.tablist ul {
+  overflow: hidden;
+}
+
+.tablist ul li {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: 900 !important;
+  font-size: 1.5em !important;
 }
