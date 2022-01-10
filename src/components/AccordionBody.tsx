@@ -12,7 +12,6 @@ interface Props {
 }
 
 const AccordionBody = ({ questId, request }: Props) => {
-
   return (
     <div>
       <p>{request.description}</p>
