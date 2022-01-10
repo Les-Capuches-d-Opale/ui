@@ -1,5 +1,5 @@
 import { ProgressIndicator, ProgressStep } from "react-rainbow-components";
-import { QuestStatus } from "../sdk/quest";
+import { QuestStatus } from "../../sdk/quest";
 
 interface Props {
   currentStatus: QuestStatus;
