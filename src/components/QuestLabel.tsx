@@ -13,7 +13,7 @@ type AvatarGroupType = {
   src: string;
 };
 
-const QuestLabel = ({ label, adventurers, questStatus }: Props) => {
+const QuestLabel = ({label, adventurers, questStatus }: Props) => {
 
   const avatars: AvatarGroupType[] = [];
 

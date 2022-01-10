@@ -1,5 +1,5 @@
 import { Switch } from "react-router-dom";
-import SidebarMenu from "../components/SidebarMenu";
+import SidebarMenu from "../components/Sidebar/SidebarMenu";
 import Adventurer from "../pages/Adventurer";
 import Home from "../pages/Home";
 import Quest from "../pages/Quest";
@@ -9,7 +9,7 @@ import PrivateRoute from "./PrivateRoutes";
 
 const style = {
   display: "grid",
-  gridTemplateColumns: "18rem 1fr",
+  gridTemplateColumns: "15rem 1fr",
 };
 
 const MainLayout = () => {

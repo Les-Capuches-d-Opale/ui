@@ -3,15 +3,18 @@ import { AdventurerProfile } from "./adventurers";
 
 export type Request = {
   _id: string;
-  pictureUrl: string;
   name: string;
+  description: string;
+  pictureUrl: string;
   questGiver: string;
   bounty: number;
   duration: number;
   dateDebut: Date;
   requiredProfiles: AdventurerProfile[];
-  description: string;
   status: QuestStatus;
+  awardedExperience: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type RequestListType = {
