@@ -25,7 +25,7 @@ type RequestFormType = {
 const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   const { control, handleSubmit } = useForm<RequestFormType>();
 
-  const { mutateAsync, isLoading, error } = useMutation<
+  const { mutateAsync } = useMutation<
     AxiosResponse<{ access_token?: string }>,
     Error,
     RequestFormType

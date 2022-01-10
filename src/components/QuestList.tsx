@@ -42,10 +42,11 @@ const QuestList = ({ quests }: Props) => {
                     label={req.request.name}
                     questStatus={req.request.status}
                     adventurers={req.groups}
+                    
                   />
                 }
               >
-                <AccordionBody request={req.request} />
+                <AccordionBody questId={req._id} request={req.request} />
               </AccordionSection>
             );
           })}
