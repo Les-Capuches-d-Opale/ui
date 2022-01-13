@@ -31,7 +31,9 @@ export const AuthProvider: FC = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser: setUser, removeAuthUser: removeUser }}>
+    <AuthContext.Provider
+      value={{ authUser, setAuthUser: setUser, removeAuthUser: removeUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

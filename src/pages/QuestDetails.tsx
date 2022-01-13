@@ -1,7 +1,13 @@
 import { faChevronLeft, faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "react-query";
-import { Avatar, Button, ButtonIcon, Column, Table } from "react-rainbow-components";
+import {
+  Avatar,
+  Button,
+  ButtonIcon,
+  Column,
+  Table,
+} from "react-rainbow-components";
 import { useHistory, useParams } from "react-router-dom";
 import request from "../axios";
 import Container from "../components/Container";
@@ -42,15 +48,19 @@ interface RouteParams {
 const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
 const QuestDetails = () => {
-  const isRequest = window.location.pathname.includes("/requests/") ? true : false;
+  const isRequest = window.location.pathname.includes("/requests/")
+    ? true
+    : false;
 
   const history = useHistory();
 
   const { id } = useParams<RouteParams>();
-
   const { data: quest } = useQuery("fetchQuest", () =>
-    request.get<Quests>(`https://les-capuches-d-opale.herokuapp.com/quests/${id}`)
+    request.get<Quests>(`/quests/${id}`)
   );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
   return (
     <Container>
@@ -80,7 +90,9 @@ const QuestDetails = () => {
           </div>
           <div style={{ marginBottom: "50px" }}>
             <div style={titleAssign}>
-              <h3 style={{ fontSize: "24px", marginBottom: "15px" }}>Aventurier Assignés</h3>
+              <h3 style={{ fontSize: "24px", marginBottom: "15px" }}>
+                Aventurier Assignés
+              </h3>
               {isRequest && (
                 <Button
                   style={buttonAssign}
@@ -91,14 +103,19 @@ const QuestDetails = () => {
               )}
             </div>
             <Table data={quest?.data.groups} keyField="_id">
-              <Column header="Avatar" field="pictureUrl" component={AvatarTable} />
+              <Column
+                header="Avatar"
+                field="pictureUrl"
+                component={AvatarTable}
+              />
               <Column header="Name" field="name" />
               <Column header="Expérience" field="experience" />
               <Column header="Spécialité" field="speciality.name" />
             </Table>
             <p style={{ marginTop: "15px" }}>
               {/* TODO: Add calculated amount */}
-              <strong>Coût max. de la mission: </strong> 2500 <FontAwesomeIcon icon={faCoins} />
+              <strong>Coût max. de la mission: </strong> 2500{" "}
+              <FontAwesomeIcon icon={faCoins} />
             </p>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -110,7 +127,9 @@ const QuestDetails = () => {
               />
             )}
             {isRequest && <Button label="Valider l'équipe" variant="success" />}
-            {!isRequest && <Button label="Lancer la mission" variant="success" />}
+            {!isRequest && (
+              <Button label="Lancer la mission" variant="success" />
+            )}
           </div>
         </>
       )}

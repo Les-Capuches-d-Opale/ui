@@ -1,70 +1,68 @@
-import { useState } from 'react';
-import { Button, Input, Modal } from 'react-rainbow-components';
-import request from '../axios';
+import { useState } from "react";
+import { Button, Input, Modal } from "react-rainbow-components";
+import request from "../axios";
 
 interface Props {
-    xp: number
-    adventurerId: string
+  xp: number;
+  adventurerId: string;
 }
 
 const h3Styles = {
-    TextAlign: 'center',
-    fontSize: '32px',
-    fontWeigth: 'bold'
+  TextAlign: "center",
+  fontSize: "32px",
+  fontWeigth: "bold",
 };
 const inputStyles = {
-    width: '80%',
+  width: "80%",
 };
 
-const AdventurerXpPopup = ({xp=20, adventurerId="61bf9b9b0be9cf45263b6f2d"}: Props) => {
-    const [isOpen, setOpen] = useState(false)
-    const [xpValue, setXpValue] = useState(0)
+const AdventurerXpPopup = ({
+  xp = 20,
+  adventurerId = "61bf9b9b0be9cf45263b6f2d",
+}: Props) => {
+  const [isOpen, setOpen] = useState(false);
+  const [xpValue, setXpValue] = useState(0);
 
-    const openXpPopup = () => {
-        setOpen(true)
-    }
+  const openXpPopup = () => {
+    setOpen(true);
+  };
 
-    const closeXpPopup = () => {
-        setOpen(false)
-        setXpValue(0)
-    }
+  const closeXpPopup = () => {
+    setOpen(false);
+    setXpValue(0);
+  };
 
-    const updateXpValue = (e: number) => {
-        setXpValue(e)
-    }
+  const updateXpValue = (e: number) => {
+    setXpValue(e);
+  };
 
-    const updateXp = async () => {
-        await request.put(`https://les-capuches-d-opale.herokuapp.com/adventurers/${adventurerId}`, {experience: xpValue})
-        setOpen(false)
-        setXpValue(0)
-    }
+  const updateXp = async () => {
+    await request.put(
+      `https://les-capuches-d-opale.herokuapp.com/adventurers/${adventurerId}`,
+      { experience: xpValue }
+    );
+    setOpen(false);
+    setXpValue(0);
+  };
 
-    return (
-        <div>
-            <Button
-                variant="neutral"
-                label="Modifier"
-                onClick={openXpPopup}
-            />
-            <Modal isOpen={isOpen} onRequestClose={closeXpPopup}>
-                <h3 style={h3Styles}>EXP</h3>
-                <Input
-                    type="number"
-                    label={`${xp} XP`}
-                    placeholder="EXP"
-                    style={inputStyles}
-                    className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
-                    value={xpValue}
-                    onChange={(e) => updateXpValue(Number(e.target.value))}
-                />
-                <Button
-                    variant="success"
-                    label="Modifier"
-                    onClick={updateXp}
-                />
-            </Modal>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Button variant="neutral" label="Modifier" onClick={openXpPopup} />
+      <Modal isOpen={isOpen} onRequestClose={closeXpPopup}>
+        <h3 style={h3Styles}>EXP</h3>
+        <Input
+          type="number"
+          label={`${xp} XP`}
+          placeholder="EXP"
+          style={inputStyles}
+          className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
+          value={xpValue}
+          onChange={(e) => updateXpValue(Number(e.target.value))}
+        />
+        <Button variant="success" label="Modifier" onClick={updateXp} />
+      </Modal>
+    </div>
+  );
+};
 
-export default AdventurerXpPopup
+export default AdventurerXpPopup;

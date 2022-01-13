@@ -18,7 +18,7 @@ request.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error("axios interceptors error : ",error);
+    console.error("axios interceptors error : ", error);
     return error;
   }
 );

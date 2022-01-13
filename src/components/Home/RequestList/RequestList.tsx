@@ -15,7 +15,7 @@ const RequestList: FC<RequestListType> = ({ requests }) => {
         <Accordion>
           {requests.map((req) => {
             return (
-              <AccordionSection label={<Label {...req} />}>
+              <AccordionSection label={<Label {...req} />} key={req._id}>
                 {req.description}
                 <div style={{ opacity: 0.5, marginTop: 5 }}>
                   Profils requis :

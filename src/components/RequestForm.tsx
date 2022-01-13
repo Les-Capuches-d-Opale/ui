@@ -179,8 +179,10 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             shaded
             variant="brand"
             className="rainbow-m-around_medium"
+            isLoading={isLoading}
           />
         </div>
+        {error && <div style={{ textAlign: "center" }}>{error}</div>}
       </form>
     </Modal>
   );

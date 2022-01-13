@@ -1,9 +1,13 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Accordion, AccordionSection, ButtonIcon } from "react-rainbow-components";
+import {
+  Accordion,
+  AccordionSection,
+  ButtonIcon,
+} from "react-rainbow-components";
 import { Quests } from "../../sdk/quest";
-import AccordionBody from "./AccordionBody";
 import Container from "../Container";
+import AccordionBody from "./AccordionBody";
 import QuestLabel from "./QuestLabel";
 
 interface Props {
@@ -42,7 +46,6 @@ const QuestList = ({ quests }: Props) => {
                     label={req.request.name}
                     questStatus={req.request.status}
                     adventurers={req.groups}
-                    
                   />
                 }
               >
