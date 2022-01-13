@@ -23,3 +23,42 @@ export const getFiltredAdventurers = (
 
   return removeDuplicatesId;
 };
+
+export const getSugestedAdventurers = (
+  requiredProfiles: AdventurerProfile[],
+  adventurers: Adventurer[]
+) => {
+  const filteredAdventurers = getFiltredAdventurers(
+    requiredProfiles,
+    adventurers
+  );
+
+  if (!filteredAdventurers || filteredAdventurers.length === 0) {
+    return [];
+  }
+
+  const numberOfEachSpecialty = requiredProfiles.map((r) => {
+    const titi = requiredProfiles.filter(
+      (rP) => rP.speciality.name === r.speciality.name
+    );
+
+    return { name: r.speciality.name, length: titi.length };
+  });
+
+  const nameOfEachSpecialty = numberOfEachSpecialty.map((spe) => spe.name);
+  const filteredSpecialty = numberOfEachSpecialty.filter(
+    ({ name }, index) => !nameOfEachSpecialty.includes(name, index + 1)
+  );
+
+  const adventurersSuggestion = filteredSpecialty.map(({ name, length }) => {
+    const adventurersBySpecialtyName = filteredAdventurers
+      .sort((a, b) => a.baseDailyRate - b.baseDailyRate)
+      .filter((ad) => {
+        return ad.speciality.name === name;
+      });
+
+    return adventurersBySpecialtyName.slice(0, length);
+  });
+
+  return adventurersSuggestion.flat();
+};
