@@ -1,6 +1,6 @@
 import { AvatarGroup } from "react-rainbow-components";
 import { QuestStatus } from "../sdk/quest";
-import { Adventurer } from "../types/adventurers";
+import { Adventurer } from "../sdk/adventurers";
 import StatusIndicator from "./StatusIndicator";
 
 interface Props {
