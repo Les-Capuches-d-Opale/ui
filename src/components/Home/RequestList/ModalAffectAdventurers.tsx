@@ -41,8 +41,9 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
       style={{ width: "90%", height: "100%" }}
     >
       <Container>
-        {isLoading && <Spinner />}
-        {!isLoading && (
+        {isLoading ? (
+          <Spinner />
+        ) : (
           <>
             <h1 style={{ textAlign: "center" }}>
               Choisissez les aventuriers à affecter à cette requète
