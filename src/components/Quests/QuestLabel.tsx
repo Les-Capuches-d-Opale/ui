@@ -1,6 +1,6 @@
 import { AvatarGroup } from "react-rainbow-components";
-import { QuestStatus } from "../sdk/quest";
-import { Adventurer } from "../sdk/adventurers";
+import { Adventurer } from "../../sdk/adventurers";
+import { QuestStatus } from "../../sdk/quest";
 import StatusIndicator from "./StatusIndicator";
 
 interface Props {
@@ -25,8 +25,12 @@ const QuestLabel = ({label, adventurers, questStatus }: Props) => {
     <div className="quest-label">
       <p>{label}</p>
       <div>
-        <StatusIndicator currentStatus={questStatus} />
-        <AvatarGroup avatars={avatars} maxAvatars={3} showCounter/>
+        {questStatus === QuestStatus.Accepted ? (
+          <div className={"status " + questStatus}>{questStatus}</div>
+        ) : (
+          <StatusIndicator currentStatus={questStatus} />
+        )}
+        <AvatarGroup avatars={avatars} maxAvatars={3} showCounter />
       </div>
     </div>
   );

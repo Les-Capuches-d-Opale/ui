@@ -5,9 +5,8 @@ import AdventurersList from "../components/AdventurersList";
 import Container from "../components/Container";
 
 const Adventurer = () => {
-  const { isLoading, data: dataAdventurers } = useQuery(
-    "fetchAdventurers",
-    () => request.get("/adventurers")
+  const { isLoading, data: dataAdventurers } = useQuery("fetchAdventurers", () =>
+    request.get("/adventurers")
   );
 
   return (
@@ -15,7 +14,10 @@ const Adventurer = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <AdventurersList adventurers={dataAdventurers?.data} />
+        <>
+          <h1>Liste des aventuriers</h1>
+          <AdventurersList adventurers={dataAdventurers?.data} />
+        </>
       )}
     </Container>
   );

@@ -5,7 +5,7 @@ export type Quests = {
   _id: string;
   request: Request;
   groups: Adventurer[];
-  questStatus: string;
+  questStatus: QuestStatus;
   createdAt: string;
   updatedAt: string;
 };
@@ -13,6 +13,7 @@ export type Quests = {
 export type Transaction = { amount: number; type: string; date: string };
 
 export enum QuestStatus {
+  Accepted = "Accepted",
   Pending = "Pending",
   Failed = "Failed",
   Succeeded = "Succeeded",

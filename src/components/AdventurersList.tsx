@@ -1,9 +1,5 @@
 import { FC, ReactElement } from "react";
-import {
-  Avatar,
-  Column,
-  TableWithBrowserPagination,
-} from "react-rainbow-components";
+import { Avatar, Column, TableWithBrowserPagination } from "react-rainbow-components";
 import { Adventurer } from "../sdk/adventurers";
 
 type AdventurersListType = {
@@ -34,6 +30,7 @@ const AdventurersList: FC<AdventurersListType> = ({
           showCheckboxColumn={isSelectionable}
           onRowSelection={(selection) => setSelected(selection)}
           {...(maxRowSelection ? { maxRowSelection: maxRowSelection } : {})}
+          style={{ height: "auto" }}
         >
           <Column header="Avatar" field="pictureUrl" component={AvatarTable} />
           <Column header="Name" field="name" />

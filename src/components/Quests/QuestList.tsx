@@ -1,9 +1,9 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accordion, AccordionSection, ButtonIcon } from "react-rainbow-components";
-import { Quests } from "../sdk/quest";
+import { Quests } from "../../sdk/quest";
 import AccordionBody from "./AccordionBody";
-import Container from "./Container";
+import Container from "../Container";
 import QuestLabel from "./QuestLabel";
 
 interface Props {

@@ -8,12 +8,7 @@ const PrivateRoute = (props: RouteProps) => {
   return authUser ? (
     <Route {...props} />
   ) : (
-    <Redirect
-      to={{
-        pathname: Routes.LOGIN,
-        state: { referer: props.location?.pathname },
-      }}
-    />
+    <Redirect to={{ pathname: Routes.LOGIN, state: { referer: props.location?.pathname } }} />
   );
 };
 
