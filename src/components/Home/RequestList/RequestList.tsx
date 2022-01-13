@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Accordion, AccordionSection, Badge } from "react-rainbow-components";
+import { Accordion, AccordionSection } from "react-rainbow-components";
 import { RequestListType } from "../../../sdk/request";
 import Container from "../../Container";
 import ChipList from "./ChipList";

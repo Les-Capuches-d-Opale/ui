@@ -21,6 +21,7 @@ const CriteresTable = ({
 }: CriteresTableProps) => {
   const [selected, setSelected] = useState<object[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const StatusBadgeSuggested = ({ value }: any) => {
     return getSugestedAdventurers(requiredProfiles, adventurers)
       .map((ad) => ad._id)
