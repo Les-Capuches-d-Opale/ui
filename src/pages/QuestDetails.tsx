@@ -135,7 +135,7 @@ const QuestDetails = () => {
           <Column header="Avatar" field="pictureUrl" component={AvatarTable} />
           <Column header="Name" field="name" />
           <Column header="Expérience" field="experience" />
-          <Column header="Spécialité" field="speciality" />
+          <Column header="Spécialité" field="speciality.name" />
         </Table>
         <p style={{marginTop: '15px'}}>
           {/* TODO: Add calculated amount */}
