@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { Modal, Button, Input, Textarea } from "react-rainbow-components";
+import { Button, Input, Modal, Textarea } from "react-rainbow-components";
 import request from "../axios";
 
 type ModalRequestFormType = {

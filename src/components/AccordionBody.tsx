@@ -1,9 +1,9 @@
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Request } from "../sdk/request";
 import { Button } from "react-rainbow-components";
 import { generatePath, Link } from "react-router-dom";
 import Routes from "../sdk/routes";
+import { Request } from "../types/request";
 import { secondsToDays } from "../utils/secondsToDays";
 
 interface Props {
