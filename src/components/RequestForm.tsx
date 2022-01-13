@@ -1,65 +1,66 @@
-import { AxiosResponse } from "axios"
-import { FC } from "react"
-import { Controller, useForm } from "react-hook-form"
-import { useMutation } from "react-query"
-import { Modal, Button, Input, Textarea } from "react-rainbow-components"
-import request from "../axios"
+import { AxiosResponse } from "axios";
+import { FC } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { Modal, Button, Input, Textarea } from "react-rainbow-components";
+import request from "../axios";
 
 type ModalRequestFormType = {
-  isOpen: boolean
-  setOpen: Function
-}
+  isOpen: boolean;
+  setOpen: Function;
+};
 
 type RequestFormType = {
-  name: string
-  description: string
-  pictureURL: string
-  questGiver: string
-  bounty: number
-  duration: number
-  awardedExperience: number
-  status: string
-  startDate: string
-}
+  name: string;
+  description: string;
+  pictureURL: string;
+  questGiver: string;
+  bounty: number;
+  duration: number;
+  awardedExperience: number;
+  status: string;
+  startDate: string;
+};
 
 const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
-  const { control, handleSubmit } = useForm<RequestFormType>()
+  const { control, handleSubmit } = useForm<RequestFormType>();
 
   const { mutateAsync, isLoading, error } = useMutation<
     AxiosResponse<{ access_token?: string }>,
     Error,
     RequestFormType
-  >((params) => request.post("requests", params))
+  >((params) => request.post("requests", params));
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-    await mutateAsync(data)
-  })
+    await mutateAsync(data);
+  });
 
   return (
     <Modal
-      id='modal-request-form'
+      id="modal-request-form"
       isOpen={isOpen}
       onRequestClose={() => setOpen(false)}
-      title='Nouvelle requête'
-      size='large'>
+      title="Nouvelle requête"
+      size="large"
+    >
       <form onSubmit={onSubmit}>
         <div
           style={{
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Controller
             control={control}
-            name='name'
+            name="name"
             defaultValue={""}
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label='Nom de la requête'
+                label="Nom de la requête"
                 style={{ width: "100%" }}
-                className='rainbow-p-around_medium'
+                className="rainbow-p-around_medium"
                 value={value}
                 onChange={onChange}
               />
@@ -67,14 +68,14 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           />
           <Controller
             control={control}
-            name='pictureURL'
+            name="pictureURL"
             defaultValue={"https://picsum.photos/200/300"}
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label='Photo'
+                label="Photo"
                 style={{ width: "100%" }}
-                className='rainbow-p-around_medium'
+                className="rainbow-p-around_medium"
                 value={value}
                 onChange={onChange}
               />
@@ -83,13 +84,13 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
         </div>
         <Controller
           control={control}
-          name='description'
+          name="description"
           defaultValue={""}
           render={({ field: { value, onChange } }) => (
             <Textarea
               required
-              label='Description'
-              className='rainbow-p-around_medium'
+              label="Description"
+              className="rainbow-p-around_medium"
               value={value}
               onChange={onChange}
             />
@@ -100,17 +101,18 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Controller
             control={control}
-            name='questGiver'
+            name="questGiver"
             defaultValue={""}
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label='Donneur de quête'
+                label="Donneur de quête"
                 style={{ width: "100%" }}
-                className='rainbow-p-around_medium'
+                className="rainbow-p-around_medium"
                 value={value}
                 onChange={onChange}
               />
@@ -118,14 +120,14 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           />
           <Controller
             control={control}
-            name='bounty'
+            name="bounty"
             defaultValue={0}
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label='Prime'
+                label="Prime"
                 style={{ width: "100%" }}
-                className='rainbow-p-around_medium'
+                className="rainbow-p-around_medium"
                 value={value}
                 onChange={onChange}
               />
@@ -137,17 +139,18 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Controller
             control={control}
-            name='duration'
+            name="duration"
             defaultValue={0}
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label='Durée'
+                label="Durée"
                 style={{ width: "100%" }}
-                className='rainbow-p-around_medium'
+                className="rainbow-p-around_medium"
                 value={value}
                 onChange={onChange}
               />
@@ -155,14 +158,14 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           />
           <Controller
             control={control}
-            name='awardedExperience'
+            name="awardedExperience"
             defaultValue={0}
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label='Expérience'
+                label="Expérience"
                 style={{ width: "100%" }}
-                className='rainbow-p-around_medium'
+                className="rainbow-p-around_medium"
                 value={value}
                 onChange={onChange}
               />
@@ -171,16 +174,16 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
         </div>
         <div style={{ textAlign: "center" }}>
           <Button
-            type='submit'
-            label='Valider'
+            type="submit"
+            label="Valider"
             shaded
-            variant='brand'
-            className='rainbow-m-around_medium'
+            variant="brand"
+            className="rainbow-m-around_medium"
           />
         </div>
       </form>
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalRequestForm
+export default ModalRequestForm;

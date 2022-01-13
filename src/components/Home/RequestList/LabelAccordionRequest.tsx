@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { FC, useState } from "react";
 import { Avatar, Button } from "react-rainbow-components";
-import { Request } from "../../../types/request";
+import { Request } from "../../../sdk/request";
 import { secondsToDays } from "../../../utils/secondsToDays";
 import ModalAffectAdventurers from "./ModalAffectAdventurers";
 
@@ -28,8 +28,7 @@ const Label: FC<Request> = ({
         <div>
           <p>Durée : {secondsToDays(duration)}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>
-            Début :{" "}
-            {dateDebut ? format(new Date(dateDebut), "MM/dd/yyyy") : "?"}
+            Début : Début : {dateDebut || "?"}
           </p>
         </div>
         <div>

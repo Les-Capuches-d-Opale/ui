@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Accordion, AccordionSection, Badge } from "react-rainbow-components";
-import { RequestListType } from "../../../types/request";
+import { RequestListType } from "../../../sdk/request";
 import Container from "../../Container";
 import Label from "./LabelAccordionRequest";
 
