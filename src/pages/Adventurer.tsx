@@ -10,13 +10,15 @@ const Adventurer = () => {
     () => request.get("/adventurers")
   );
 
-  return [
+  return (
     <Container>
-      {isLoading && <Spinner />}
-      <h1>Liste des aventuriers</h1>
-      <AdventurersList adventurers={dataAdventurers?.data} />
-    </Container>,
-  ];
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <AdventurersList adventurers={dataAdventurers?.data} />
+      )}
+    </Container>
+  );
 };
 
 export default Adventurer;
