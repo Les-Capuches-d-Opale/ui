@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Avatar } from "react-rainbow-components";
-import { Request } from "../../types/request";
+import { Request } from "../../sdk/request";
 import ModalUpdateStatus from "./ModalUpdateStatus";
 import StatusTextChip from "./StatusTextChip";
 
