@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 import {
   Avatar,
   Column,
@@ -11,6 +11,7 @@ type AdventurersListType = {
   isSelectionable?: boolean;
   setSelected?: Function;
   maxRowSelection?: number;
+  StatusColumn?: ReactElement;
 };
 
 const AdventurersList: FC<AdventurersListType> = ({
@@ -18,6 +19,7 @@ const AdventurersList: FC<AdventurersListType> = ({
   isSelectionable = false,
   setSelected = () => {},
   maxRowSelection,
+  StatusColumn,
 }) => {
   const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
@@ -38,6 +40,7 @@ const AdventurersList: FC<AdventurersListType> = ({
           <Column header="Spécialité" field="speciality.name" />
           <Column header="Experience" field="experience" />
           <Column header="Taux journalier" field="baseDailyRate" />
+          {StatusColumn && StatusColumn}
         </TableWithBrowserPagination>
       )}
     </>

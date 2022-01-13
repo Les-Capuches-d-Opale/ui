@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Accordion, AccordionSection, Badge } from "react-rainbow-components";
 import { RequestListType } from "../../../sdk/request";
 import Container from "../../Container";
+import ChipList from "./ChipList";
 import Label from "./LabelAccordionRequest";
 
 const RequestList: FC<RequestListType> = ({ requests }) => {
@@ -19,19 +20,7 @@ const RequestList: FC<RequestListType> = ({ requests }) => {
                 <div style={{ opacity: 0.5, marginTop: 5 }}>
                   Profils requis :
                 </div>
-                {req.requiredProfiles &&
-                  req.requiredProfiles.length > 0 &&
-                  req.requiredProfiles.map((profile, i) => {
-                    return (
-                      <Badge
-                        style={{ marginLeft: 0, marginRight: 10 }}
-                        key={i}
-                        className="rainbow-m-around_medium"
-                        label={`${profile.speciality?.name} ${profile.experience}XP`}
-                        variant="outline-brand"
-                      />
-                    );
-                  })}
+                <ChipList requiredProfiles={req.requiredProfiles} />
               </AccordionSection>
             );
           })}

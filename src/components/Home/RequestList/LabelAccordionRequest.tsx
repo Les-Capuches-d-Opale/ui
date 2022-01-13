@@ -28,7 +28,7 @@ const Label: FC<Request> = ({
         <div>
           <p>Durée : {secondsToDays(duration)}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>
-            Début : Début : {dateDebut || "?"}
+            Début : {dateDebut || "?"}
           </p>
         </div>
         <div>
@@ -47,6 +47,9 @@ const Label: FC<Request> = ({
           setOpen={setOpen}
           requestId={_id}
           requiredProfiles={requiredProfiles}
+          nameRequest={name}
+          duration={duration}
+          dateDebut={dateDebut}
         />
       )}
     </div>
