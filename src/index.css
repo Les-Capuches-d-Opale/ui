@@ -71,7 +71,6 @@ h2 {
   position: relative;
   margin-right: 20px;
   color: grey;
-  cursor: pointer;
 }
 
 .status::after {

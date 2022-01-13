@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Avatar } from "react-rainbow-components";
 import { Request } from "../../types/request";
 import ModalUpdateStatus from "./ModalUpdateStatus";
+import StatusTextChip from "./StatusTextChip";
 
 const avatarLarge: React.CSSProperties = {
   width: 150,
@@ -46,12 +47,7 @@ const DetailsHeader = ({ questDetails }: Props) => {
       <div style={headerRightStyles}>
         <div style={headerTitle}>
           <h1>{questDetails.name}</h1>
-          <div
-            className={"status " + questDetails.status}
-            onClick={() => setShowModalUpdateStatus(true)}
-          >
-            {questDetails.status}
-          </div>
+        <StatusTextChip status={questDetails.status} setOpen={setShowModalUpdateStatus}/>
         </div>
         <p style={questDescriptionStyles}>{questDetails.description}</p>
         <p style={{ fontSize: "10px", color: "grey" }}>
@@ -59,7 +55,12 @@ const DetailsHeader = ({ questDetails }: Props) => {
           <strong style={{ color: "white" }}>{questDetails.questGiver}</strong>
         </p>
       </div>
-      <ModalUpdateStatus currentStatus={questDetails.status} isOpen={showModalUpdateStatus} setOpen={setShowModalUpdateStatus}/>
+      <ModalUpdateStatus
+        requestId={questDetails._id}
+        currentStatus={questDetails.status}
+        isOpen={showModalUpdateStatus}
+        setOpen={setShowModalUpdateStatus}
+      />
     </div>
   );
 };

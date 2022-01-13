@@ -1,6 +1,10 @@
+import { AxiosResponse } from "axios";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "react-query";
 import { Button, Modal, Select } from "react-rainbow-components";
-import { QuestStatus } from "../../sdk/quest";
+import request from "../../axios";
+import { Quests, QuestStatus } from "../../sdk/quest";
 
 const content: React.CSSProperties = {
   display: "flex",
@@ -18,11 +22,35 @@ interface Props {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   currentStatus: QuestStatus;
+  requestId: string;
 }
 
-const ModalUpdateStatus = ({ isOpen, setOpen, currentStatus }: Props) => {
-  const [statusValue, setStatusValue] = useState(currentStatus);
-//   const [isLoading, setisLoading] = useState(false);
+type UpdateValue = {
+  request: string;
+  status: QuestStatus;
+};
+
+const ModalUpdateStatus = ({ isOpen, setOpen, currentStatus, requestId }: Props) => {
+  const queryClient = useQueryClient();
+
+  const [statusValue, setStatusValue] = useState<QuestStatus>(currentStatus);
+  const [isLoading, setisLoading] = useState(false);
+ 
+  const { handleSubmit } = useForm<UpdateValue>();
+
+  const { mutateAsync } = useMutation<AxiosResponse<Quests>, Error, UpdateValue>(
+    (params) => request.put(`/quests`, params),
+    {
+      onSuccess: () => queryClient.invalidateQueries(),
+    }
+  );
+
+  const onSubmit = handleSubmit(async () => {
+    const data = { request: requestId, status: statusValue };
+    setisLoading(true);
+    await mutateAsync(data);
+    setisLoading(false);
+  });
 
   return (
     <Modal
@@ -34,18 +62,21 @@ const ModalUpdateStatus = ({ isOpen, setOpen, currentStatus }: Props) => {
       <div style={content}>
         <h1>Status de la quête</h1>
         <p style={{ margin: "20px 0" }}>Vous allez changer le status de cette quête : </p>
-        <Select
-          style={{ width: "200px", marginBottom: "20px" }}
-          value={statusValue}
-          options={options}
-          onChange={(values) => setStatusValue(values.target.value as QuestStatus)}
-        />
-        <Button
-          variant="success"
-          label="Valider le changement"
-          type="submit"
-        //   isLoading={isLoading}
-        />
+        <form onSubmit={onSubmit}>
+          <Select
+            style={{ width: "200px", marginBottom: "20px" }}
+            name="status"
+            value={statusValue}
+            options={options}
+            onChange={(values) => setStatusValue(values.target.value as QuestStatus)}
+          />
+          <Button
+            variant="success"
+            label="Valider le changement"
+            type="submit"
+            isLoading={isLoading}
+          />
+        </form>
       </div>
     </Modal>
   );
