@@ -30,6 +30,7 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
   nameRequest,
   duration,
   dateDebut,
+  coucou,
 }) => {
   const { isLoading, data: dataAdventurers } = useQuery(
     "fetchAdventurers",
