@@ -34,7 +34,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -42,13 +43,16 @@
       "react-app/jest"
     ]
   },
-  "lint-staged": {
-    "*.js": "eslint"
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && yar lint && lint-staged && pretty-quick --staged"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
