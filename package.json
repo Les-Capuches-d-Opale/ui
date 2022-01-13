@@ -51,10 +51,10 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --quiet --fix"
+      "eslint ./ --max-warnings=0"
     ],
-    "*.{json,md,html}": [
-      "prettier --write"
+    "*.{js, ts, tsx}": [
+      "prettier --write \"**/*.{ts,tsx,json,md}\""
     ]
   },
   "browserslist": {

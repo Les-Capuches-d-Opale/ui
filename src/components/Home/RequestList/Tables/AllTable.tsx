@@ -21,7 +21,7 @@ const AllTable = ({
 }: AllTableProps) => {
   const [selected, setSelected] = useState<object[]>([]);
 
-  console.log("couou");
+  console.log("coucou");
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const StatusBadgeSuggested = ({ value }: any) => {
