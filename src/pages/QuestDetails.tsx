@@ -1,18 +1,25 @@
+import { faChevronLeft, faCoins } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "react-query";
-import { Avatar, Button, Column, Table } from "react-rainbow-components";
-import { useParams } from "react-router-dom";
+import { Avatar, Button, ButtonIcon, Column, Table } from "react-rainbow-components";
+import { useHistory, useParams } from "react-router-dom";
 import request from "../axios";
+import Container from "../components/Container";
+import { Quests } from "../sdk/quest";
+import { secondsToDays } from "../utils/secondsToDays";
 
 //Styles
 const avatarLarge = {
   width: 150,
   height: 150,
 };
+
 const headerStyles = {
   display: "flex",
   justifyContent: "flex-start",
   marginBottom: "50px",
 };
+
 const headerRightStyles: React.CSSProperties = {
   display: "flex",
   flex: 1,
@@ -21,28 +28,34 @@ const headerRightStyles: React.CSSProperties = {
   marginLeft: "30px",
   maxWidth: "100%",
 };
+
 const headerTitle = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
 };
+
 const questDescriptionStyles = {
-  height: "70px",
+  marginBottom: "20px",
 };
+
 const principalInfos: React.CSSProperties = {
   display: "flex",
   flex: 1,
   justifyContent: "space-between",
-  marginBottom: "50px",
+  marginBottom: "30px",
 };
+
 const info = {
   fontSize: "18px",
 };
+
 const titleAssign = {
   display: "flex",
   flex: 1,
   alignItems: "center",
 };
+
 const buttonAssign = {
   height: "30px",
   fontSize: "12px",
@@ -50,29 +63,32 @@ const buttonAssign = {
   marginLeft: "30px",
 };
 
-//Function
-const durationConvert = (s: number) => {
-  const h = Math.round((s / 3600) % 24);
-  const jrs = Math.round(s / 3600 / 24);
-  return `${jrs}j${h}h`;
-};
+interface RouteParams {
+  id: string;
+}
+
+const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
 const QuestDetails = () => {
-  const isRequest = window.location.pathname.includes("/requests/")
-    ? true
-    : false;
-  interface RouteParams {
-    id: string;
-  }
+  const isRequest = window.location.pathname.includes("/requests/") ? true : false;
+
+  const history = useHistory();
+
   const { id } = useParams<RouteParams>();
-  const { data: quest } = useQuery("fetchRequest", () =>
-    request.get(`https://les-capuches-d-opale.herokuapp.com/quests/${id}`)
+
+  const { data: quest } = useQuery("fetchQuest", () =>
+    request.get<Quests>(`https://les-capuches-d-opale.herokuapp.com/quests/${id}`)
   );
 
-  const AvatarTable = ({ value }: any) => <Avatar src={value} />;
-
   return (
-    <div style={{ padding: "30px 50px" }}>
+    <Container>
+      <ButtonIcon
+        style={{ margin: "15px 0 15px -80px" }}
+        variant="neutral"
+        tooltip="Revenir en arrière"
+        icon={<FontAwesomeIcon icon={faChevronLeft} />}
+        onClick={() => history.goBack()}
+      />
       <div style={headerStyles}>
         <Avatar style={avatarLarge} src="https://picsum.photos/150/150" />
         <div style={headerRightStyles}>
@@ -82,34 +98,30 @@ const QuestDetails = () => {
               {quest?.data.request.status}
             </div>
           </div>
-          <p style={questDescriptionStyles}>
-            {quest?.data.request.description}
-          </p>
+          <p style={questDescriptionStyles}>{quest?.data.request.description}</p>
           <p style={{ fontSize: "10px", color: "grey" }}>
-            Demande effectué par{" "}
-            <strong style={{ color: "white" }}>
-              {quest?.data.request.questGiver}
-            </strong>
+            Demande effectuée par{" "}
+            <strong style={{ color: "white" }}>{quest?.data.request.questGiver}</strong>
           </p>
         </div>
       </div>
       <div style={principalInfos}>
         <p style={info}>
           <strong>Prime: </strong>
-          {quest?.data.request.bounty}
+          {quest?.data.request.bounty} <FontAwesomeIcon icon={faCoins} />
         </p>
         <p style={info}>
-          <strong>EXP: </strong>
+          <strong>EXP : </strong>
           {quest?.data.request.awardedExperience}
         </p>
         <p style={info}>
           <strong>Durée: </strong>
-          {durationConvert(quest?.data.request.duration)}
+          {secondsToDays(quest?.data.request.duration)}
         </p>
       </div>
       <div style={{ marginBottom: "50px" }}>
         <div style={titleAssign}>
-          <h3 style={{ fontSize: "24px" }}>Aventurier Assignés</h3>
+          <h3 style={{ fontSize: "24px", marginBottom: "15px" }}>Aventurier Assignés</h3>
           {isRequest && (
             <Button
               style={buttonAssign}
@@ -123,10 +135,11 @@ const QuestDetails = () => {
           <Column header="Avatar" field="pictureUrl" component={AvatarTable} />
           <Column header="Name" field="name" />
           <Column header="Expérience" field="experience" />
-          <Column header="Spécialité" field="speciality" />
+          <Column header="Spécialité" field="speciality.name" />
         </Table>
-        <p>
-          <strong>Coût max. de la missions: </strong> 2500
+        <p style={{marginTop: '15px'}}>
+          {/* TODO: Add calculated amount */}
+          <strong>Coût max. de la mission: </strong> 2500 <FontAwesomeIcon icon={faCoins} />
         </p>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -138,21 +151,13 @@ const QuestDetails = () => {
           />
         )}
         {isRequest && (
-          <Button
-            label="Valider l'équipe"
-            variant="success"
-            className="rainbow-m-around_medium"
-          />
+          <Button label="Valider l'équipe" variant="success" />
         )}
         {!isRequest && (
-          <Button
-            label="Lancer la mission"
-            variant="success"
-            className="rainbow-m-around_medium"
-          />
+          <Button label="Lancer la mission" variant="success" />
         )}
       </div>
-    </div>
+    </Container>
   );
 };
 
