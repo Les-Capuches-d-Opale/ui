@@ -47,7 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
+      "pre-commit": "yarn format && yar lint && lint-staged && pretty-quick --staged"
     }
   },
   "browserslist": {
