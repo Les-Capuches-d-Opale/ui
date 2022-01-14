@@ -1,6 +1,13 @@
 import { Adventurer } from "./adventurers";
 import { Request } from "./request";
 
+export enum QuestStatus {
+  Accepted = "Accepted",
+  Pending = "Pending",
+  Failed = "Failed",
+  Succeeded = "Succeeded",
+}
+
 export type Quests = {
   _id: string;
   request: Request;
@@ -11,10 +18,3 @@ export type Quests = {
 };
 
 export type Transaction = { amount: number; type: string; date: string };
-
-export enum QuestStatus {
-  Accepted = "Accepted",
-  Pending = "Pending",
-  Failed = "Failed",
-  Succeeded = "Succeeded",
-}

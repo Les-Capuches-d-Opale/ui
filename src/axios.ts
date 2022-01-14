@@ -9,7 +9,7 @@ request.interceptors.request.use(
   (config) => {
     const userData = localStorage.getItem("USER");
     if (userData) {
-      const token = JSON.parse(userData).token;
+      const { token } = JSON.parse(userData);
       if (token && token !== "" && config && config.headers) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -18,7 +18,8 @@ request.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error("axios interceptors error : ",error);
+    // eslint-disable-next-line no-console
+    console.error("axios interceptors error : ", error);
     return error;
   }
 );

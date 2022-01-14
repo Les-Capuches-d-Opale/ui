@@ -9,7 +9,10 @@ const StatusIndicator = ({ currentStatus }: Props) => {
   return (
     <ProgressIndicator currentStepName={currentStatus}>
       <ProgressStep name={QuestStatus.Pending} label={QuestStatus.Pending} />
-      <ProgressStep name={QuestStatus.Succeeded} label={QuestStatus.Succeeded} />
+      <ProgressStep
+        name={QuestStatus.Succeeded}
+        label={QuestStatus.Succeeded}
+      />
       <ProgressStep name={QuestStatus.Failed} label={QuestStatus.Failed} />
     </ProgressIndicator>
   );

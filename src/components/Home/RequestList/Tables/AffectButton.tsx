@@ -27,7 +27,7 @@ const AffectButton = ({ groups, request, disabled }: ButtonProps) => {
       <Button
         variant="brand"
         onClick={async () => {
-          await mutateAsync({ groups: groups, request: request });
+          await mutateAsync({ groups, request });
           history.push(Routes.QUESTS);
         }}
         style={{ marginTop: 20 }}

@@ -1,5 +1,9 @@
 import { FC, ReactElement } from "react";
-import { Avatar, Column, TableWithBrowserPagination } from "react-rainbow-components";
+import {
+  Avatar,
+  Column,
+  TableWithBrowserPagination,
+} from "react-rainbow-components";
 import { Adventurer } from "../sdk/adventurers";
 
 type AdventurersListType = {
@@ -10,15 +14,16 @@ type AdventurersListType = {
   StatusColumn?: ReactElement;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AvatarTable = ({ value }: any) => <Avatar src={value} />;
+
 const AdventurersList: FC<AdventurersListType> = ({
   adventurers,
   isSelectionable = false,
-  setSelected = () => {},
+  setSelected,
   maxRowSelection,
   StatusColumn,
 }) => {
-  const AvatarTable = ({ value }: any) => <Avatar src={value} />;
-
   return (
     <>
       {!adventurers || (adventurers.length === 0 && <p>Aucun aventuriers</p>)}
@@ -28,9 +33,11 @@ const AdventurersList: FC<AdventurersListType> = ({
           data={adventurers}
           keyField="_id"
           showCheckboxColumn={isSelectionable}
-          onRowSelection={(selection) => setSelected(selection)}
-          {...(maxRowSelection ? { maxRowSelection: maxRowSelection } : {})}
           style={{ height: "auto" }}
+          {...(maxRowSelection ? { maxRowSelection } : {})}
+          {...(setSelected
+            ? { onRowSelection: (selection) => setSelected(selection) }
+            : {})}
         >
           <Column header="Avatar" field="pictureUrl" component={AvatarTable} />
           <Column header="Name" field="name" />

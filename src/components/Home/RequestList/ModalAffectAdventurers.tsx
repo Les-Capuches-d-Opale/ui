@@ -1,15 +1,14 @@
 import { faClock } from "@fortawesome/free-regular-svg-icons";
-import { faCalendarWeek, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarWeek } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { useQuery } from "react-query";
 import { Chip, Modal, Spinner } from "react-rainbow-components";
 import request from "../../../axios";
 import { AdventurerProfile } from "../../../sdk/adventurers";
-import { secondsToDays } from "../../../utils/secondsToDays";
+import secondsToDays from "../../../utils/secondsToDays";
 import Container from "../../Container";
 import ChipList from "./ChipList";
-import LabelAccordionRequest from "./LabelAccordionRequest";
 import TablesTab from "./Tables/TablesTab";
 
 type ModalAffectAdventersType = {

@@ -1,31 +1,51 @@
-## Projet Coordination Front et Back
+# :sparkles: Les Capuches d'Opales : Guilde d'aventuriers :sparkles:
 
-### Les Capuches d'Opales : Guilde d'aventuriers 
+:fire: https://les-capuches-d-opale.tk/
 
-## Available Scripts
+:computer: React, Typescript, Cypress, ESLint, Prettier, RainbowUI, Heroku, Netlify
 
-In the project directory, you can run:
-### `npm install`
+:art: Guilde front : Chloé NOGER, Killian CAMBERT, Thaïs JUHEL, Marie GAUTRON
 
-To install all dependencies required for this project.
+:gun: Guilde back : Martin DANVERS, Lilian OUVRARD, Abdellah JRONDI, Abderahim malick ASSIM MAHAMAT
 
-### `npm start`
+:house: https://github.com/Les-Capuches-d-Opale
 
-Runs the app in the development mode.\
+### Available Scripts
+
+#### Install dependencies
+
+To install all dependencies required for this project runs `npm install` or `yarn`
+
+#### Run local app
+
+Runs the app in the development mode. Runs `npm start` or `yarn start`\
 Open [http://localhost:4002](http://localhost:4002) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-## Folders :
+### :bug: Detect problems, fix and format code
 
-### `components` : pour les composants lieu au métier (ex: Formulaire, modal...)
-### `pages` : pour les pages principales du projet (ex: Login, Home...) 
-### `router` : pour implémentation de la logique des routes (Privates routes)
-### `sdk` : pour les interfaces des types
-### `uikit` : pour les composants basiques que l'on peut réutiliser 
+For detects syntax problems in your code runs : `yarn lint`
+For detects and fix syntax problems in your code runs : `yarn lint-fix`
+For format your code runs : `yarn format`
 
+:warning: When you runs `yarn start`, before starting the projet, the app format your code (runs `yarn format` before)
 
-## Workflow :
+:warning: Husky is installed. When you commit your code, ESLint detect and fix problems. You can't commit if ESLint detects errors.
 
-Il y a 2 branches de base `master` et `develop`, lors des pull request mettre develop en main branch 
+### Folders :
+
+- `components` : pour les composants lieu au métier (ex: Formulaire, modal...)
+
+- `pages` : pour les pages principales du projet (ex: Login, Home...)
+
+- `router` : pour implémentation de la logique des routes (Privates routes)
+
+- `sdk` : pour les interfaces des types
+
+- `uikit` : pour les composants basiques que l'on peut réutiliser
+
+### Workflow :
+
+Il y a 2 branches de base `master` et `develop`, lors des pull request mettre develop en main branch

@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { Adventurer, AdventurerProfile } from "../../../../sdk/adventurers";
 import AdventurersList from "../../../AdventurersList";
-import {
-  getFiltredAdventurers,
-  getSugestedAdventurers,
-} from "../../../../utils/adventurersFilters";
+import { getSugestedAdventurers } from "../../../../utils/adventurersFilters";
 import AffectButton from "./AffectButton";
 
 interface SuggestionTableProps {
