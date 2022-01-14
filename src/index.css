@@ -38,7 +38,8 @@ h2 {
   transform: translate(-50%, -50%);
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
   background-color: rgb(0, 205, 165);
   color: #eeeeee !important;
   text-decoration: none !important;
@@ -50,7 +51,8 @@ h2 {
 .container {
   width: 80%;
   margin: 0 auto;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
+  height: 100vh;
 }
 
 .label-request-info {

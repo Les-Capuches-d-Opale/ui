@@ -9,9 +9,9 @@ const Quest = () => {
   );
 
   return (
-    <div>
+    <>
       <QuestList quests={data} />
-    </div>
+    </>
   );
 };
 

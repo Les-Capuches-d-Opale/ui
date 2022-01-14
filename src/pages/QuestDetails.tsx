@@ -13,19 +13,10 @@ import { useHistory, useParams } from "react-router-dom";
 import request from "../axios";
 import Container from "../components/Container";
 import DetailsHeader from "../components/Quests/DetailsHeader";
+import InfoHeader from "../components/Quests/InfoHeader";
 import { Quests } from "../sdk/quest";
-import secondsToDays from "../utils/secondsToDays";
 
-const principalInfos: React.CSSProperties = {
-  display: "flex",
-  flex: 1,
-  justifyContent: "space-between",
-  marginBottom: "30px",
-};
-
-const info = {
-  fontSize: "18px",
-};
+// Styles
 
 const titleAssign = {
   display: "flex",
@@ -53,6 +44,7 @@ const QuestDetails = () => {
   const history = useHistory();
 
   const { id } = useParams<RouteParams>();
+
   const { data: quest } = useQuery("fetchQuest", () =>
     request.get<Quests>(`/quests/${id}`)
   );
@@ -68,21 +60,8 @@ const QuestDetails = () => {
             icon={<FontAwesomeIcon icon={faChevronLeft} />}
             onClick={() => history.goBack()}
           />
-          <DetailsHeader questDetails={quest.data.request} />
-          <div style={principalInfos}>
-            <p style={info}>
-              <strong>Prime: </strong>
-              {quest?.data.request.bounty} <FontAwesomeIcon icon={faCoins} />
-            </p>
-            <p style={info}>
-              <strong>EXP : </strong>
-              {quest?.data.request.awardedExperience}
-            </p>
-            <p style={info}>
-              <strong>Durée: </strong>
-              {secondsToDays(quest?.data.request.duration)}
-            </p>
-          </div>
+          <DetailsHeader requestDetails={quest.data.request} />
+          <InfoHeader requestInfo={quest.data.request} />
           <div style={{ marginBottom: "50px" }}>
             <div style={titleAssign}>
               <h3 style={{ fontSize: "24px", marginBottom: "15px" }}>

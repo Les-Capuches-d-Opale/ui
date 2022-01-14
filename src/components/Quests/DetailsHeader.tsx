@@ -35,10 +35,10 @@ const questDescriptionStyles: React.CSSProperties = {
 };
 
 interface Props {
-  questDetails: Request;
+  requestDetails: Request;
 }
 
-const DetailsHeader = ({ questDetails }: Props) => {
+const DetailsHeader = ({ requestDetails }: Props) => {
   const [showModalUpdateStatus, setShowModalUpdateStatus] = useState(false);
 
   return (
@@ -46,21 +46,23 @@ const DetailsHeader = ({ questDetails }: Props) => {
       <Avatar style={avatarLarge} src="https://picsum.photos/150/150" />
       <div style={headerRightStyles}>
         <div style={headerTitle}>
-          <h1>{questDetails.name}</h1>
+          <h1>{requestDetails.name}</h1>
           <StatusTextChip
-            status={questDetails.status}
+            status={requestDetails.status}
             setOpen={setShowModalUpdateStatus}
           />
         </div>
-        <p style={questDescriptionStyles}>{questDetails.description}</p>
+        <p style={questDescriptionStyles}>{requestDetails.description}</p>
         <p style={{ fontSize: "10px", color: "grey" }}>
           Demande effectuée par{" "}
-          <strong style={{ color: "white" }}>{questDetails.questGiver}</strong>
+          <strong style={{ color: "white" }}>
+            {requestDetails.questGiver}
+          </strong>
         </p>
       </div>
       <ModalUpdateStatus
-        requestId={questDetails._id}
-        currentStatus={questDetails.status}
+        requestId={requestDetails._id}
+        currentStatus={requestDetails.status}
         isOpen={showModalUpdateStatus}
         setOpen={setShowModalUpdateStatus}
       />

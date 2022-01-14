@@ -9,7 +9,7 @@ export type Request = {
   questGiver: string;
   bounty: number;
   duration: number;
-  dateDebut: Date;
+  dateDebut: string;
   requiredProfiles: AdventurerProfile[];
   status: QuestStatus;
   awardedExperience: number;

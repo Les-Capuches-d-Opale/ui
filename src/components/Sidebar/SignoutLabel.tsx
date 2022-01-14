@@ -10,8 +10,9 @@ const wrapper: React.CSSProperties = {
 };
 
 const signoutLabelStyle: React.CSSProperties = {
-  color: "#222930",
+  color: "#00cda5",
   textTransform: "initial",
+  fontWeight: "normal",
 };
 
 const SignoutLabel = () => {
@@ -28,7 +29,7 @@ const SignoutLabel = () => {
     <div style={wrapper}>
       <Button variant="border" onClick={signout} isLoading={isLoading}>
         <FontAwesomeIcon
-          color="#222930"
+          color="#00cda5"
           icon={faSignOutAlt}
           style={{ marginRight: "10px" }}
         />

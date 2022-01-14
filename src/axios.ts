@@ -1,4 +1,5 @@
 import axios from "axios";
+import Routes from "./sdk/routes";
 
 const request = axios.create({
   baseURL: "https://les-capuches-d-opale.herokuapp.com/",
@@ -20,6 +21,26 @@ request.interceptors.request.use(
   (error) => {
     // eslint-disable-next-line no-console
     console.error("axios interceptors error : ", error);
+    return error;
+  }
+);
+
+request.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // eslint-disable-next-line no-console
+    console.error(error.response);
+
+    if (
+      error.response.status === 401 &&
+      error.response.statusText === "Unauthorized"
+    ) {
+      // when token expired, redirect to login page
+      localStorage.removeItem("USER");
+      document.location.href = Routes.LOGIN;
+    }
     return error;
   }
 );
