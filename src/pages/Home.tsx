@@ -9,10 +9,10 @@ const Home = () => {
   );
 
   return (
-    <div>
+    <>
       {isLoading && <Spinner />}
       <RequestList requests={dataRequest?.data} />
-    </div>
+    </>
   );
 };
 

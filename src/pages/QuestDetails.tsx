@@ -16,7 +16,7 @@ import DetailsHeader from "../components/Quests/DetailsHeader";
 import InfoHeader from "../components/Quests/InfoHeader";
 import { Quests } from "../sdk/quest";
 
-//Styles
+// Styles
 
 const titleAssign = {
   display: "flex",
@@ -45,7 +45,9 @@ const QuestDetails = () => {
 
   const { id } = useParams<RouteParams>();
 
-  const { data: quest } = useQuery("fetchQuest", () => request.get<Quests>(`/quests/${id}`));
+  const { data: quest } = useQuery("fetchQuest", () =>
+    request.get<Quests>(`/quests/${id}`)
+  );
 
   return (
     <Container>

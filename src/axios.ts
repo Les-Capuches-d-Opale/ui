@@ -30,9 +30,13 @@ request.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error.response);
-    
-    if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+    // eslint-disable-next-line no-console
+    console.error(error.response);
+
+    if (
+      error.response.status === 401 &&
+      error.response.statusText === "Unauthorized"
+    ) {
       // when token expired, redirect to login page
       localStorage.removeItem("USER");
       document.location.href = Routes.LOGIN;

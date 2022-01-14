@@ -1,9 +1,10 @@
+import { CSSProperties } from "react";
 import { AvatarGroup } from "react-rainbow-components";
 import { Adventurer } from "../../sdk/adventurers";
 import { QuestStatus } from "../../sdk/quest";
 import StatusIndicator from "./StatusIndicator";
 
-const contentLabel: React.CSSProperties = {
+const contentLabel: CSSProperties = {
   display: "flex",
   alignItems: "center",
   width: "200px",
@@ -40,7 +41,12 @@ const QuestLabel = ({ label, adventurers, questStatus }: Props) => {
         ) : (
           <StatusIndicator currentStatus={questStatus} />
         )}
-        <AvatarGroup style={{ marginLeft: 10 }} avatars={avatars} maxAvatars={3} showCounter />
+        <AvatarGroup
+          style={{ marginLeft: 10 }}
+          avatars={avatars}
+          maxAvatars={3}
+          showCounter
+        />
       </div>
     </div>
   );

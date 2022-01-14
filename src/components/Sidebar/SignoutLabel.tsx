@@ -28,7 +28,11 @@ const SignoutLabel = () => {
   return (
     <div style={wrapper}>
       <Button variant="border" onClick={signout} isLoading={isLoading}>
-        <FontAwesomeIcon color="#00cda5" icon={faSignOutAlt} style={{ marginRight: "10px" }} />
+        <FontAwesomeIcon
+          color="#00cda5"
+          icon={faSignOutAlt}
+          style={{ marginRight: "10px" }}
+        />
         <p style={signoutLabelStyle}> Se déconnecter</p>
       </Button>
     </div>

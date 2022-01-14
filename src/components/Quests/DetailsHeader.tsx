@@ -47,12 +47,17 @@ const DetailsHeader = ({ requestDetails }: Props) => {
       <div style={headerRightStyles}>
         <div style={headerTitle}>
           <h1>{requestDetails.name}</h1>
-        <StatusTextChip status={requestDetails.status} setOpen={setShowModalUpdateStatus}/>
+          <StatusTextChip
+            status={requestDetails.status}
+            setOpen={setShowModalUpdateStatus}
+          />
         </div>
         <p style={questDescriptionStyles}>{requestDetails.description}</p>
         <p style={{ fontSize: "10px", color: "grey" }}>
           Demande effectuée par{" "}
-          <strong style={{ color: "white" }}>{requestDetails.questGiver}</strong>
+          <strong style={{ color: "white" }}>
+            {requestDetails.questGiver}
+          </strong>
         </p>
       </div>
       <ModalUpdateStatus
