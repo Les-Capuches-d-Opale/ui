@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Badge, Column } from "react-rainbow-components";
 import { Adventurer, AdventurerProfile } from "../../../../sdk/adventurers";
-import AdventurersList from "../../../AdventurersList";
 import {
   getFiltredAdventurers,
   getSugestedAdventurers,
 } from "../../../../utils/adventurersFilters";
+import AdventurersList from "../../../AdventurersList";
 import AffectButton from "./AffectButton";
 
 interface CriteresTableProps {
@@ -21,13 +21,16 @@ const CriteresTable = ({
 }: CriteresTableProps) => {
   const [selected, setSelected] = useState<object[]>([]);
 
-  const StatusBadgeSuggested = ({ value }: any) => {
-    return getSugestedAdventurers(requiredProfiles, adventurers)
-      .map((ad) => ad._id)
-      .includes(value) ? (
-      <Badge label="Suggested" variant="outline-brand" />
-    ) : null;
-  };
+  const StatusBadgeSuggested = useCallback(
+    ({ value }: any) => {
+      return getSugestedAdventurers(requiredProfiles, adventurers)
+        .map((ad) => ad._id)
+        .includes(value) ? (
+        <Badge label="Suggested" variant="outline-brand" />
+      ) : null;
+    },
+    [requiredProfiles, adventurers]
+  );
 
   const criteredAdventurers = getFiltredAdventurers(
     requiredProfiles,

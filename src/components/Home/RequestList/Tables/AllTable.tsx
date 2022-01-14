@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Badge, Column } from "react-rainbow-components";
 import { Adventurer, AdventurerProfile } from "../../../../sdk/adventurers";
 import AdventurersList from "../../../AdventurersList";
@@ -21,28 +21,29 @@ const AllTable = ({
 }: AllTableProps) => {
   const [selected, setSelected] = useState<object[]>([]);
 
-  console.log("coucou");
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const StatusBadgeSuggested = ({ value }: any) => {
-    if (
-      getSugestedAdventurers(requiredProfiles, adventurers)
-        .map((ad) => ad._id)
-        .includes(value)
-    ) {
-      return <Badge label="Suggested" variant="outline-brand" />;
-    }
+  const StatusBadgeSuggested = useCallback(
+    ({ value }: any) => {
+      if (
+        getSugestedAdventurers(requiredProfiles, adventurers)
+          .map((ad) => ad._id)
+          .includes(value)
+      ) {
+        return <Badge label="Suggested" variant="outline-brand" />;
+      }
 
-    if (
-      getFiltredAdventurers(requiredProfiles, adventurers)
-        .map((ad) => ad._id)
-        .includes(value)
-    ) {
-      return <Badge label="Critères ✅" variant="lightest" />;
-    }
+      if (
+        getFiltredAdventurers(requiredProfiles, adventurers)
+          .map((ad) => ad._id)
+          .includes(value)
+      ) {
+        return <Badge label="Critères ✅" variant="lightest" />;
+      }
 
-    return <></>;
-  };
+      return null;
+    },
+    [requiredProfiles, adventurers]
+  );
 
   return (
     <>

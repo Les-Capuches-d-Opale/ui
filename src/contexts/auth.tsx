@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useState } from "react";
+import { createContext, FC, useContext, useMemo, useState } from "react";
 
 export type UserSession = {
   token: string | undefined;
@@ -30,10 +30,12 @@ export const AuthProvider: FC = ({ children }) => {
     setAuthUser(undefined);
   };
 
+  const providerValue = useMemo(() => {
+    return { authUser, setAuthUser: setUser, removeAuthUser: removeUser };
+  }, [authUser, setAuthUser, removeUser]);
+
   return (
-    <AuthContext.Provider
-      value={{ authUser, setAuthUser: setUser, removeAuthUser: removeUser }}
-    >
+    <AuthContext.Provider value={providerValue}>
       {children}
     </AuthContext.Provider>
   );

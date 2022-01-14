@@ -1,5 +1,6 @@
 import { faChevronLeft, faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { useQuery } from "react-query";
 import {
   Avatar,
@@ -15,8 +16,31 @@ import DetailsHeader from "../components/Quests/DetailsHeader";
 import { Quests } from "../sdk/quest";
 import { secondsToDays } from "../utils/secondsToDays";
 
-//Styles
-
+const avatarLarge = {
+  width: 150,
+  height: 150,
+};
+const headerStyles = {
+  display: "flex",
+  justifyContent: "flex-start",
+  marginBottom: "50px",
+};
+const headerRightStyles: React.CSSProperties = {
+  display: "flex",
+  flex: 1,
+  flexDirection: "column",
+  justifyContent: "center",
+  marginLeft: "30px",
+  maxWidth: "100%",
+};
+const headerTitle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+const questDescriptionStyles = {
+  height: "70px",
+};
 const principalInfos: React.CSSProperties = {
   display: "flex",
   flex: 1,
@@ -45,6 +69,7 @@ interface RouteParams {
   id: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
 const QuestDetails = () => {
@@ -58,9 +83,6 @@ const QuestDetails = () => {
   const { data: quest } = useQuery("fetchQuest", () =>
     request.get<Quests>(`/quests/${id}`)
   );
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
   return (
     <Container>

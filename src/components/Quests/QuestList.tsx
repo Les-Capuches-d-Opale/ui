@@ -31,7 +31,7 @@ const QuestList = ({ quests }: Props) => {
             variant="neutral"
             tooltip="Initialiser une quête"
             icon={<FontAwesomeIcon icon={faPlus} />}
-            onClick={() => console.log("open modal")}
+            onClick={() => {}}
           />
         </span>
       </div>

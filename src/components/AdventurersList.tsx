@@ -14,6 +14,9 @@ type AdventurersListType = {
   StatusColumn?: ReactElement;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AvatarTable = ({ value }: any) => <Avatar src={value} />;
+
 const AdventurersList: FC<AdventurersListType> = ({
   adventurers,
   isSelectionable = false,
@@ -21,9 +24,6 @@ const AdventurersList: FC<AdventurersListType> = ({
   maxRowSelection,
   StatusColumn,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const AvatarTable = ({ value }: any) => <Avatar src={value} />;
-
   return (
     <>
       {!adventurers || (adventurers.length === 0 && <p>Aucun aventuriers</p>)}
@@ -33,8 +33,8 @@ const AdventurersList: FC<AdventurersListType> = ({
           data={adventurers}
           keyField="_id"
           showCheckboxColumn={isSelectionable}
-          {...(maxRowSelection ? { maxRowSelection: maxRowSelection } : {})}
           style={{ height: "auto" }}
+          {...(maxRowSelection ? { maxRowSelection } : {})}
           {...(setSelected
             ? { onRowSelection: (selection) => setSelected(selection) }
             : {})}

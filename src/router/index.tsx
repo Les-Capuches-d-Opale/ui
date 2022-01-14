@@ -12,7 +12,7 @@ const Router = () => {
           <Redirect to="/home" />
         </Route>
         <Route path={Routes.LOGIN} component={Login} />
-        <PrivateRoute path={"/"} component={MainLayout} />
+        <PrivateRoute path="/" component={MainLayout} />
       </Switch>
     </BrowserRouter>
   );

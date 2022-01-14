@@ -54,7 +54,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           <Controller
             control={control}
             name="name"
-            defaultValue={""}
+            defaultValue=""
             render={({ field: { value, onChange } }) => (
               <Input
                 required
@@ -69,7 +69,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           <Controller
             control={control}
             name="pictureURL"
-            defaultValue={"https://picsum.photos/200/300"}
+            defaultValue="https://picsum.photos/200/300"
             render={({ field: { value, onChange } }) => (
               <Input
                 required
@@ -85,7 +85,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
         <Controller
           control={control}
           name="description"
-          defaultValue={""}
+          defaultValue=""
           render={({ field: { value, onChange } }) => (
             <Textarea
               required
@@ -106,7 +106,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           <Controller
             control={control}
             name="questGiver"
-            defaultValue={""}
+            defaultValue=""
             render={({ field: { value, onChange } }) => (
               <Input
                 required

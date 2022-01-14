@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Avatar, Button } from "react-rainbow-components";
 import { Request } from "../../../sdk/request";
-import { secondsToDays } from "../../../utils/secondsToDays";
+import secondsToDays from "../../../utils/secondsToDays";
 import ModalAffectAdventurers from "./ModalAffectAdventurers";
 
 const Label: FC<Request> = ({
@@ -25,13 +25,13 @@ const Label: FC<Request> = ({
           <p style={{ opacity: 0.5, marginTop: 5 }}>{questGiver}</p>
         </div>
         <div>
-          <p>Durée : {secondsToDays(duration)}</p>
+          <p>Durée :{secondsToDays(duration)}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>
             Début : {dateDebut || "?"}
           </p>
         </div>
         <div>
-          <p>Prime : {bounty} PO</p>
+          <p>Prime :{bounty} PO</p>
         </div>
       </div>
 

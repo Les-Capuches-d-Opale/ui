@@ -9,8 +9,6 @@ const Adventurer = () => {
     request.get("/adventurers")
   );
 
-  console.log("coucou");
-
   return (
     <Container>
       {isLoading ? (

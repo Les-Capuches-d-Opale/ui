@@ -51,7 +51,7 @@ const LoginForm = () => {
       <Controller
         control={control}
         name="email"
-        defaultValue={""}
+        defaultValue=""
         render={({ field: { value, onChange } }) => (
           <Input
             required
@@ -67,7 +67,7 @@ const LoginForm = () => {
       <Controller
         control={control}
         name="password"
-        defaultValue={""}
+        defaultValue=""
         render={({ field: { value, onChange } }) => (
           <Input
             required
