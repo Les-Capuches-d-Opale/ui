@@ -94,6 +94,9 @@ h2 {
 .Pending::after {
   background-color: orange;
 }
+.Accepted::after {
+  background-color: cyan;
+}
 
 img {
   object-fit: cover;
