@@ -14,33 +14,8 @@ import request from "../axios";
 import Container from "../components/Container";
 import DetailsHeader from "../components/Quests/DetailsHeader";
 import { Quests } from "../sdk/quest";
-import { secondsToDays } from "../utils/secondsToDays";
+import secondsToDays from "../utils/secondsToDays";
 
-const avatarLarge = {
-  width: 150,
-  height: 150,
-};
-const headerStyles = {
-  display: "flex",
-  justifyContent: "flex-start",
-  marginBottom: "50px",
-};
-const headerRightStyles: React.CSSProperties = {
-  display: "flex",
-  flex: 1,
-  flexDirection: "column",
-  justifyContent: "center",
-  marginLeft: "30px",
-  maxWidth: "100%",
-};
-const headerTitle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-const questDescriptionStyles = {
-  height: "70px",
-};
 const principalInfos: React.CSSProperties = {
   display: "flex",
   flex: 1,
@@ -73,9 +48,7 @@ interface RouteParams {
 const AvatarTable = ({ value }: any) => <Avatar src={value} />;
 
 const QuestDetails = () => {
-  const isRequest = window.location.pathname.includes("/requests/")
-    ? true
-    : false;
+  const isRequest = !!window.location.pathname.includes("/requests/");
 
   const history = useHistory();
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Avatar } from "react-rainbow-components";
 import { Request } from "../../sdk/request";
 import ModalUpdateStatus from "./ModalUpdateStatus";
@@ -47,7 +47,10 @@ const DetailsHeader = ({ questDetails }: Props) => {
       <div style={headerRightStyles}>
         <div style={headerTitle}>
           <h1>{questDetails.name}</h1>
-        <StatusTextChip status={questDetails.status} setOpen={setShowModalUpdateStatus}/>
+          <StatusTextChip
+            status={questDetails.status}
+            setOpen={setShowModalUpdateStatus}
+          />
         </div>
         <p style={questDescriptionStyles}>{questDetails.description}</p>
         <p style={{ fontSize: "10px", color: "grey" }}>

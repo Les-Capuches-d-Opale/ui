@@ -5,8 +5,9 @@ import AdventurersList from "../components/AdventurersList";
 import Container from "../components/Container";
 
 const Adventurer = () => {
-  const { isLoading, data: dataAdventurers } = useQuery("fetchAdventurers", () =>
-    request.get("/adventurers")
+  const { isLoading, data: dataAdventurers } = useQuery(
+    "fetchAdventurers",
+    () => request.get("/adventurers")
   );
 
   return (

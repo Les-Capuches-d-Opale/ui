@@ -1,10 +1,10 @@
 import { AxiosResponse } from "axios";
-import { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import { Button, Modal, Select } from "react-rainbow-components";
 import request from "../../axios";
-import { Quests, QuestStatus } from "../../sdk/quest";
+import { QuestStatus, Quests } from "../../sdk/quest";
 
 const content: React.CSSProperties = {
   display: "flex",
@@ -30,20 +30,26 @@ type UpdateValue = {
   status: QuestStatus;
 };
 
-const ModalUpdateStatus = ({ isOpen, setOpen, currentStatus, requestId }: Props) => {
+const ModalUpdateStatus = ({
+  isOpen,
+  setOpen,
+  currentStatus,
+  requestId,
+}: Props) => {
   const queryClient = useQueryClient();
 
   const [statusValue, setStatusValue] = useState<QuestStatus>(currentStatus);
   const [isLoading, setisLoading] = useState(false);
- 
+
   const { handleSubmit } = useForm<UpdateValue>();
 
-  const { mutateAsync } = useMutation<AxiosResponse<Quests>, Error, UpdateValue>(
-    (params) => request.put(`/quests`, params),
-    {
-      onSuccess: () => queryClient.invalidateQueries(),
-    }
-  );
+  const { mutateAsync } = useMutation<
+    AxiosResponse<Quests>,
+    Error,
+    UpdateValue
+  >((params) => request.put(`/quests`, params), {
+    onSuccess: () => queryClient.invalidateQueries(),
+  });
 
   const onSubmit = handleSubmit(async () => {
     const data = { request: requestId, status: statusValue };
@@ -61,14 +67,18 @@ const ModalUpdateStatus = ({ isOpen, setOpen, currentStatus, requestId }: Props)
     >
       <div style={content}>
         <h1>Status de la quête</h1>
-        <p style={{ margin: "20px 0" }}>Vous allez changer le status de cette quête : </p>
+        <p style={{ margin: "20px 0" }}>
+          Vous allez changer le status de cette quête :{" "}
+        </p>
         <form onSubmit={onSubmit}>
           <Select
             style={{ width: "200px", marginBottom: "20px" }}
             name="status"
             value={statusValue}
             options={options}
-            onChange={(values) => setStatusValue(values.target.value as QuestStatus)}
+            onChange={(values) =>
+              setStatusValue(values.target.value as QuestStatus)
+            }
           />
           <Button
             variant="success"

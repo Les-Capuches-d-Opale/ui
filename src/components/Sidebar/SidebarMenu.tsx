@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Routes, { MenuItem } from "../../sdk/routes";
@@ -71,7 +72,7 @@ const SidebarMenu = () => {
             </NavLink>
           );
         })}
-        <SignoutLabel/> 
+        <SignoutLabel />
       </nav>
     </aside>
   );

@@ -13,14 +13,13 @@ type AvatarGroupType = {
   src: string;
 };
 
-const QuestLabel = ({label, adventurers, questStatus }: Props) => {
-
+const QuestLabel = ({ label, adventurers, questStatus }: Props) => {
   const avatars: AvatarGroupType[] = [];
 
-  adventurers.forEach((adventurer) => {    
+  adventurers.forEach((adventurer) => {
     avatars.push({ src: adventurer.pictureUrl });
   });
- 
+
   return (
     <div className="quest-label">
       <p>{label}</p>

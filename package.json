@@ -55,8 +55,12 @@
     }
   },
   "lint-staged": {
-    "*": [
+    "*.{ts,tsx}": [
       "eslint --fix"
+    ],
+    "*.{md}": [
+      "prettier --write",
+      "git add"
     ]
   },
   "browserslist": {
