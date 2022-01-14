@@ -3,6 +3,15 @@ import { Adventurer } from "../../sdk/adventurers";
 import { QuestStatus } from "../../sdk/quest";
 import StatusIndicator from "./StatusIndicator";
 
+const contentLabel: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  width: "200px",
+  justifyContent: "flex-end",
+  fontSize: "0.725rem",
+  color: "rgba(178,178,178,1)",
+};
+
 interface Props {
   label: string;
   adventurers: Adventurer[];
@@ -23,13 +32,15 @@ const QuestLabel = ({ label, adventurers, questStatus }: Props) => {
   return (
     <div className="quest-label">
       <p>{label}</p>
-      <div>
+      <div style={{ justifyContent: "flex-end" }}>
         {questStatus === QuestStatus.Accepted ? (
-          <div className={"status " + questStatus}>{questStatus}</div>
+          <div className={"status " + questStatus} style={contentLabel}>
+            {questStatus}
+          </div>
         ) : (
           <StatusIndicator currentStatus={questStatus} />
         )}
-        <AvatarGroup avatars={avatars} maxAvatars={3} showCounter />
+        <AvatarGroup style={{ marginLeft: 10 }} avatars={avatars} maxAvatars={3} showCounter />
       </div>
     </div>
   );

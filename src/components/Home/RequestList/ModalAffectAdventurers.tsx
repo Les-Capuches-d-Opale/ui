@@ -18,7 +18,7 @@ type ModalAffectAdventersType = {
   requiredProfiles: AdventurerProfile[];
   nameRequest: string;
   duration: number;
-  dateDebut: Date;
+  dateDebut: string;
 };
 
 const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
