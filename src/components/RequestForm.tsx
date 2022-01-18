@@ -1,7 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AxiosResponse } from "axios";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import {
@@ -20,6 +20,8 @@ import { Request, RequestToCreate } from "../sdk/request";
 import { format, parse } from "date-fns";
 import { QuestStatus } from "../sdk/quest";
 import daysToSeconds from "../utils/daysToSeconds";
+import { AdventurerProfile } from "../sdk/adventurers";
+import { Option } from "react-rainbow-components/components/Select";
 
 type ModalRequestFormType = {
   isOpen: boolean;
@@ -29,18 +31,22 @@ type ModalRequestFormType = {
 const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   const [speciality, setSpeciality] = useState("");
   const [adventurerExp, setAdventurerExp] = useState(0);
-  const [requiredProfiles, setRequiredProfiles] = useState<any[]>([]);
-  const [requiredProfilesToSend, setRequiredProfilesToSend] = useState<any[]>(
+  const [requiredProfiles, setRequiredProfiles] = useState<AdventurerProfile[]>(
     []
   );
+  const [requiredProfilesToSend, setRequiredProfilesToSend] = useState<
+    { speciality: string; experience: number }[]
+  >([]);
   const dateNow = new Date(Date.now());
   const [dateTime, setDateTime] = useState(dateNow);
 
-  const handleOnSelectSpeciality = (event: any) => {
+  const handleOnSelectSpeciality = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setSpeciality(event.target.value);
   };
 
-  const handleOnSelectExp = (event: any) => {
+  const handleOnSelectExp = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAdventurerExp(parseInt(event.target.value));
   };
 
@@ -49,7 +55,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   );
   const specialities: Speciality[] = dataSpecialities?.data;
 
-  const options: any[] = [{ label: "---", value: "---" }];
+  const options: Option[] = [{ label: "---", value: "---" }];
   if (dataSpecialities?.data) {
     specialities.forEach((speciality) => {
       options.push({
@@ -63,13 +69,16 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     const chosenSpeciality = specialities.find(
       (speciality) => speciality.name === value
     );
-    const adventurer = {
+    if (!chosenSpeciality) {
+      return;
+    }
+    const adventurer: AdventurerProfile = {
       speciality: chosenSpeciality,
       experience: adventurerExp,
     };
     setRequiredProfiles((old) => [...old, adventurer]);
 
-    const adventurerToSend = {
+    const adventurerToSend: { speciality: string; experience: number } = {
       speciality: chosenSpeciality?._id,
       experience: adventurerExp,
     };

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Avatar, Button } from "react-rainbow-components";
 import { Request } from "../../../sdk/request";
 import secondsToDays from "../../../utils/secondsToDays";
-import ModalAffectAdventurers from "./ModalAffectAdventurers";
+import ModalAffectAdventurers from "../AffectAdventurers";
 
 const Label: FC<Request> = ({
   pictureUrl,

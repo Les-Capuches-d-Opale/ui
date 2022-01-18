@@ -11,7 +11,7 @@ import {
 } from "react-rainbow-components";
 import { useHistory, useParams } from "react-router-dom";
 import request from "../axios";
-import Container from "../components/Container";
+import Container from "../components/Core/Container";
 import DetailsHeader from "../components/Quests/DetailsHeader";
 import InfoHeader from "../components/Quests/InfoHeader";
 import { Quests } from "../sdk/quest";
@@ -35,8 +35,7 @@ interface RouteParams {
   id: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const AvatarTable = ({ value }: any) => <Avatar src={value} />;
+const AvatarTable = ({ value }: { value: string }) => <Avatar src={value} />;
 
 const QuestDetails = () => {
   const isRequest = !!window.location.pathname.includes("/requests/");
@@ -81,6 +80,7 @@ const QuestDetails = () => {
                 header="Avatar"
                 field="pictureUrl"
                 component={AvatarTable}
+                value={""}
               />
               <Column header="Name" field="name" />
               <Column header="Expérience" field="experience" />

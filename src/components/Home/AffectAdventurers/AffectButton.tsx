@@ -2,16 +2,18 @@ import { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 import { Button } from "react-rainbow-components";
 import { useHistory } from "react-router-dom";
-import axiosRequest from "../../../../axios";
-import Routes from "../../../../sdk/routes";
+import axiosRequest from "../../../axios";
+import { FilteredRequiredAdventurer } from "../../../contexts/adventurersAffected";
+import Routes from "../../../sdk/routes";
+import CenterBlock from "../../Core/CenterBlock";
 
 interface RequestFormType {
-  groups: string[];
+  groups: FilteredRequiredAdventurer[];
   request: string;
 }
 
 interface ButtonProps {
-  groups: string[];
+  groups: FilteredRequiredAdventurer[];
   request: string;
   disabled: boolean;
 }
@@ -23,7 +25,7 @@ const AffectButton = ({ groups, request, disabled }: ButtonProps) => {
   );
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+    <CenterBlock>
       <Button
         variant="brand"
         onClick={async () => {
@@ -33,9 +35,9 @@ const AffectButton = ({ groups, request, disabled }: ButtonProps) => {
         style={{ marginTop: 20 }}
         disabled={disabled}
       >
-        Affecter ces aventuriers
+        Valider ces aventuriers
       </Button>
-    </div>
+    </CenterBlock>
   );
 };
 
