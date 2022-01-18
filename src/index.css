@@ -52,7 +52,7 @@ h2 {
   width: 80%;
   margin: 0 auto;
   padding-bottom: 50px;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .label-request-info {

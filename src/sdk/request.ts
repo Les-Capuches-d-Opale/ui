@@ -23,7 +23,7 @@ export type RequestToCreate = {
   bounty: number;
   duration: number;
   dateDebut: string;
-  requiredProfiles: AdventurerProfile[];
+  requiredProfiles: { speciality: string; experience: number }[];
   status: QuestStatus;
   awardedExperience: number;
 };

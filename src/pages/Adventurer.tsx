@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { Spinner } from "react-rainbow-components";
 import request from "../axios";
 import AdventurersList from "../components/AdventurersList";
-import Container from "../components/Container";
+import Container from "../components/Core/Container";
 
 const Adventurer = () => {
   const { isLoading, data: dataAdventurers } = useQuery(
