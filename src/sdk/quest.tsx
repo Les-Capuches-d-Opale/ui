@@ -6,6 +6,7 @@ export enum QuestStatus {
   Pending = "Pending",
   Failed = "Failed",
   Succeeded = "Succeeded",
+  Unassigned = "Unassigned",
 }
 
 export type Quests = {
