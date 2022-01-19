@@ -22,27 +22,13 @@ const HeaderModal: FC<HeaderModalType> = ({
 }) => {
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>
+      <h1 className="modale-h1">
         Choisissez les aventuriers à affecter à la requète
       </h1>
 
       <div>
-        <p
-          style={{
-            textAlign: "center",
-            fontWeight: "bold",
-            marginBottom: "10px",
-          }}
-        >
-          {nameRequest}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "30px",
-          }}
-        >
+        <p className="modale-name-request">{nameRequest}</p>
+        <div className="modale-chips-details-request">
           <Chip
             className="rainbow-m-around_medium"
             label={
@@ -70,16 +56,7 @@ const HeaderModal: FC<HeaderModalType> = ({
           />
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 20,
-          marginBottom: 50,
-        }}
-      >
+      <div className="modale-badge-criteres-request">
         <p style={{ fontWeight: "bold" }}>Critères demandés</p>
         <BadgeList requiredProfiles={requiredProfiles} />
       </div>
