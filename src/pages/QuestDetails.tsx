@@ -2,15 +2,10 @@ import { faChevronLeft, faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useQuery } from "react-query";
-import {
-  Avatar,
-  Button,
-  ButtonIcon,
-  Column,
-  Table,
-} from "react-rainbow-components";
+import { Button, ButtonIcon, Column, Table } from "react-rainbow-components";
 import { useHistory, useParams } from "react-router-dom";
 import request from "../axios";
+import AvatarTable from "../components/Core/AvatarTable";
 import Container from "../components/Core/Container";
 import DetailsHeader from "../components/Quests/DetailsHeader";
 import InfoHeader from "../components/Quests/InfoHeader";
@@ -34,8 +29,6 @@ const buttonAssign = {
 interface RouteParams {
   id: string;
 }
-
-const AvatarTable = ({ value }: { value: string }) => <Avatar src={value} />;
 
 const QuestDetails = () => {
   const isRequest = !!window.location.pathname.includes("/requests/");
