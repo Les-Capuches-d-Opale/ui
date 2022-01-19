@@ -1,9 +1,14 @@
-import { FC, ReactElement } from "react";
+import React, { FC, ReactElement, useState } from "react";
 import { Column, Table } from "react-rainbow-components";
 import {
   FilteredRequiredAdventurer,
   useAdventurersAffected,
 } from "../../../contexts/adventurersAffected";
+import { Adventurer } from "../../../sdk/adventurers";
+import {
+  handleOnSortAdventurers,
+  SortType,
+} from "../../../utils/handleOnSortAdventurers";
 import AvatarTable from "../../Core/AvatarTable";
 
 type AdventurersListAffectType = {
@@ -29,6 +34,14 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
 
   const adventurers = requiredAdventurers.map((rA) => rA.adventurer);
 
+  const defaultSort: SortType = {
+    sortDirection: "asc",
+    data: adventurers,
+  };
+
+  const [sort, setSort] = useState<SortType>(defaultSort);
+  const [dataTable, setDataTable] = useState<Adventurer[]>(adventurers);
+
   const handleSelected = (selection: object[]) => {
     const withReqProfile = (
       requiredAdventurers as FilteredRequiredAdventurer[]
@@ -41,7 +54,7 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
       {!adventurers || (adventurers.length === 0 && <p>Aucun aventuriers</p>)}
       {adventurers && adventurers.length > 0 && (
         <Table
-          data={adventurers}
+          data={dataTable}
           keyField="_id"
           showCheckboxColumn
           selectedRows={selectedRows as []}
@@ -50,6 +63,9 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
           {...(setSelected
             ? { onRowSelection: (selection) => handleSelected(selection) }
             : {})}
+          onSort={handleOnSortAdventurers(sort, setSort, setDataTable)}
+          sortDirection={sort.sortDirection as "asc" | "desc" | undefined}
+          sortedBy={sort.sortedBy}
         >
           <Column
             header="Avatar"
@@ -57,10 +73,10 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
             component={AvatarTable}
             value={""}
           />
-          <Column header="Name" field="name" />
-          <Column header="Spécialité" field="speciality.name" />
-          <Column header="Experience" field="experience" />
-          <Column header="Taux journalier" field="baseDailyRate" />
+          <Column header="Name" field="name" sortable />
+          <Column header="Spécialité" field="speciality.name" sortable />
+          <Column header="Experience" field="experience" sortable />
+          <Column header="Taux journalier" field="baseDailyRate" sortable />
           {StatusColumn && StatusColumn}
           {ChangeAffectColumn && ChangeAffectColumn}
         </Table>
