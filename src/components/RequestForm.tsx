@@ -106,6 +106,8 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     };
 
     await mutateAsync(requestToCreate);
+
+    setOpen(false);
   });
 
   return (
@@ -249,7 +251,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             render={() => (
               <DateTimePicker
                 id="datetimepicker-1"
-                label="DateTimePicker label"
+                label="Date de début"
                 value={dateTime}
                 onChange={(value) => setDateTime(value)}
                 formatStyle="large"
