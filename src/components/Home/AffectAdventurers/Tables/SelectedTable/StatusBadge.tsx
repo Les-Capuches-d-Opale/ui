@@ -33,7 +33,7 @@ const StatusBadge = ({ value }: { value: string }) => {
               title="Attention ! Affectation double ?"
               text={
                 <p>
-                  Attention, votre affection est peut être double. Si il ne
+                  Attention, votre affectation est peut être double. Si il ne
                   s'agit pas d'une erreur vous pouvez tout de même continuer,
                   sinon selectionnez un autre poste pour cet aventurier
                 </p>

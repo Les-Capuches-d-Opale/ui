@@ -1,4 +1,11 @@
-import React, { FC, createContext, useContext, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 import { Adventurer, AdventurerProfile } from "../sdk/adventurers";
 
 export interface FilteredRequiredAdventurer {
@@ -27,8 +34,8 @@ type AdventurersAffectedContextProps = {
     profile: AdventurerProfile,
     requiredProfiles: AdventurerProfile[]
   ) => boolean;
-  selectedTab: string;
-  setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
+  selectedTab: "suggestion" | "criteres" | "all";
+  setSelectedTab: Dispatch<SetStateAction<"suggestion" | "criteres" | "all">>;
 };
 
 export const AdventurersAffectedContext = createContext<
@@ -40,7 +47,9 @@ export const AdventurersAffectedProvider: FC = ({ children }) => {
     useState<FilteredRequiredAdventurer[]>();
 
   // Get table view in modal
-  const [selectedTab, setSelectedTab] = useState<string>("suggestion");
+  const [selectedTab, setSelectedTab] = useState<
+    "suggestion" | "criteres" | "all"
+  >("suggestion");
 
   // Get adventurers who match the requested criteria
   const getFiltredAdventurers = (

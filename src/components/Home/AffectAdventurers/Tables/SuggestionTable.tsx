@@ -29,7 +29,7 @@ const SuggestionTable = ({
           />
         </>
       ) : (
-        <p>Il n'y a pas de suggestion</p>
+        <p>Nous n'avons aucun aventurier à vous suggérer...</p>
       )}
     </>
   );
