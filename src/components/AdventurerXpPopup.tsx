@@ -1,10 +1,15 @@
+import { AxiosResponse } from "axios";
 import { useState } from "react";
-import { Button, Input, Modal } from "react-rainbow-components";
+import { useMutation, useQueryClient } from "react-query";
+import { Badge, Button, Input, Modal } from "react-rainbow-components";
 import request from "../axios";
+import CenterBlock from "./Core/CenterBlock";
 
-interface Props {
+export interface PropsAdventurerXpPopup {
   xp: number;
   adventurerId: string;
+  isOpen: boolean;
+  setOpen: (value: boolean) => void;
 }
 
 const h3Styles = {
@@ -17,15 +22,12 @@ const inputStyles = {
 };
 
 const AdventurerXpPopup = ({
-  xp = 20,
-  adventurerId = "61bf9b9b0be9cf45263b6f2d",
-}: Props) => {
-  const [isOpen, setOpen] = useState(false);
+  xp,
+  adventurerId,
+  isOpen = false,
+  setOpen,
+}: PropsAdventurerXpPopup) => {
   const [xpValue, setXpValue] = useState(0);
-
-  const openXpPopup = () => {
-    setOpen(true);
-  };
 
   const closeXpPopup = () => {
     setOpen(false);
@@ -36,32 +38,49 @@ const AdventurerXpPopup = ({
     setXpValue(e);
   };
 
-  const updateXp = async () => {
-    await request.put(
-      `https://les-capuches-d-opale.herokuapp.com/adventurers/${adventurerId}`,
-      { experience: xpValue }
-    );
-    setOpen(false);
-    setXpValue(0);
-  };
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useMutation<
+    AxiosResponse,
+    Error,
+    { experience: number }
+  >((params) => request.put(`/adventurers/${adventurerId}`, params), {
+    onSuccess: () => queryClient.invalidateQueries(),
+  });
 
   return (
-    <div>
-      <Button variant="neutral" label="Modifier" onClick={openXpPopup} />
-      <Modal isOpen={isOpen} onRequestClose={closeXpPopup}>
-        <h3 style={h3Styles}>EXP</h3>
-        <Input
-          type="number"
-          label={`${xp} XP`}
-          placeholder="EXP"
-          style={inputStyles}
-          className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
-          value={xpValue}
-          onChange={(e) => updateXpValue(Number(e.target.value))}
+    <Modal isOpen={isOpen} onRequestClose={closeXpPopup}>
+      <h1 style={{ textAlign: "center" }}>
+        Ajouter de l'expérience à cet aventurier
+      </h1>
+      <CenterBlock>
+        <Badge
+          style={{ marginLeft: 0, marginRight: 10 }}
+          className="rainbow-m-around_medium"
+          label={`Actuellement : ${xp} XP.`}
+          variant="outline-brand"
         />
-        <Button variant="success" label="Modifier" onClick={updateXp} />
-      </Modal>
-    </div>
+      </CenterBlock>
+      <Input
+        type="number"
+        label={`Combien souhaitez vous ajouter ?`}
+        placeholder="EXP"
+        style={inputStyles}
+        className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
+        value={xpValue}
+        onChange={(e) => updateXpValue(Number(e.target.value))}
+      />
+      <CenterBlock>
+        <Button
+          variant="brand"
+          label="Modifier"
+          onClick={async () => {
+            await mutateAsync({ experience: xpValue });
+            setOpen(false);
+          }}
+        />
+      </CenterBlock>
+    </Modal>
   );
 };
 

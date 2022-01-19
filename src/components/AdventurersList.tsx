@@ -1,15 +1,22 @@
-import { FC, useState } from "react";
-import { Column, TableWithBrowserPagination } from "react-rainbow-components";
+import { FC, MouseEvent, useState } from "react";
+import {
+  Column,
+  MenuItem,
+  TableWithBrowserPagination,
+} from "react-rainbow-components";
 import { Adventurer } from "../sdk/adventurers";
 import {
   handleOnSortAdventurers,
   SortType,
 } from "../utils/handleOnSortAdventurers";
+import AdventurerXpPopup from "./AdventurerXpPopup";
 import AvatarTable from "./Core/AvatarTable";
 
 type AdventurersListType = {
   adventurers: Adventurer[];
 };
+
+type RainbowOnClickMenu = (event: MouseEvent<HTMLElement>) => void;
 
 const AdventurersList: FC<AdventurersListType> = ({ adventurers }) => {
   const defaultSort: SortType = {
@@ -19,6 +26,9 @@ const AdventurersList: FC<AdventurersListType> = ({ adventurers }) => {
 
   const [sort, setSort] = useState<SortType>(defaultSort);
   const [dataTable, setDataTable] = useState<Adventurer[]>(adventurers);
+
+  const [openXpPopup, setOpenXpPopup] = useState<boolean>(false);
+  const [adventurerAction, setAdventurerAction] = useState<Adventurer>();
 
   return (
     <>
@@ -43,7 +53,26 @@ const AdventurersList: FC<AdventurersListType> = ({ adventurers }) => {
           <Column header="Spécialité" field="speciality.name" sortable />
           <Column header="Experience" field="experience" sortable />
           <Column header="Taux journalier" field="baseDailyRate" sortable />
+          <Column type="action">
+            <MenuItem
+              label="Ajouter XP"
+              onClick={
+                ((event: any, data: any) => {
+                  setAdventurerAction(data);
+                  setOpenXpPopup(true);
+                }) as RainbowOnClickMenu
+              }
+            />
+          </Column>
         </TableWithBrowserPagination>
+      )}
+      {adventurerAction && (
+        <AdventurerXpPopup
+          xp={adventurerAction.experience}
+          adventurerId={adventurerAction._id}
+          setOpen={setOpenXpPopup}
+          isOpen={openXpPopup}
+        />
       )}
     </>
   );
