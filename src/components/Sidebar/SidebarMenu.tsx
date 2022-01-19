@@ -6,7 +6,7 @@ import SignoutLabel from "./SignoutLabel";
 
 const menuItem: MenuItem[] = [
   {
-    label: "Accueil",
+    label: "Requètes",
     to: Routes.HOME,
   },
   {
