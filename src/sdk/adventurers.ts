@@ -33,3 +33,11 @@ export type Adventurer = {
   isAvailableNow: boolean;
   _id: string;
 };
+
+export type AdventurerToCreate = {
+  baseDailyRate: number;
+  experience: number;
+  name: string;
+  pictureURL: string;
+  speciality: string | undefined;
+};
