@@ -115,8 +115,6 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     };
 
     await mutateAsync(requestToCreate);
-
-    setOpen(false);
   });
 
   return (
