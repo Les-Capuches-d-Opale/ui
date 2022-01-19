@@ -1,17 +1,11 @@
 import { FC } from "react";
-import {
-  Avatar,
-  Column,
-  TableWithBrowserPagination,
-} from "react-rainbow-components";
-
+import { Column, TableWithBrowserPagination } from "react-rainbow-components";
 import { Adventurer } from "../sdk/adventurers";
+import AvatarTable from "./Core/AvatarTable";
 
 type AdventurersListType = {
   adventurers: Adventurer[];
 };
-
-const AvatarTable = ({ value }: { value: string }) => <Avatar src={value} />;
 
 const AdventurersList: FC<AdventurersListType> = ({ adventurers }) => {
   return (

@@ -1,9 +1,10 @@
 import { FC, ReactElement } from "react";
-import { Avatar, Column, Table } from "react-rainbow-components";
+import { Column, Table } from "react-rainbow-components";
 import {
   FilteredRequiredAdventurer,
   useAdventurersAffected,
 } from "../../../contexts/adventurersAffected";
+import AvatarTable from "../../Core/AvatarTable";
 
 type AdventurersListAffectType = {
   requiredAdventurers: FilteredRequiredAdventurer[];
@@ -12,8 +13,6 @@ type AdventurersListAffectType = {
   StatusColumn?: ReactElement;
   ChangeAffectColumn?: ReactElement;
 };
-
-const AvatarTable = ({ value }: { value: string }) => <Avatar src={value} />;
 
 const AdventurersListAffect: FC<AdventurersListAffectType> = ({
   requiredAdventurers,
