@@ -1,6 +1,7 @@
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format, parseISO } from "date-fns";
+import React from "react";
 import { Request } from "../../sdk/request";
 import { getEndDate } from "../../utils/getEndDate";
 

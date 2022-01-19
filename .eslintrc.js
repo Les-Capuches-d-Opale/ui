@@ -21,6 +21,7 @@ module.exports = {
   plugins: ["react", "@typescript-eslint", "unused-imports"],
   rules: {
     "no-unused-vars": "off",
+    "react/display-name": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",

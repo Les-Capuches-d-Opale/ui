@@ -1,28 +1,23 @@
-import { Chip } from "react-rainbow-components";
+import { Badge } from "react-rainbow-components";
 import { AdventurerProfile } from "../../../sdk/adventurers";
 
 interface Props {
   requiredProfiles: AdventurerProfile[];
 }
 
-const ChipList = ({ requiredProfiles }: Props) => {
+const BadgeList = ({ requiredProfiles }: Props) => {
   return (
     <div>
       {requiredProfiles &&
         requiredProfiles.length > 0 &&
         requiredProfiles.map((profile, i) => {
           return (
-            <Chip
+            <Badge
+              style={{ marginLeft: 0, marginRight: 10 }}
               key={i}
               className="rainbow-m-around_medium"
-              label={`${profile.speciality?.name} avec au moins ${profile.experience}XP`}
+              label={`${profile.speciality?.name} ${profile.experience}XP`}
               variant="outline-brand"
-              style={{
-                marginTop: 5,
-                marginBottom: 5,
-                marginRight: 10,
-                marginLeft: 0,
-              }}
             />
           );
         })}
@@ -30,4 +25,4 @@ const ChipList = ({ requiredProfiles }: Props) => {
   );
 };
 
-export default ChipList;
+export default BadgeList;

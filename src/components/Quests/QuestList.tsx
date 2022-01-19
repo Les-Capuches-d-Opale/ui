@@ -7,7 +7,7 @@ import {
   ButtonIcon,
 } from "react-rainbow-components";
 import { Quests } from "../../sdk/quest";
-import Container from "../Container";
+import Container from "../Core/Container";
 import AccordionBody from "./AccordionBody";
 import QuestLabel from "./QuestLabel";
 
