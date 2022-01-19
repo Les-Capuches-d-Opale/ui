@@ -32,14 +32,11 @@ const Steps = ({ adventurers, requiredProfiles, requestId }: StepsProps) => {
     <SelectedTable requiredProfiles={requiredProfiles} key={stepNames[1]} />,
   ];
 
-  const handleNextClick = () => {
+  const handleClick = () => {
     if (currentStepIndex < stepNames.length - 1) {
       const nextStepIndex = currentStepIndex + 1;
       setCurrentStepIndex(nextStepIndex);
     }
-  };
-
-  const handleBackClick = () => {
     if (currentStepIndex > 0) {
       const previewStepIndex = currentStepIndex - 1;
       setCurrentStepIndex(previewStepIndex);
@@ -63,30 +60,32 @@ const Steps = ({ adventurers, requiredProfiles, requestId }: StepsProps) => {
       <div className="rainbow-m-top_xx-large ">{steps[currentStepIndex]}</div>
       <CenterBlock>
         {isLast && (
-          <Button
-            label="Étape précédente"
-            onClick={handleBackClick}
-            variant="neutral"
-            className="rainbow-m-horizontal_medium"
-          />
+          <>
+            <div>
+              <Button
+                label="Étape précédente"
+                onClick={handleClick}
+                variant="outline-brand"
+                className="rainbow-m-horizontal_medium"
+              />
+            </div>
+            <AffectButton
+              request={requestId}
+              groups={adventurersAffected || []}
+              disabled={!allAdventurersIsAffected}
+            />
+          </>
         )}
         {!isLast && (
           <Button
             label={"Étape suivante"}
-            onClick={handleNextClick}
+            onClick={handleClick}
             variant="brand"
             className="rainbow-m-horizontal_medium"
             disabled={
               !adventurersAffected ||
               adventurersAffected.length < requiredProfiles.length
             }
-          />
-        )}
-        {isLast && (
-          <AffectButton
-            request={requestId}
-            groups={adventurersAffected || []}
-            disabled={!allAdventurersIsAffected}
           />
         )}
       </CenterBlock>

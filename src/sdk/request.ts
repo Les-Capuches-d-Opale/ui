@@ -15,6 +15,11 @@ export type Request = {
   awardedExperience: number;
 };
 
+export type AdventurerProfileWidthId = {
+  speciality: string;
+  experience: number;
+};
+
 export type RequestToCreate = {
   name: string;
   description: string;
@@ -23,7 +28,7 @@ export type RequestToCreate = {
   bounty: number;
   duration: number;
   dateDebut: string;
-  requiredProfiles: { speciality: string; experience: number }[];
+  requiredProfiles: AdventurerProfileWidthId[];
   status: QuestStatus;
   awardedExperience: number;
 };

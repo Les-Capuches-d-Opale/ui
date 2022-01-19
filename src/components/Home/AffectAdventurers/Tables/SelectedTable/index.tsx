@@ -37,7 +37,7 @@ const SelectedTable = ({ requiredProfiles }: OwnProps) => {
           />
         </>
       ) : (
-        <p>Il n'y a pas de Selected</p>
+        <p>Vous n'avez pas selectionné d'aventuriers</p>
       )}
     </>
   );

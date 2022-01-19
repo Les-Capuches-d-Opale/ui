@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Button } from "react-rainbow-components";
 import { useAdventurersAffected } from "../../../../contexts/adventurersAffected";
 import { Adventurer, AdventurerProfile } from "../../../../sdk/adventurers";
@@ -14,44 +15,52 @@ interface TablesTabProps {
 const TablesTab = ({ adventurers, requiredProfiles }: TablesTabProps) => {
   const { selectedTab, setSelectedTab } = useAdventurersAffected();
 
+  const Table = useMemo(() => {
+    switch (selectedTab) {
+      case "suggestion":
+        return (
+          <>
+            <h2 style={{ textAlign: "center", marginBottom: 20 }}>
+              Notre suggestion
+            </h2>
+            <SuggestionTable
+              requiredProfiles={requiredProfiles}
+              adventurers={adventurers}
+            />
+          </>
+        );
+      case "criteres":
+        return (
+          <>
+            <h2 style={{ textAlign: "center", marginBottom: 20 }}>
+              Aventuriers qui correspondent aux critères
+            </h2>
+            <CriteresTable
+              requiredProfiles={requiredProfiles}
+              adventurers={adventurers}
+            />
+          </>
+        );
+      case "all":
+        return (
+          <>
+            <h2 style={{ textAlign: "center", marginBottom: 20 }}>
+              Tous les aventuriers
+            </h2>
+            <AllTable
+              requiredProfiles={requiredProfiles}
+              adventurers={adventurers}
+            />
+          </>
+        );
+      default:
+        <></>;
+    }
+  }, [selectedTab]);
+
   return (
     <>
-      {selectedTab === "suggestion" && (
-        <>
-          <h2 style={{ textAlign: "center", marginBottom: 20 }}>
-            Notre suggestion
-          </h2>
-          <SuggestionTable
-            requiredProfiles={requiredProfiles}
-            adventurers={adventurers}
-          />
-        </>
-      )}
-
-      {selectedTab === "criteres" && (
-        <>
-          <h2 style={{ textAlign: "center", marginBottom: 20 }}>
-            Aventuriers qui correspondent aux critères
-          </h2>
-          <CriteresTable
-            requiredProfiles={requiredProfiles}
-            adventurers={adventurers}
-          />
-        </>
-      )}
-
-      {selectedTab === "all" && (
-        <>
-          <h2 style={{ textAlign: "center", marginBottom: 20 }}>
-            Tous les aventuriers
-          </h2>
-          <AllTable
-            requiredProfiles={requiredProfiles}
-            adventurers={adventurers}
-          />
-        </>
-      )}
-
+      {Table}
       <CenterBlock>
         {selectedTab !== "suggestion" && (
           <Button
