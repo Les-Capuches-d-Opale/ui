@@ -7,6 +7,7 @@ export enum QuestStatus {
   Failed = "Failed",
   Succeeded = "Succeeded",
   Unassigned = "Unassigned",
+  Rejected = "Rejected",
 }
 
 export type Quests = {
