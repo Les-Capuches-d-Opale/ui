@@ -20,12 +20,14 @@ export const handleOnSortAdventurers =
   ) => {
     const newData = [...sort.data];
 
-    const key = (value: Adventurer): string => {
+    const key = (value: Adventurer): string | number => {
       if (field === "speciality.name" && value.speciality.name) {
         return value.speciality.name;
       }
       const getField = value[field as keyof Adventurer];
-      return typeof getField === "string" ? getField : field;
+      return typeof getField === "string" || typeof getField === "number"
+        ? getField
+        : field;
     };
 
     const reverse = nextSortDirection === "asc" ? 1 : -1;
@@ -33,7 +35,6 @@ export const handleOnSortAdventurers =
     const sortedData = newData.sort((aItem, bItem) => {
       const aValue = key(aItem);
       const bValue = key(bItem);
-
       return reverse * (Number(aValue > bValue) - Number(bValue > aValue));
     });
 
