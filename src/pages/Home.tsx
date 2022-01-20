@@ -43,6 +43,12 @@ const Home = () => {
       {isLoading && <Spinner />}
       <div style={containerStyles}>
         <Input
+            id="input-component-1"
+            placeholder="Nom"
+            style={inputStyles}
+            onChange={e => setName(e.target.value === '' ? undefined : e.target.value)}
+        />
+        <Input
             type='number'
             id="input-component-1"
             placeholder="Prime min"
