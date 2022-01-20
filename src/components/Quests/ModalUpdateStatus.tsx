@@ -81,7 +81,7 @@ const ModalUpdateStatus = ({
             }
           />
           <Button
-            variant="success"
+            variant="brand"
             label="Valider le changement"
             type="submit"
             isLoading={isLoading}
