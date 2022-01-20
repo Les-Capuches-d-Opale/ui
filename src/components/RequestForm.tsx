@@ -1,4 +1,4 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AxiosResponse } from "axios";
 import React, { FC, useState } from "react";
@@ -65,6 +65,24 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     });
   }
 
+  const initialState = {
+    name: "",
+    description: "",
+    awardedExperience: 0,
+    bounty: 0,
+    dateDebut: null,
+    duration: 0,
+    questGiver: "",
+    pictureUrl: "",
+    requiredProfiles: null,
+  };
+  const { control, handleSubmit, reset } = useForm<Request>();
+
+  const handleModalClose = () => {
+    reset();
+    setOpen(false);
+  };
+
   const handleAddAdventurer = (value: string) => {
     const chosenSpeciality = specialities.find(
       (speciality) => speciality.name === value
@@ -85,7 +103,16 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     setRequiredProfilesToSend((old) => [...old, adventurerToSend]);
   };
 
-  const { control, handleSubmit } = useForm<Request>();
+  const handleRemoveAdventurer = (index: number) => {
+    const profilesToSplice = requiredProfiles;
+
+    const profilesSpliced = profilesToSplice.splice(index, 1);
+    const difference = requiredProfiles.filter(
+      (x) => !profilesSpliced.includes(x)
+    );
+
+    setRequiredProfiles(difference);
+  };
 
   const { mutateAsync } = useMutation<
     AxiosResponse<{ access_token?: string }>,
@@ -115,15 +142,14 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     };
 
     await mutateAsync(requestToCreate);
-
-    setOpen(false);
+    handleModalClose();
   });
 
   return (
     <Modal
       id="modal-request-form"
       isOpen={isOpen}
-      onRequestClose={() => setOpen(false)}
+      onRequestClose={() => handleModalClose()}
       title="Nouvelle requête"
       size="large"
     >
@@ -211,6 +237,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 isCentered
                 type="number"
+                min={0}
                 label="Prime"
                 style={{ width: "100%" }}
                 className="rainbow-p-around_medium"
@@ -228,6 +255,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 isCentered
                 type="number"
+                min={0}
                 label="Expérience"
                 style={{ width: "100%" }}
                 className="rainbow-p-around_medium"
@@ -245,6 +273,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 isCentered
                 type="number"
+                min={0}
                 label="Durée (en jours)"
                 style={{ width: "100%" }}
                 className="rainbow-p-around_medium"
@@ -292,6 +321,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             <Input
               isCentered
               type="number"
+              min={0}
               label="Expérience d'aventurier"
               value={adventurerExp}
               onChange={handleOnSelectExp}
@@ -300,7 +330,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             <div>
               <ButtonIcon
                 variant="neutral"
-                tooltip="Ajouter aventurier"
+                tooltip="Ajouter le profil d'aventurier"
                 disabled={!!(speciality === "" || speciality === "---")}
                 icon={<FontAwesomeIcon icon={faPlus} />}
                 onClick={() => handleAddAdventurer(speciality)}
@@ -321,12 +351,27 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
               requiredProfiles.map((profile, i) => {
                 return (
                   <Badge
-                    style={{ marginLeft: 0, marginRight: 10 }}
+                    style={{
+                      marginLeft: 0,
+                      marginRight: 10,
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
                     key={i}
                     className="rainbow-m-around_medium"
-                    label={`${profile.speciality?.name} ${profile.experience}XP`}
                     variant="outline-brand"
-                  />
+                  >
+                    {profile.speciality?.name} {profile.experience}XP
+                    <ButtonIcon
+                      variant="neutral"
+                      size="small"
+                      tooltip="Retirer le profil d'aventurier"
+                      icon={<FontAwesomeIcon icon={faTimes} />}
+                      onClick={() => handleRemoveAdventurer(i)}
+                      style={{ marginLeft: "8px" }}
+                    />
+                  </Badge>
                 );
               })}
           </div>
