@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar } from "react-rainbow-components";
 import { Request } from "../../sdk/request";
-import ModalUpdateStatus from "./ModalUpdateStatus";
 import StatusTextChip from "./StatusTextChip";
 
 const avatarLarge: React.CSSProperties = {
@@ -39,18 +38,13 @@ interface Props {
 }
 
 const DetailsHeader = ({ requestDetails }: Props) => {
-  const [showModalUpdateStatus, setShowModalUpdateStatus] = useState(false);
-
   return (
     <div style={headerStyles}>
       <Avatar style={avatarLarge} src="https://picsum.photos/150/150" />
       <div style={headerRightStyles}>
         <div style={headerTitle}>
           <h1>{requestDetails.name}</h1>
-          <StatusTextChip
-            status={requestDetails.status}
-            setOpen={setShowModalUpdateStatus}
-          />
+          <StatusTextChip status={requestDetails.status} />
         </div>
         <p style={questDescriptionStyles}>{requestDetails.description}</p>
         <p style={{ fontSize: "10px", color: "grey" }}>
@@ -60,12 +54,6 @@ const DetailsHeader = ({ requestDetails }: Props) => {
           </strong>
         </p>
       </div>
-      <ModalUpdateStatus
-        requestId={requestDetails._id}
-        currentStatus={requestDetails.status}
-        isOpen={showModalUpdateStatus}
-        setOpen={setShowModalUpdateStatus}
-      />
     </div>
   );
 };
