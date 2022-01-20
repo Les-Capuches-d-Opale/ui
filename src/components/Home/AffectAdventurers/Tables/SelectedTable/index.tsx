@@ -18,6 +18,7 @@ const SelectedTable = ({ requiredProfiles }: OwnProps) => {
         <>
           <AdventurersListAffect
             requiredAdventurers={adventurersAffected}
+            showCheckboxColumn={false}
             StatusColumn={
               <Column
                 header="Affecté au poste"

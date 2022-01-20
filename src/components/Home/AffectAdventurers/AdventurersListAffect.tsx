@@ -17,6 +17,7 @@ type AdventurersListAffectType = {
   maxRowSelection?: number;
   StatusColumn?: ReactElement;
   ChangeAffectColumn?: ReactElement;
+  showCheckboxColumn?: boolean;
 };
 
 const AdventurersListAffect: FC<AdventurersListAffectType> = ({
@@ -25,6 +26,7 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
   maxRowSelection,
   StatusColumn,
   ChangeAffectColumn,
+  showCheckboxColumn = true,
 }) => {
   const { adventurersAffected } = useAdventurersAffected();
 
@@ -56,7 +58,7 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
         <Table
           data={dataTable}
           keyField="_id"
-          showCheckboxColumn
+          showCheckboxColumn={showCheckboxColumn}
           selectedRows={selectedRows as []}
           style={{ height: "auto" }}
           {...(maxRowSelection ? { maxRowSelection } : {})}
