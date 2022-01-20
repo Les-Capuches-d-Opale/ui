@@ -144,7 +144,7 @@ img {
   background-color: green;
 }
 .Failed::after {
-  background-color: red;
+  background-color: rgb(254, 72, 73);
 }
 .Pending::after {
   background-color: orange;
@@ -168,4 +168,10 @@ img {
 } /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(0, 205, 165);
+}
+
+/** UTILS **/
+.error-outlined-btn {
+  color: rgb(254, 72, 73) !important;
+  border-color: rgb(254, 72, 73) !important;
 }
