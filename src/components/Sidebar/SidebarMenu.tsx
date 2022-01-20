@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Routes, { MenuItem } from "../../sdk/routes";
+import CenterBlock from "../Core/CenterBlock";
 import SignoutLabel from "./SignoutLabel";
 
 const menuItem: MenuItem[] = [
@@ -57,7 +58,9 @@ const SidebarMenu = () => {
   return (
     <aside style={aside}>
       <nav style={container}>
-        <Logo style={{ maxWidth: "100px", maxHeight: "70px" }} />
+        <CenterBlock>
+          <Logo style={{ maxWidth: "100px", maxHeight: "70px" }} />
+        </CenterBlock>
         {menuItem.map((item, index) => {
           return (
             <NavLink
