@@ -17,7 +17,7 @@ import {
 import request from "../axios";
 import { Speciality } from "../sdk/speciality";
 import { Request, RequestToCreate } from "../sdk/request";
-import { format, parse } from "date-fns";
+import { format } from "date-fns";
 import { QuestStatus } from "../sdk/quest";
 import daysToSeconds from "../utils/daysToSeconds";
 import { AdventurerProfile } from "../sdk/adventurers";
@@ -123,17 +123,14 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   const onSubmit = handleSubmit(async (data) => {
     const durationToCreate: number = daysToSeconds(data.duration);
 
-    const dateToSend = format(
-      parse(data.dateDebut, "dd/MM/yyyy", new Date()),
-      "yyyy-MM-dd"
-    );
+    const dateToSend = format(dateTime, "dd-MM-yyyy");
 
     const requestToCreate: RequestToCreate = {
       name: data.name,
       description: data.description,
       awardedExperience: +data.awardedExperience,
       bounty: +data.bounty,
-      dateDebut: dateToSend,
+      dateDebut: dateTime,
       duration: durationToCreate,
       questGiver: data.questGiver,
       pictureUrl: data.pictureUrl,
@@ -291,7 +288,9 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 id="datetimepicker-1"
                 label="Date de début"
                 value={dateTime}
-                onChange={(value) => setDateTime(value)}
+                onChange={(value) => {
+                  setDateTime(value);
+                }}
                 formatStyle="large"
                 hour24
               />

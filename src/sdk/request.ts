@@ -27,7 +27,7 @@ export type RequestToCreate = {
   questGiver: string;
   bounty: number;
   duration: number;
-  dateDebut: string;
+  dateDebut: Date;
   requiredProfiles: AdventurerProfileWidthId[];
   status: QuestStatus;
   awardedExperience: number;
