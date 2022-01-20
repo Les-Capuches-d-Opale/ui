@@ -74,11 +74,9 @@ export const AdventurersAffectedProvider: FC = ({ children }) => {
     const tabAdventurersFlat = tabAdventurersToRequiredProfile.flat();
     const adventurersId = tabAdventurersFlat.map((ad) => ad.adventurer._id);
 
-    const removeDuplicatesId = tabAdventurersFlat.filter(
+    return tabAdventurersFlat.filter(
       ({ adventurer }, i) => !adventurersId.includes(adventurer._id, i + 1)
     );
-
-    return removeDuplicatesId;
   };
 
   // Get the X (= number of criteria) adventurers who match the criteria and who are the cheapest

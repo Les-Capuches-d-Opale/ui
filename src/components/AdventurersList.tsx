@@ -6,8 +6,8 @@ import {
 } from "react-rainbow-components";
 import { Adventurer } from "../sdk/adventurers";
 import {
-  handleOnSortAdventurers,
   SortType,
+  handleOnSortAdventurers,
 } from "../utils/handleOnSortAdventurers";
 import AdventurerXpPopup from "./AdventurerXpPopup";
 import AvatarTable from "./Core/AvatarTable";

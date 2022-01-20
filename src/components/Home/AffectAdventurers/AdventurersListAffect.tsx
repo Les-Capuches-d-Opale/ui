@@ -6,8 +6,8 @@ import {
 } from "../../../contexts/adventurersAffected";
 import { Adventurer } from "../../../sdk/adventurers";
 import {
-  handleOnSortAdventurers,
   SortType,
+  handleOnSortAdventurers,
 } from "../../../utils/handleOnSortAdventurers";
 import AvatarTable from "../../Core/AvatarTable";
 
@@ -43,9 +43,9 @@ const AdventurersListAffect: FC<AdventurersListAffectType> = ({
   const [dataTable, setDataTable] = useState<Adventurer[]>(adventurers);
 
   const handleSelected = (selection: object[]) => {
-    const withReqProfile = (
-      requiredAdventurers as FilteredRequiredAdventurer[]
-    ).filter((value) => selection.includes(value.adventurer));
+    const withReqProfile = requiredAdventurers.filter((value) =>
+      selection.includes(value.adventurer)
+    );
     if (setSelected) setSelected(withReqProfile);
   };
 
