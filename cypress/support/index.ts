@@ -1,4 +1,3 @@
-import "./getDataCy";
 import "./awaitLoader";
 
 beforeEach(() => {

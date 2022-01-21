@@ -1,3 +1,3 @@
 Cypress.Commands.add("awaitLoader", () => {
-  return cy.getDataCy("loader", { timeout: 10000 }).should("not.exist");
+  return cy.get(".loader-cy", { timeout: 10000 }).should("not.exist");
 });

@@ -35,7 +35,8 @@ request.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      error.response.statusText === "Unauthorized"
+      error.response.statusText === "Unauthorized" &&
+      error.response.config.url !== "administrators/login"
     ) {
       // when token expired, redirect to login page
       localStorage.removeItem("USER");

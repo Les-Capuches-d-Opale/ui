@@ -23,7 +23,7 @@ const Adventurer = () => {
   return (
     <Container>
       {isLoading ? (
-        <Spinner />
+        <Spinner className="loader-cy" />
       ) : (
         <>
           <div

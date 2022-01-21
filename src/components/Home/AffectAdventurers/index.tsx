@@ -42,7 +42,7 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
       >
         <Container>
           {isLoading ? (
-            <Spinner />
+            <Spinner className="loader-cy" />
           ) : (
             <>
               <HeaderModal

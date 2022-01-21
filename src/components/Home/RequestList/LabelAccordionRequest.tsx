@@ -59,10 +59,10 @@ const Label: FC<Request> = ({
             className="error-outlined-btn"
             onClick={() => setOpenValidationRefuse(!isOpenValidationRefuse)}
           >
-            Rejeter la requète
+            Rejeter
           </Button>
           <Button variant="brand" onClick={() => setOpen(!isOpen)}>
-            Affecter des aventuriers
+            Affecter
           </Button>
         </>
       )}
