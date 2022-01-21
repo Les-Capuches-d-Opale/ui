@@ -33,7 +33,10 @@ const SignoutLabel = () => {
           icon={faSignOutAlt}
           style={{ marginRight: "10px" }}
         />
-        <p style={signoutLabelStyle}> Se déconnecter</p>
+        <p style={signoutLabelStyle} className="signout-cy">
+          {" "}
+          Se déconnecter
+        </p>
       </Button>
     </div>
   );

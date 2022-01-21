@@ -1,8 +1,5 @@
 import "./awaitLoader";
-
-beforeEach(() => {
-  cy.clearCookie("acces_token");
-});
+import "./login";
 
 Cypress.on("uncaught:exception", () => {
   // returning false here prevents Cypress from
