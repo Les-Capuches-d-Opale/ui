@@ -10,13 +10,18 @@ export enum QuestStatus {
   Rejected = "Rejected",
 }
 
-export type Quests = {
+export type Quest = {
   _id: string;
   request: Request;
   groups: Adventurer[];
   questStatus: QuestStatus;
   createdAt: string;
   updatedAt: string;
+};
+
+export type QuestsList = {
+  quests: Quest[];
+  counts: number;
 };
 
 export type Transaction = { amount: number; type: string; date: string };

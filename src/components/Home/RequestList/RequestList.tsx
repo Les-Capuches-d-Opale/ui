@@ -8,11 +8,12 @@ import {
 } from "react-rainbow-components";
 import { RequestListType } from "../../../sdk/request";
 import Container from "../../Core/Container";
+import CountOfList from "../../Core/CountOfList";
 import ModalRequestForm from "../../RequestForm";
 import BadgeList from "./BadgeList";
 import Label from "./LabelAccordionRequest";
 
-const RequestList: FC<RequestListType> = ({ requests }) => {
+const RequestList: FC<RequestListType> = ({ requests, counts }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnClick = () => {
@@ -42,6 +43,7 @@ const RequestList: FC<RequestListType> = ({ requests }) => {
       </div>
       {!requests ||
         (requests.length === 0 && <p> Pas de requètes à affecter</p>)}
+      <CountOfList>{counts} requètes</CountOfList>
       {requests && requests.length > 0 && (
         <Accordion>
           {requests.map((req) => {

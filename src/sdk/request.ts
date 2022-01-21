@@ -35,4 +35,5 @@ export type RequestToCreate = {
 
 export type RequestListType = {
   requests: Request[];
+  counts: number;
 };

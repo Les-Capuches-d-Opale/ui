@@ -1,18 +1,16 @@
 import { useQuery } from "react-query";
 import request from "../axios";
 import QuestList from "../components/Quests/QuestList";
-import { Quests } from "../sdk/quest";
+import { QuestsList } from "../sdk/quest";
 
-const Quest = () => {
-  const { data } = useQuery<Quests[], Error>("quests list", () =>
+const QuestPage = () => {
+  const { data, error } = useQuery<QuestsList, Error>("quests list", () =>
     request.get("quests").then((res) => res.data)
   );
 
   return (
-    <>
-      <QuestList quests={data} />
-    </>
+    <>{error || !data ? <p>Erreur: {error}</p> : <QuestList {...data} />}</>
   );
 };
 
-export default Quest;
+export default QuestPage;

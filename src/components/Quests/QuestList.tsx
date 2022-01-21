@@ -6,8 +6,9 @@ import {
   AccordionSection,
   ButtonIcon,
 } from "react-rainbow-components";
-import { Quests } from "../../sdk/quest";
+import { QuestsList } from "../../sdk/quest";
 import Container from "../Core/Container";
+import CountOfList from "../Core/CountOfList";
 import AccordionBody from "./AccordionBody";
 import QuestLabel from "./QuestLabel";
 
@@ -17,11 +18,8 @@ const contentStyle: CSSProperties = {
   alignItems: "center",
   justifyContent: "space-between",
 };
-interface Props {
-  quests?: Quests[];
-}
 
-const QuestList = ({ quests }: Props) => {
+const QuestList = ({ quests, counts }: QuestsList) => {
   return (
     <Container>
       <div style={contentStyle}>
@@ -34,6 +32,7 @@ const QuestList = ({ quests }: Props) => {
           />
         </span>
       </div>
+      <CountOfList>{counts} quètes</CountOfList>
       <Accordion>
         {quests &&
           quests.map((req, id) => {

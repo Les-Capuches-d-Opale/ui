@@ -175,3 +175,16 @@ img {
   color: rgb(254, 72, 73) !important;
   border-color: rgb(254, 72, 73) !important;
 }
+
+/** COUNTS **/
+
+.count-of-list {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.count-of-list p {
+  font-style: italic;
+  font-weight: bold;
+}

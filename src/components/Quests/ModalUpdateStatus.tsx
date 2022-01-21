@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import { Button, Modal, Select } from "react-rainbow-components";
 import request from "../../axios";
-import { QuestStatus, Quests } from "../../sdk/quest";
+import { Quest, QuestStatus } from "../../sdk/quest";
 
 const content: React.CSSProperties = {
   display: "flex",
@@ -43,13 +43,12 @@ const ModalUpdateStatus = ({
 
   const { handleSubmit } = useForm<UpdateValue>();
 
-  const { mutateAsync } = useMutation<
-    AxiosResponse<Quests>,
-    Error,
-    UpdateValue
-  >((params) => request.put(`/quests`, params), {
-    onSuccess: () => queryClient.invalidateQueries(),
-  });
+  const { mutateAsync } = useMutation<AxiosResponse<Quest>, Error, UpdateValue>(
+    (params) => request.put(`/quests`, params),
+    {
+      onSuccess: () => queryClient.invalidateQueries(),
+    }
+  );
 
   const onSubmit = handleSubmit(async () => {
     const data = { request: requestId, status: statusValue };

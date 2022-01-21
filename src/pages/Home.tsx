@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       {isLoading && <Spinner />}
-      <RequestList requests={dataRequest?.data} />
+      <RequestList {...dataRequest?.data} />
     </>
   );
 };

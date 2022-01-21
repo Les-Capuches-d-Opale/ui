@@ -9,7 +9,7 @@ import AvatarTable from "../components/Core/AvatarTable";
 import Container from "../components/Core/Container";
 import DetailsHeader from "../components/Quests/DetailsHeader";
 import InfoHeader from "../components/Quests/InfoHeader";
-import { Quests } from "../sdk/quest";
+import { Quest } from "../sdk/quest";
 
 // Styles
 
@@ -38,7 +38,7 @@ const QuestDetails = () => {
   const { id } = useParams<RouteParams>();
 
   const { data: quest } = useQuery("fetchQuest", () =>
-    request.get<Quests>(`/quests/${id}`)
+    request.get<Quest>(`/quests/${id}`)
   );
 
   return (
