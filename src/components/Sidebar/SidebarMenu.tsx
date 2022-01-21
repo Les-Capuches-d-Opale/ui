@@ -18,10 +18,10 @@ const menuItem: MenuItem[] = [
     label: "Quêtes",
     to: Routes.QUESTS,
   },
-  // {
-  //   label: "Equipements",
-  //   to: Routes.ITEMS,
-  // },
+  {
+    label: "Equipements",
+    to: Routes.ITEMS,
+  },
 ];
 
 const aside: React.CSSProperties = {
