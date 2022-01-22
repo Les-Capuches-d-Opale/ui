@@ -1,5 +1,35 @@
-describe("adventurers", () => {
-  it.skip("should add adventurer", () => {
+import "cypress-localstorage-commands";
+describe("add adventurers", () => {
+  beforeEach(() => {
+    cy.login().wait(2000);
+    cy.generateFixtureAdventurers();
+
+    cy.getAdventurers();
+
+    cy.getLocalStorage("USER").then((token) => {
+      console.log(JSON.parse(token));
+
+      cy.intercept(
+        "POST",
+        "https://les-capuches-d-opale.herokuapp.com/adventurers",
+        {
+          body: {
+            name: "Batman",
+            speciality: "af4c245e1d8a4f8a9d7e8c7f",
+            experience: 150,
+            baseDailyRate: 120,
+            pictureURL:
+              "https://img.huffingtonpost.com/asset/5e2ee34f240000e5020b501f.jpeg?cache=66hH6JXnKE&ops=crop_26_306_1973_1528,scalefit_630_noupscale",
+          },
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token).token}`,
+          },
+        }
+      ).as("postAdventurers");
+    });
+  });
+
+  it("should add adventurer", () => {
     cy.get(".btn-add-adventurer-cy")
       .click()
       .get(".form-add-adventurers-name-cy")
@@ -13,38 +43,22 @@ describe("adventurers", () => {
       .get(".btn-add-cy")
       .click()
       .wait(1000)
+
       .wait("@postAdventurers")
 
       .then((res) => {
         expect(res.response.statusCode).to.equal(200);
-        console.log("a", res);
         const body = res.request.body;
-        // cy.fixture("adventurers.json").then((data) => {
-        //   console.log("data", data);
-        //   data.push(body);
-        // });
-
-        // cy.fixture("adventurers").as("adventurers");
-        // cy.request(
-        //   "POST",
-        //   "https://les-capuches-d-opale.herokuapp.com/adventurers",
-        //   body
-        // );
 
         cy.fixture("adventurers.json").then((adventurers) => {
-          // the index k will be from 0 to users.length - 1
-          const k = Cypress._.random(adventurers.length - 1);
-          expect(k, "random user index").to.be.within(
-            0,
-            adventurers.length - 1
-          );
-          const testUser = adventurers[k];
-
-          // we need to send the entire database object
-          cy.request("POST", "/adventurers", {
-            adventurers: [testUser],
-          });
+          cy.writeFile("cypress/fixtures/adventurers.json", [
+            ...adventurers,
+            body,
+          ]);
         });
+        cy.wait(1000);
+        cy.reload();
+        cy.getAdventurers();
       })
 
       .get("table")

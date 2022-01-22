@@ -1,15 +1,11 @@
+import "cypress-localstorage-commands";
+
 describe("adventurers", () => {
   beforeEach(() => {
     cy.login().wait(2000);
     cy.generateFixtureAdventurers();
 
-    cy.intercept("GET", "/adventurers", {
-      fixture: "adventurers",
-    }).as("getAdventurers");
-
-    cy.visit("/adventurers");
-
-    cy.wait("@getAdventurers").then((a) => console.log(a));
+    cy.getAdventurers();
   });
 
   it("should see list of adventuvers and renders 5 adventurers", () => {
