@@ -1,6 +1,6 @@
 import * as faker from "@faker-js/faker";
 
-Cypress.Commands.add("generateFixtureAdventurers", () => {
+Cypress.Commands.add("generateFixturesAdventurers", () => {
   const adventurers = () =>
     Cypress._.times(5, () => {
       return {

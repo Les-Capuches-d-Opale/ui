@@ -3,7 +3,7 @@ import "cypress-localstorage-commands";
 describe("adventurers", () => {
   beforeEach(() => {
     cy.login().wait(1000);
-    cy.generateFixtureAdventurers();
+    cy.generateFixturesAdventurers();
 
     cy.getAdventurers();
   });
