@@ -1,8 +1,9 @@
 import "./awaitLoader";
 import "./login";
-import "./generateFixturesAdventurers";
-import "./generateFixturesSpecialities";
-import "./getAdventurers";
+import "./adventurersCommands/generateFixturesAdventurers";
+import "./adventurersCommands/getAdventurers";
+import "./requestsCommands/generateFixturesRequests";
+import "./requestsCommands/getRequests";
 
 Cypress.on("uncaught:exception", () => {
   // returning false here prevents Cypress from

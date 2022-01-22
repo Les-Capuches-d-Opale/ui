@@ -1,7 +1,7 @@
 import "cypress-localstorage-commands";
 describe("add adventurers", () => {
   beforeEach(() => {
-    cy.login().wait(2000);
+    cy.login().wait(1000);
     cy.generateFixtureAdventurers();
 
     cy.getAdventurers();
@@ -42,7 +42,6 @@ describe("add adventurers", () => {
       .select("Archer")
       .get(".btn-add-cy")
       .click()
-      .wait(1000)
 
       .wait("@postAdventurers")
 
@@ -56,7 +55,6 @@ describe("add adventurers", () => {
             body,
           ]);
         });
-        cy.wait(1000);
         cy.reload();
         cy.getAdventurers();
       })

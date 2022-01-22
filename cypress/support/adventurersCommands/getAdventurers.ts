@@ -9,5 +9,5 @@ Cypress.Commands.add("getAdventurers", () => {
 
   cy.visit("/adventurers");
 
-  cy.wait("@getAdventurers").then((a) => console.log(a));
+  cy.wait("@getAdventurers");
 });
