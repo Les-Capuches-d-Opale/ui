@@ -21,7 +21,7 @@ const ValidationModale = ({
       onRequestClose={() => setOpen(false)}
       title={title}
       footer={
-        <div className="rainbow-flex rainbow-justify_end">
+        <div className="rainbow-flex rainbow-justify_end valid-modale-cy">
           <Button
             className="rainbow-m-right_large"
             label="Annuler"
@@ -35,6 +35,7 @@ const ValidationModale = ({
               onValidate();
               setOpen(false);
             }}
+            className="valid-btn-cy"
           />
         </div>
       }

@@ -1,5 +1,5 @@
 import "cypress-localstorage-commands";
-describe("add adventurers", () => {
+describe("add request", () => {
   beforeEach(() => {
     cy.login().wait(1000);
     cy.generateFixturesRequests();

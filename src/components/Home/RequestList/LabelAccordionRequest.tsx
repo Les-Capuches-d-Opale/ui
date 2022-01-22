@@ -56,18 +56,25 @@ const Label: FC<Request> = ({
         <>
           <Button
             variant="outline-brand"
-            className="error-outlined-btn"
+            className="error-outlined-btn reject-btn-cy"
             onClick={() => setOpenValidationRefuse(!isOpenValidationRefuse)}
           >
             Rejeter
           </Button>
-          <Button variant="brand" onClick={() => setOpen(!isOpen)}>
+          <Button
+            variant="brand"
+            onClick={() => setOpen(!isOpen)}
+            className="affect-btn-cy"
+          >
             Affecter
           </Button>
         </>
       )}
       {isRejected && (
-        <p style={{ fontStyle: "italic", color: "rgb(254, 72, 73)" }}>
+        <p
+          style={{ fontStyle: "italic", color: "rgb(254, 72, 73)" }}
+          className="rejected-request-cy"
+        >
           Requète rejetée
         </p>
       )}
