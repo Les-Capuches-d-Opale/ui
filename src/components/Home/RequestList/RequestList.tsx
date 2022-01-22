@@ -45,7 +45,7 @@ const RequestList: FC<RequestListType> = ({ requests, counts }) => {
         (requests.length === 0 && <p> Pas de requètes à affecter</p>)}
       <CountOfList>{counts} requètes</CountOfList>
       {requests && requests.length > 0 && (
-        <Accordion>
+        <Accordion className="list-request-cy">
           {requests.map((req) => {
             return (
               <AccordionSection label={<Label {...req} />} key={req._id}>

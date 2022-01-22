@@ -87,7 +87,7 @@ const ModalAdventurerForm: FC<ModalAdventurerFormType> = ({
                 required
                 label="Nom de l'aventurier"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-adventurers-name-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -121,7 +121,7 @@ const ModalAdventurerForm: FC<ModalAdventurerFormType> = ({
                 type="number"
                 label="Taux journalier"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-adventurers-tj-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -146,7 +146,7 @@ const ModalAdventurerForm: FC<ModalAdventurerFormType> = ({
                 type="number"
                 label="Expérience"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-adventurers-xp-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -168,7 +168,7 @@ const ModalAdventurerForm: FC<ModalAdventurerFormType> = ({
             label="Valider"
             shaded
             variant="brand"
-            className="rainbow-m-around_medium"
+            className="rainbow-m-around_medium btn-add-cy"
           />
         </div>
       </form>
