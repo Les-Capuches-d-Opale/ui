@@ -7,8 +7,6 @@ describe("add request", () => {
     cy.getRequests();
 
     cy.getLocalStorage("USER").then((token) => {
-      console.log(JSON.parse(token));
-
       cy.intercept(
         "POST",
         "https://les-capuches-d-opale.herokuapp.com/requests",

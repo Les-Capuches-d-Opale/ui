@@ -4,6 +4,8 @@ import "./adventurersCommands/generateFixturesAdventurers";
 import "./adventurersCommands/getAdventurers";
 import "./requestsCommands/generateFixturesRequests";
 import "./requestsCommands/getRequests";
+import "./questsCommands/getQuests";
+import "./questsCommands/generateFixturesQuests";
 
 declare global {
   namespace Cypress {
@@ -18,6 +20,8 @@ declare global {
       getAdventurers(): Chainable<Element>;
       generateFixturesRequests(): Chainable<Element>;
       getRequests(): Chainable<Element>;
+      getQuests(): Chainable<Element>;
+      generateFixturesQuests(): Chainable<Element>;
     }
   }
 }

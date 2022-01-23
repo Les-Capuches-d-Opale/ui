@@ -5,5 +5,5 @@ Cypress.Commands.add("getRequests", () => {
 
   cy.visit("/").awaitLoader();
 
-  cy.wait("@getRequests").then((a) => console.log(a));
+  cy.wait("@getRequests");
 });

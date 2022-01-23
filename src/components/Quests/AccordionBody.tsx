@@ -44,7 +44,7 @@ const AccordionBody = ({ questId, request }: Props) => {
             <Button
               label="+ de détails"
               variant="border"
-              className="rainbow-m-around_medium"
+              className="rainbow-m-around_medium quest-details-btn-cy"
             />
           </Link>
         </div>

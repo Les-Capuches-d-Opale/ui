@@ -38,6 +38,7 @@
     "start": "npm run format && react-scripts start",
     "build": "react-scripts build",
     "test": "yarn run cypress open",
+    "test:app": "npx cypress run --record --key 2c84af96-f96d-494a-9679-7bbfb981a22e",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx",
     "lint-fix": "eslint . --ext .ts,.tsx --fix",

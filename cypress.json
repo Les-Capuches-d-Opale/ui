@@ -2,5 +2,6 @@
   "baseUrl": "http://localhost:3000",
   "chromeWebSecurity": false,
   "viewportHeight": 768,
-  "viewportWidth": 1366
+  "viewportWidth": 1366,
+  "projectId": "bqgejd"
 }
