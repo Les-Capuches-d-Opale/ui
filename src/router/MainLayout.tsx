@@ -1,13 +1,15 @@
+import { useMediaQuery } from "react-responsive";
 import { Switch } from "react-router-dom";
-import SidebarMenu from "../components/Sidebar/SidebarMenu";
+import Navigation from "../components/Navigation";
 import AdventurerScreen from "../pages/Adventurer";
-import Request from "../pages/Request";
+import Dashboard from "../pages/Dashboard";
 import Quest from "../pages/Quest";
 import QuestDetails from "../pages/QuestDetails";
+import Request from "../pages/Request";
 import Shop from "../pages/Shop";
 import Routes from "../sdk/routes";
+import { layout } from "../utils/breakpoints";
 import PrivateRoute from "./PrivateRoutes";
-import Dashboard from "../pages/Dashboard";
 
 const style = {
   display: "grid",
@@ -15,9 +17,10 @@ const style = {
 };
 
 const MainLayout = () => {
+  const isBreakpoint = useMediaQuery({ maxWidth: layout.breakpoints.l });
   return (
-    <div style={style}>
-      <SidebarMenu />
+    <div style={!isBreakpoint ? style : {}}>
+      <Navigation />
       <Switch>
         <PrivateRoute exact path={Routes.HOME} component={Dashboard} />
         <PrivateRoute exact path={Routes.REQUESTS} component={Request} />

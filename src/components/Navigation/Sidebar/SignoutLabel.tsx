@@ -2,7 +2,7 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Button } from "react-rainbow-components";
-import { useAuth } from "../../contexts/auth";
+import { useAuth } from "../../../contexts/auth";
 
 const wrapper: React.CSSProperties = {
   display: "flex",

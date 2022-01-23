@@ -1,12 +1,14 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import { NavLink } from "react-router-dom";
+import { layout } from "../../../utils/breakpoints";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Routes, { MenuItem } from "../../sdk/routes";
 import CenterBlock from "../Core/CenterBlock";
 import SidebarWallet from "./SidebarWallet";
 import SignoutLabel from "./SignoutLabel";
 
-const menuItem: MenuItem[] = [
+export const menuItem: MenuItem[] = [
   {
     label: "Tableau de bord",
     to: Routes.HOME,
@@ -43,7 +45,6 @@ export const container: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   rowGap: "30px",
-  padding: "55px 25px 0 0",
   backgroundColor: "#383e45",
   height: "100%",
   fontWeight: "bold",
@@ -64,10 +65,16 @@ const activeStyle: React.CSSProperties = {
   boxShadow: "rgb(0 205 165 / 24%) 0 8px 16px 0",
 };
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ setOpenMobile }: { setOpenMobile?: Function }) => {
+  const isBreakpoint = useMediaQuery({ maxWidth: layout.breakpoints.l });
+
   return (
-    <aside style={aside}>
-      <nav style={container}>
+    <aside style={isBreakpoint ? aside : { ...aside, height: "100vh" }}>
+      <nav
+        style={
+          isBreakpoint ? container : { ...container, padding: "55px 25px 0 0" }
+        }
+      >
         <CenterBlock>
           <div
             style={{
@@ -89,6 +96,7 @@ const SidebarMenu = () => {
               style={linkStyle}
               className="nav-link"
               activeStyle={activeStyle}
+              onClick={() => setOpenMobile && setOpenMobile(false)}
             >
               {item.label}
             </NavLink>
