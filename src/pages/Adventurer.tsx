@@ -23,7 +23,7 @@ const Adventurer = () => {
   return (
     <Container>
       {isLoading ? (
-        <Spinner />
+        <Spinner className="loader-cy" />
       ) : (
         <>
           <div
@@ -41,6 +41,7 @@ const Adventurer = () => {
                 tooltip="Créer une requête"
                 icon={<FontAwesomeIcon icon={faPlus} />}
                 onClick={() => handleOnClick()}
+                className="btn-add-adventurer-cy"
               />
               <ModalAdventurerForm isOpen={isOpen} setOpen={setIsOpen} />
             </span>

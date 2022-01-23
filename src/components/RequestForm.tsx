@@ -14,14 +14,13 @@ import {
   Select,
   Textarea,
 } from "react-rainbow-components";
-import request from "../axios";
-import { Speciality } from "../sdk/speciality";
-import { Request, RequestToCreate } from "../sdk/request";
-import { format } from "date-fns";
-import { QuestStatus } from "../sdk/quest";
-import daysToSeconds from "../utils/daysToSeconds";
-import { AdventurerProfile } from "../sdk/adventurers";
 import { Option } from "react-rainbow-components/components/Select";
+import request from "../axios";
+import { AdventurerProfile } from "../sdk/adventurers";
+import { QuestStatus } from "../sdk/quest";
+import { Request, RequestToCreate } from "../sdk/request";
+import { Speciality } from "../sdk/speciality";
+import daysToSeconds from "../utils/daysToSeconds";
 
 type ModalRequestFormType = {
   isOpen: boolean;
@@ -65,17 +64,6 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     });
   }
 
-  const initialState = {
-    name: "",
-    description: "",
-    awardedExperience: 0,
-    bounty: 0,
-    dateDebut: null,
-    duration: 0,
-    questGiver: "",
-    pictureUrl: "",
-    requiredProfiles: null,
-  };
   const { control, handleSubmit, reset } = useForm<Request>();
 
   const handleModalClose = () => {
@@ -123,8 +111,6 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   const onSubmit = handleSubmit(async (data) => {
     const durationToCreate: number = daysToSeconds(data.duration);
 
-    const dateToSend = format(dateTime, "dd-MM-yyyy");
-
     const requestToCreate: RequestToCreate = {
       name: data.name,
       description: data.description,
@@ -167,7 +153,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 label="Nom de la requête"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-name-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -197,7 +183,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 label="Donneur de quête"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-giver-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -212,7 +198,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             <Textarea
               required
               label="Description"
-              className="rainbow-p-around_medium"
+              className="rainbow-p-around_medium form-add-request-desc-cy"
               value={value}
               onChange={onChange}
             />
@@ -237,7 +223,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 min={0}
                 label="Prime"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-prime-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -255,7 +241,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 min={0}
                 label="Expérience"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-axp-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -273,7 +259,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 min={0}
                 label="Durée (en jours)"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-duration-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -325,6 +311,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
               value={adventurerExp}
               onChange={handleOnSelectExp}
               style={{ margin: "12px" }}
+              className="form-add-request-xp-cy"
             />
             <div>
               <ButtonIcon
@@ -334,6 +321,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 icon={<FontAwesomeIcon icon={faPlus} />}
                 onClick={() => handleAddAdventurer(speciality)}
                 style={{ marginTop: "24px" }}
+                className="btn-add-req-profile"
               />
             </div>
           </div>
@@ -358,10 +346,12 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                       alignItems: "center",
                     }}
                     key={i}
-                    className="rainbow-m-around_medium"
+                    className="rainbow-m-around_medium "
                     variant="outline-brand"
                   >
-                    {profile.speciality?.name} {profile.experience}XP
+                    <span className="badge-add-req-profile-cy">
+                      {profile.speciality?.name} {profile.experience}XP
+                    </span>
                     <ButtonIcon
                       variant="neutral"
                       size="small"
@@ -369,6 +359,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                       icon={<FontAwesomeIcon icon={faTimes} />}
                       onClick={() => handleRemoveAdventurer(i)}
                       style={{ marginLeft: "8px" }}
+                      className="badge-del-req-profile-cy"
                     />
                   </Badge>
                 );
@@ -381,7 +372,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             label="Valider"
             shaded
             variant="brand"
-            className="rainbow-m-around_medium"
+            className="rainbow-m-around_medium btn-add-cy"
             disabled={requiredProfiles.length === 0}
           />
         </div>

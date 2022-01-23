@@ -57,7 +57,7 @@ const LoginForm = () => {
             required
             label="Email"
             type="email"
-            className="rainbow-p-around_medium"
+            className="rainbow-p-around_medium login-email-cy"
             style={inputStyle}
             value={value}
             onChange={onChange}
@@ -73,22 +73,24 @@ const LoginForm = () => {
             required
             label="Mot de passe"
             type="password"
-            className="rainbow-p-around_medium"
+            className="rainbow-p-around_medium login-password-cy"
             style={inputStyle}
             value={value}
             onChange={onChange}
           />
         )}
       />
-      {wrongCredentials && error && (
-        <p>L'email ou le mot de passe est incorrect</p>
+      {(wrongCredentials || error) && (
+        <p className="login-wrong-credential-cy">
+          L'email ou le mot de passe est incorrect
+        </p>
       )}
       <Button
         type="submit"
         label="Valider"
         shaded
         variant="brand"
-        className="rainbow-m-around_medium"
+        className="rainbow-m-around_medium login-btn-cy"
         isLoading={isLoading}
       />
     </form>

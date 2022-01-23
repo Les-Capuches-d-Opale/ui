@@ -85,7 +85,7 @@ const QuestDetails = () => {
               <FontAwesomeIcon icon={faCoins} />
             </p>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          {/* <div style={{ display: "flex", justifyContent: "center" }}>
             {isRequest && (
               <Button
                 label="Rejeter la mission"
@@ -97,7 +97,7 @@ const QuestDetails = () => {
             {!isRequest && (
               <Button label="Lancer la mission" variant="success" />
             )}
-          </div>
+          </div> */}
         </>
       )}
     </Container>

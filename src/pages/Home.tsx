@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <>
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="loader-cy" />}
       <RequestList {...dataRequest?.data} />
     </>
   );

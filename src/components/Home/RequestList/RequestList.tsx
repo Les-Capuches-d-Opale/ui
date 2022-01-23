@@ -37,6 +37,7 @@ const RequestList: FC<RequestListType> = ({ requests, counts }) => {
             tooltip="Créer une requête"
             icon={<FontAwesomeIcon icon={faPlus} />}
             onClick={() => handleOnClick()}
+            className="btn-add-request-cy"
           />
           <ModalRequestForm isOpen={isOpen} setOpen={setIsOpen} />
         </span>
@@ -45,7 +46,7 @@ const RequestList: FC<RequestListType> = ({ requests, counts }) => {
         (requests.length === 0 && <p> Pas de requètes à affecter</p>)}
       <CountOfList>{counts} requètes</CountOfList>
       {requests && requests.length > 0 && (
-        <Accordion>
+        <Accordion className="accordion-req-cy">
           {requests.map((req) => {
             return (
               <AccordionSection label={<Label {...req} />} key={req._id}>
