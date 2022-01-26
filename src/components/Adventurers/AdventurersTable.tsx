@@ -1,4 +1,10 @@
-import { Dispatch, MouseEvent, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import {
   Column,
   MenuItem,
@@ -30,6 +36,10 @@ export const AdventurersTable = ({
 
   const [sort, setSort] = useState<SortType>(defaultSort);
   const [dataTable, setDataTable] = useState<Adventurer[]>(adventurers);
+
+  useEffect(() => {
+    setDataTable(adventurers);
+  }, [adventurers]);
 
   return (
     <TableWithBrowserPagination
