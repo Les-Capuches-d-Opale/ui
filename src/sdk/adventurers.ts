@@ -41,3 +41,10 @@ export type AdventurerToCreate = {
   pictureURL: string;
   speciality: string | undefined;
 };
+
+export type QueryParams = {
+  minLevel?: number;
+  speciality?: string;
+  isAvailableNow?: string;
+  name?: string;
+};

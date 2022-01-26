@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Adventurer } from "../sdk/adventurers";
 
 export interface SortType {
@@ -10,8 +10,8 @@ export interface SortType {
 export const handleOnSortAdventurers =
   (
     sort: SortType,
-    setSort: React.Dispatch<React.SetStateAction<SortType>>,
-    setDataTable: React.Dispatch<React.SetStateAction<Adventurer[]>>
+    setSort: Dispatch<SetStateAction<SortType>>,
+    setDataTable: Dispatch<SetStateAction<Adventurer[]>>
   ) =>
   (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -32,15 +32,15 @@ export const handleOnSortAdventurers =
 
     const reverse = nextSortDirection === "asc" ? 1 : -1;
 
-    const sortedData = newData.sort((aItem, bItem) => {
+    newData.sort((aItem, bItem) => {
       const aValue = key(aItem);
       const bValue = key(bItem);
       return reverse * (Number(aValue > bValue) - Number(bValue > aValue));
     });
 
     const newSort: SortType = {
-      data: sortedData,
-      sortedBy: field as string,
+      data: newData,
+      sortedBy: field,
       sortDirection: nextSortDirection,
     };
 

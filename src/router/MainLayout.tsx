@@ -1,6 +1,6 @@
 import { Switch } from "react-router-dom";
 import SidebarMenu from "../components/Sidebar/SidebarMenu";
-import Adventurer from "../pages/Adventurer";
+import AdventurerScreen from "../pages/Adventurer";
 import Home from "../pages/Home";
 import Quest from "../pages/Quest";
 import QuestDetails from "../pages/QuestDetails";
@@ -19,7 +19,11 @@ const MainLayout = () => {
       <SidebarMenu />
       <Switch>
         <PrivateRoute exact path={Routes.HOME} component={Home} />
-        <PrivateRoute exact path={Routes.ADVENTURERS} component={Adventurer} />
+        <PrivateRoute
+          exact
+          path={Routes.ADVENTURERS}
+          component={AdventurerScreen}
+        />
         <PrivateRoute exact path={Routes.QUESTS} component={Quest} />
         <PrivateRoute exact path={Routes.QUEST} component={QuestDetails} />
         {/* <PrivateRoute path={Routes.ITEMS} component={Item} /> */}

@@ -2,8 +2,8 @@ import { AxiosResponse } from "axios";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { Badge, Button, Input, Modal } from "react-rainbow-components";
-import request from "../axios";
-import CenterBlock from "./Core/CenterBlock";
+import request from "../../axios";
+import CenterBlock from "../Core/CenterBlock";
 
 export interface PropsAdventurerXpPopup {
   xp: number;
@@ -12,11 +12,6 @@ export interface PropsAdventurerXpPopup {
   setOpen: (value: boolean) => void;
 }
 
-const h3Styles = {
-  TextAlign: "center",
-  fontSize: "32px",
-  fontWeigth: "bold",
-};
 const inputStyles = {
   width: "80%",
 };

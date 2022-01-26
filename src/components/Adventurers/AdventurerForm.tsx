@@ -3,9 +3,9 @@ import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { Button, Input, Modal, Select } from "react-rainbow-components";
-import request from "../axios";
-import { AdventurerToCreate } from "../sdk/adventurers";
-import { Speciality } from "../sdk/speciality";
+import request from "../../axios";
+import { AdventurerToCreate } from "../../sdk/adventurers";
+import { Speciality } from "../../sdk/speciality";
 
 type ModalAdventurerFormType = {
   isOpen: boolean;
