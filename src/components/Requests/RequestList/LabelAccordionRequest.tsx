@@ -5,7 +5,6 @@ import { Avatar, Button } from "react-rainbow-components";
 import request from "../../../axios";
 import { QuestStatus } from "../../../sdk/quest";
 import { Request } from "../../../sdk/request";
-import secondsToDays from "../../../utils/secondsToDays";
 import ValidationModale from "../../Core/ValidationModale";
 import ModalAffectAdventurers from "../AffectAdventurers";
 
@@ -20,7 +19,7 @@ const Label: FC<Request> = ({
   _id,
   requiredProfiles,
   bounty,
-  duration,
+  dateFin,
   dateDebut,
   status,
 }) => {
@@ -43,10 +42,10 @@ const Label: FC<Request> = ({
           <p style={{ opacity: 0.5, marginTop: 5 }}>{questGiver}</p>
         </div>
         <div>
-          <p>Durée :{secondsToDays(duration)}</p>
           <p style={{ opacity: 0.5, marginTop: 5 }}>
             Début : {dateDebut || "?"}
           </p>
+          <p style={{ opacity: 0.5, marginTop: 5 }}>Fin :{dateFin || "?"}</p>
         </div>
         <div>
           <p>Prime :{bounty} PO</p>
@@ -86,7 +85,7 @@ const Label: FC<Request> = ({
           requestId={_id}
           requiredProfiles={requiredProfiles}
           nameRequest={name}
-          duration={duration}
+          dateFin={dateFin}
           dateDebut={dateDebut}
         />
       )}
