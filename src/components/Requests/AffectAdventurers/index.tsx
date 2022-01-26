@@ -14,7 +14,7 @@ type ModalAffectAdventersType = {
   requestId: string;
   requiredProfiles: AdventurerProfile[];
   nameRequest: string;
-  duration: number;
+  dateFin: string;
   dateDebut: string;
 };
 
@@ -24,7 +24,7 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
   requestId,
   requiredProfiles,
   nameRequest,
-  duration,
+  dateFin,
   dateDebut,
 }) => {
   const { isLoading, data: dataAdventurers } = useQuery(
@@ -48,7 +48,7 @@ const ModalAffectAdventers: FC<ModalAffectAdventersType> = ({
               <HeaderModal
                 requiredProfiles={requiredProfiles}
                 nameRequest={nameRequest}
-                duration={duration}
+                dateFin={dateFin}
                 dateDebut={dateDebut}
               />
 
