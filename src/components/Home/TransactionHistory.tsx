@@ -19,10 +19,12 @@ const TransactionHistory = () => {
   const [numberOfDays, setNumberOfDays] = useState(7);
 
   const { data: dataTransactions } = useQuery("fetchTransactions", () =>
-    request.get("/transactions/" + numberOfDays)
+    request.get("/transactions/groups?offset=" + numberOfDays)
   );
+  const transactions = dataTransactions?.data;
 
   const formatDate = "yyyy-MM-dd";
+
   const labelsDate = [
     format(sub(new Date(), { days: 6 }), formatDate),
     format(sub(new Date(), { days: 5 }), formatDate),
@@ -33,8 +35,6 @@ const TransactionHistory = () => {
     format(new Date(), formatDate),
   ];
 
-  const transactions = dataTransactions?.data;
-  //   const transactionsByType: any[string] = [];
   const transactionsAdventurerPayment: any[] = [];
   const transactionsQuestBounty: any[] = [];
   const transactionsPurchase: any[] = [];
@@ -49,84 +49,16 @@ const TransactionHistory = () => {
 
     transactions.forEach((transaction: Transaction) => {
       if (transaction.type === TransactionType.AdventurerPayment) {
-        const sameTransaction = transactionsAdventurerPayment.some(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-        const originTransaction = transactionsAdventurerPayment.find(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-
-        if (sameTransaction === true) {
-          originTransaction.amount += transaction.amount;
-        } else if (sameTransaction === false) {
-          transactionsAdventurerPayment.push(transaction);
-        }
+        transactionsAdventurerPayment.push(transaction);
       }
       if (transaction.type === TransactionType.QuestBounty) {
-        const sameTransaction = transactionsQuestBounty.some(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-        const originTransaction = transactionsQuestBounty.find(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-
-        if (sameTransaction === true) {
-          originTransaction.amount += transaction.amount;
-        } else if (sameTransaction === false) {
-          transactionsQuestBounty.push(transaction);
-        }
+        transactionsQuestBounty.push(transaction);
       }
       if (transaction.type === TransactionType.Purchase) {
-        const sameTransaction = transactionsPurchase.some(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-        const originTransaction = transactionsPurchase.find(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-
-        if (sameTransaction === true) {
-          originTransaction.amount += transaction.amount;
-        } else if (sameTransaction === false) {
-          transactionsPurchase.push(transaction);
-        }
+        transactionsPurchase.push(transaction);
       }
       if (transaction.type === TransactionType.Tax) {
-        const sameTransaction = transactionsTax.some(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-        const originTransaction = transactionsTax.find(
-          (element: Transaction) =>
-            element.type === transaction.type &&
-            format(new Date(element.date), formatDate) ===
-              format(new Date(transaction.date), formatDate)
-        );
-
-        if (sameTransaction === true) {
-          originTransaction.amount += transaction.amount;
-        } else if (sameTransaction === false) {
-          transactionsTax.push(transaction);
-        }
+        transactionsTax.push(transaction);
       }
     });
   }
