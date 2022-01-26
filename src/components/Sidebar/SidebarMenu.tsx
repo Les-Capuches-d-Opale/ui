@@ -8,8 +8,12 @@ import SignoutLabel from "./SignoutLabel";
 
 const menuItem: MenuItem[] = [
   {
-    label: "Requètes",
+    label: "Tableau de bord",
     to: Routes.HOME,
+  },
+  {
+    label: "Requètes",
+    to: Routes.REQUESTS,
   },
   {
     label: "Aventuriers",

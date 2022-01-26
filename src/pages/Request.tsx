@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { Spinner } from "react-rainbow-components";
 import request from "../axios";
-import RequestList from "../components/Home/RequestList/RequestList";
+import RequestList from "../components/Requests/RequestList/RequestList";
 
-const Home = () => {
+const Request = () => {
   const { isLoading, data: dataRequest } = useQuery("fetchRequest", () =>
     request.get("/requests")
   );
@@ -16,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Request;

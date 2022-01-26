@@ -1,12 +1,13 @@
 import { Switch } from "react-router-dom";
 import SidebarMenu from "../components/Sidebar/SidebarMenu";
 import AdventurerScreen from "../pages/Adventurer";
-import Home from "../pages/Home";
+import Request from "../pages/Request";
 import Quest from "../pages/Quest";
 import QuestDetails from "../pages/QuestDetails";
 import Shop from "../pages/Shop";
 import Routes from "../sdk/routes";
 import PrivateRoute from "./PrivateRoutes";
+import Dashboard from "../pages/Dashboard";
 
 const style = {
   display: "grid",
@@ -18,7 +19,8 @@ const MainLayout = () => {
     <div style={style}>
       <SidebarMenu />
       <Switch>
-        <PrivateRoute exact path={Routes.HOME} component={Home} />
+        <PrivateRoute exact path={Routes.HOME} component={Dashboard} />
+        <PrivateRoute exact path={Routes.REQUESTS} component={Request} />
         <PrivateRoute
           exact
           path={Routes.ADVENTURERS}
