@@ -7,6 +7,8 @@ enum Routes {
   ITEM = "/items/:id",
   QUESTS = "/quests",
   QUEST = "/quests/:id",
+  SHOPS = "/shop-items",
+  SHOP = "/shop-items/:id",
 }
 export default Routes;
 

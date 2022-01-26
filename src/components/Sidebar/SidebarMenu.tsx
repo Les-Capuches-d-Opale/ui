@@ -22,6 +22,10 @@ const menuItem: MenuItem[] = [
   //   label: "Equipements",
   //   to: Routes.ITEMS,
   // },
+  {
+    label: "Magasin",
+    to: Routes.SHOPS,
+  },
 ];
 
 const aside: React.CSSProperties = {
