@@ -41,15 +41,13 @@ const SelectSpeciality = ({ onChangeSpecialityValue }: Props) => {
   //   };
 
   return (
-    <>
-      <Select
-        label="Spécialité"
-        options={options}
-        value={value}
-        onChange={handleOnSelectSpeciality}
-        style={{ margin: "12px" }}
-      />
-    </>
+    <Select
+      label="Spécialité"
+      options={options}
+      value={value}
+      onChange={handleOnSelectSpeciality}
+      style={{ margin: "12px" }}
+    />
   );
 };
 
