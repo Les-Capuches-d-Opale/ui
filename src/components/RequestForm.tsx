@@ -20,7 +20,6 @@ import { AdventurerProfile } from "../sdk/adventurers";
 import { QuestStatus } from "../sdk/quest";
 import { Request, RequestToCreate } from "../sdk/request";
 import { Speciality } from "../sdk/speciality";
-import daysToSeconds from "../utils/daysToSeconds";
 
 type ModalRequestFormType = {
   isOpen: boolean;
@@ -37,7 +36,8 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     { speciality: string; experience: number }[]
   >([]);
   const dateNow = new Date(Date.now());
-  const [dateTime, setDateTime] = useState(dateNow);
+  const [dateDebut, setDateDebut] = useState(dateNow);
+  const [dateFin, setDateFin] = useState(dateNow);
 
   const handleOnSelectSpeciality = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -109,21 +109,18 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   >((params) => request.post("requests", params));
 
   const onSubmit = handleSubmit(async (data) => {
-    const durationToCreate: number = daysToSeconds(data.duration);
-
     const requestToCreate: RequestToCreate = {
       name: data.name,
       description: data.description,
       awardedExperience: +data.awardedExperience,
       bounty: +data.bounty,
-      dateDebut: dateTime,
-      duration: durationToCreate,
+      dateDebut: dateDebut,
+      dateFin: dateFin,
       questGiver: data.questGiver,
       pictureUrl: data.pictureUrl,
       requiredProfiles: requiredProfilesToSend,
       status: QuestStatus.Unassigned,
     };
-
     await mutateAsync(requestToCreate);
     handleModalClose();
   });
@@ -249,33 +246,32 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           />
           <Controller
             control={control}
-            name="duration"
-            defaultValue={0}
-            render={({ field: { value, onChange } }) => (
-              <Input
-                required
-                isCentered
-                type="number"
-                min={0}
-                label="Durée (en jours)"
-                style={{ width: "100%" }}
-                className="rainbow-p-around_medium form-add-request-duration-cy"
-                value={value}
-                onChange={onChange}
+            name="dateDebut"
+            defaultValue={dateDebut.toLocaleDateString()}
+            render={() => (
+              <DateTimePicker
+                id="datetimepicker-1"
+                label="Date de début"
+                value={dateDebut}
+                onChange={(value) => {
+                  setDateDebut(value);
+                }}
+                formatStyle="large"
+                hour24
               />
             )}
           />
           <Controller
             control={control}
-            name="dateDebut"
-            defaultValue={dateTime.toLocaleDateString()}
+            name="dateFin"
+            defaultValue={dateFin.toLocaleDateString()}
             render={() => (
               <DateTimePicker
                 id="datetimepicker-1"
-                label="Date de début"
-                value={dateTime}
+                label="Date de fin"
+                value={dateFin}
                 onChange={(value) => {
-                  setDateTime(value);
+                  setDateFin(value);
                 }}
                 formatStyle="large"
                 hour24

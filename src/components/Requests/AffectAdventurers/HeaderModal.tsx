@@ -4,20 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { Chip } from "react-rainbow-components";
 import { AdventurerProfile } from "../../../sdk/adventurers";
-import secondsToDays from "../../../utils/secondsToDays";
 import BadgeList from "../RequestList/BadgeList";
 
 type HeaderModalType = {
   requiredProfiles: AdventurerProfile[];
   nameRequest: string;
-  duration: number;
+  dateFin: string;
   dateDebut: string;
 };
 
 const HeaderModal: FC<HeaderModalType> = ({
   requiredProfiles,
   nameRequest,
-  duration,
+  dateFin,
   dateDebut,
 }) => {
   return (
@@ -37,7 +36,7 @@ const HeaderModal: FC<HeaderModalType> = ({
                   icon={faClock}
                   className="rainbow-m-right_xx-small"
                 />
-                Durée: {secondsToDays(duration)}
+                Date de fin: {dateFin}
               </>
             }
           />

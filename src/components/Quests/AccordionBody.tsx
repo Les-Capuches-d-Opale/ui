@@ -1,10 +1,10 @@
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { format, parseISO } from "date-fns";
 import { Button } from "react-rainbow-components";
 import { Link, generatePath } from "react-router-dom";
 import { Request } from "../../sdk/request";
 import Routes from "../../sdk/routes";
-import secondsToDays from "../../utils/secondsToDays";
 
 interface Props {
   questId: string;
@@ -17,8 +17,8 @@ const AccordionBody = ({ questId, request }: Props) => {
       <p>{request.description}</p>
       <div>
         <p>
-          <strong>Durée : </strong>
-          {secondsToDays(request.duration)}
+          <strong>Date de fin : </strong>
+          {format(parseISO(request.dateFin), "dd/MM/yyyy")}
         </p>
         <p>
           <strong>Prime : </strong>
