@@ -22,11 +22,11 @@ const AdventurerFilters = ({ onFilterChange }: Props) => {
   const [isAvailableNowValue, setIsAvailableNowValue] = useState<string>();
 
   const { data: dataSpecialities } = useQuery("fetchSpecialities", () =>
-    request.get<Speciality[]>("/adventurers/specialities")
+    request.get<Speciality[]>("adventurers/specialities")
   );
   const specialities = dataSpecialities?.data;
 
-  const options: Option[] = [{ label: "---", value: "---" }];
+  const options: Option[] = [{ label: "Toutes spécialités ", value: "all" }];
   specialities &&
     specialities.forEach((speciality) => {
       options.push({

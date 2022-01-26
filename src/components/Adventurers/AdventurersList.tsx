@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
+import { Spinner } from "react-rainbow-components";
 import request from "../../axios";
 import { Adventurer, QueryParams } from "../../sdk/adventurers";
 import AdventurerFilters from "./AdventurerFilters";
@@ -10,7 +11,8 @@ async function fetchAdventurers(queryParams: QueryParams) {
   const { data } = await request.get("/adventurers", {
     params: {
       minLevel: queryParams.minLevel,
-      speciality: queryParams.speciality,
+      speciality:
+        queryParams.speciality !== "all" ? queryParams.speciality : undefined,
       isAvailableNow:
         queryParams.isAvailableNow !== "all"
           ? queryParams.isAvailableNow
@@ -25,7 +27,8 @@ const AdventurersList = () => {
 
   const { data: adventurers, isLoading } = useQuery<Adventurer[], Error>(
     ["fetchAdventurers", filteredValues],
-    () => fetchAdventurers(filteredValues)
+    () => fetchAdventurers(filteredValues),
+    { staleTime: 5000 }
   );
 
   const [openXpPopup, setOpenXpPopup] = useState(false);
@@ -33,6 +36,7 @@ const AdventurersList = () => {
 
   return (
     <>
+      {isLoading && <Spinner className="loader-cy" />}
       <AdventurerFilters onFilterChange={(value) => setFilteredValues(value)} />
       {!adventurers || (adventurers.length === 0 && <p>Aucun aventuriers</p>)}
       {adventurers && adventurers.length > 0 && (
