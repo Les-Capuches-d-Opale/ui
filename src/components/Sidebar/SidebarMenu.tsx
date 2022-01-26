@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Routes, { MenuItem } from "../../sdk/routes";
 import CenterBlock from "../Core/CenterBlock";
+import SidebarWallet from "./SidebarWallet";
 import SignoutLabel from "./SignoutLabel";
 
 const menuItem: MenuItem[] = [
@@ -59,7 +60,16 @@ const SidebarMenu = () => {
     <aside style={aside}>
       <nav style={container}>
         <CenterBlock>
-          <Logo style={{ maxWidth: "100px", maxHeight: "70px" }} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Logo style={{ maxWidth: "100px", maxHeight: "70px" }} />
+            <SidebarWallet />
+          </div>
         </CenterBlock>
         {menuItem.map((item, index) => {
           return (
