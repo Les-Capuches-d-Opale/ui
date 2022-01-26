@@ -1,15 +1,16 @@
 export type Items = {
   _id: string;
-  durability: number;
-  daysInUse: number;
-  repairTime: number;
-  charges: number;
-  usedCharges: number;
-  name: string;
-  imgUrl: string;
-  price: number;
-  transaction: string;
-  type: string;
+  durability?: number;
+  daysInUse?: number;
+  repairTime?: number;
+  charges?: number;
+  usedCharges?: number;
+  name?: string;
+  imgUrl?: string;
+  price?: number;
+  transaction?: string;
+  type?: string;
+  quantity?: number;
 };
 
 export type ItemsList = {

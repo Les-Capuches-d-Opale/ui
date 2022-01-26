@@ -33,12 +33,13 @@ const menuItem: MenuItem[] = [
   },
 ];
 
-const aside: React.CSSProperties = {
-  height: "100vh",
+export const aside: React.CSSProperties = {
+  minHeight: "100vh",
+  height: "100%",
   position: "sticky",
 };
 
-const container: React.CSSProperties = {
+export const container: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   rowGap: "30px",
