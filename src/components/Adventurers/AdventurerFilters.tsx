@@ -17,6 +17,7 @@ interface Props {
 }
 
 const AdventurerFilters = ({ onFilterChange }: Props) => {
+  const [nameValue, setNameValue] = useState<string>();
   const [specialityValue, setSpecialityValue] = useState<string>();
   const [minLevelValue, setMinLevelValue] = useState<number>();
   const [isAvailableNowValue, setIsAvailableNowValue] = useState<string>();
@@ -41,6 +42,10 @@ const AdventurerFilters = ({ onFilterChange }: Props) => {
     { label: "Non disponible", value: "false" },
   ];
 
+  const onChangeNameValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setNameValue(event.target.value);
+  };
+
   const onChangeSelectSpeciality = (event: ChangeEvent<HTMLInputElement>) => {
     setSpecialityValue(event.target.value);
   };
@@ -59,11 +64,12 @@ const AdventurerFilters = ({ onFilterChange }: Props) => {
 
   useEffect(() => {
     onFilterChange({
+      name: nameValue,
       isAvailableNow: isAvailableNowValue,
       minLevel: minLevelValue,
       speciality: specialityValue,
     });
-  }, [isAvailableNowValue, minLevelValue, specialityValue]);
+  }, [nameValue, isAvailableNowValue, minLevelValue, specialityValue]);
 
   return (
     <div
@@ -74,6 +80,12 @@ const AdventurerFilters = ({ onFilterChange }: Props) => {
         marginBottom: 25,
       }}
     >
+      <Input
+        type="text"
+        label="Nom"
+        value={nameValue}
+        onChange={onChangeNameValue}
+      />
       <Select
         label="Spécialité"
         options={options}

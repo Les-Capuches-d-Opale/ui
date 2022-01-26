@@ -10,6 +10,7 @@ import AdventurerXpPopup from "./AdventurerXpPopup";
 async function fetchAdventurers(queryParams: QueryParams) {
   const { data } = await request.get("/adventurers", {
     params: {
+      name: queryParams.name ? queryParams.name : undefined,
       minLevel: queryParams.minLevel,
       speciality:
         queryParams.speciality !== "all" ? queryParams.speciality : undefined,
