@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Application } from "react-rainbow-components";
 import { AuthProvider } from "./contexts/auth";
+import { ShoppingCartProvider } from "./contexts/shop/shop.context";
 import Router from "./router";
 
 const queryClient = new QueryClient({});
@@ -17,11 +18,13 @@ const theme = {
 function App() {
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <Application theme={theme}>
-          <Router />
-        </Application>
-      </QueryClientProvider>
+      <ShoppingCartProvider>
+        <QueryClientProvider client={queryClient}>
+          <Application theme={theme}>
+            <Router />
+          </Application>
+        </QueryClientProvider>
+      </ShoppingCartProvider>
     </AuthProvider>
   );
 }

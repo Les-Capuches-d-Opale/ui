@@ -16,7 +16,7 @@ const SidebarWallet = () => {
     if (admin?.data) {
       setWallet(admin?.data.wallet);
     }
-  }, admin?.data);
+  }, [admin?.data]);
 
   return (
     <>
