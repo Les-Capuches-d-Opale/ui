@@ -7,14 +7,14 @@ describe("reject adventurers", () => {
   it("should refused request", () => {
     cy.get("body")
       .then(($body) => {
-        if ($body.find(".valid-modale-cy").length) {
-          return ".valid-modale-cy";
+        if ($body.find(".reject-btn-cy").length) {
+          return ".reject-btn-cy";
         }
 
         return ".rejected-request-cy";
       })
       .then((selector) => {
-        if (selector === ".valid-modale-cy") {
+        if (selector === ".reject-btn-cy") {
           cy.get(selector)
             .first()
             .click()
