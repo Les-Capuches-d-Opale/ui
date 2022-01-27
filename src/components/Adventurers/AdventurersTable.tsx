@@ -22,12 +22,14 @@ interface Props {
   adventurers: Adventurer[];
   setOpen: Dispatch<SetStateAction<boolean>>;
   setDataAction: Dispatch<SetStateAction<Adventurer | undefined>>;
+  setScheduleOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AdventurersTable = ({
   adventurers,
   setOpen,
   setDataAction,
+  setScheduleOpen,
 }: Props) => {
   const defaultSort: SortType = {
     sortDirection: "asc",
@@ -68,6 +70,15 @@ export const AdventurersTable = ({
             ((event: any, data: Adventurer) => {
               setDataAction(data);
               setOpen(true);
+            }) as RainbowOnClickMenu
+          }
+        />
+        <MenuItem
+          label="Voir l'emploi du temps"
+          onClick={
+            ((event: any, data: any) => {
+              setDataAction(data);
+              setScheduleOpen(true);
             }) as RainbowOnClickMenu
           }
         />

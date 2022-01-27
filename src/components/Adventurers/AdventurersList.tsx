@@ -4,6 +4,7 @@ import { Spinner } from "react-rainbow-components";
 import request from "../../axios";
 import { Adventurer, QueryParams } from "../../sdk/adventurers";
 import AdventurerFilters from "./AdventurerFilters";
+import AdventurerSchedule from "./AdventurerSchedule";
 import { AdventurersTable } from "./AdventurersTable";
 import AdventurerXpPopup from "./AdventurerXpPopup";
 
@@ -34,6 +35,7 @@ const AdventurersList = () => {
 
   const [openXpPopup, setOpenXpPopup] = useState(false);
   const [adventurerAction, setAdventurerAction] = useState<Adventurer>();
+  const [schedulePopup, setSchedulePopup] = useState<boolean>(false);
 
   return (
     <>
@@ -45,15 +47,23 @@ const AdventurersList = () => {
           adventurers={adventurers}
           setOpen={setOpenXpPopup}
           setDataAction={setAdventurerAction}
+          setScheduleOpen={setSchedulePopup}
         />
       )}
       {adventurerAction && (
-        <AdventurerXpPopup
-          xp={adventurerAction.experience}
-          adventurerId={adventurerAction._id}
-          setOpen={setOpenXpPopup}
-          isOpen={openXpPopup}
-        />
+        <>
+          <AdventurerXpPopup
+            xp={adventurerAction.experience}
+            adventurerId={adventurerAction._id}
+            setOpen={setOpenXpPopup}
+            isOpen={openXpPopup}
+          />
+          <AdventurerSchedule
+            adventurerId={adventurerAction._id}
+            setOpen={setSchedulePopup}
+            isOpen={schedulePopup}
+          />
+        </>
       )}
     </>
   );

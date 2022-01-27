@@ -24,14 +24,21 @@ export type AdventurerProfile = {
   experience: number;
 };
 
+export type Unavailabilities = {
+  requestId: string;
+  type: "DayOf" | "Request";
+  dateStart: string;
+  dateEnd: string;
+};
+
 export type Adventurer = {
+  _id: string;
   baseDailyRate: number;
   experience: number;
   name: string;
   pictureUrl: string;
   speciality: Speciality;
   isAvailableNow: boolean;
-  _id: string;
 };
 
 export type AdventurerToCreate = {
