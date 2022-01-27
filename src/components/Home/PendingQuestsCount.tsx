@@ -32,7 +32,11 @@ const PendingQuestsCount = () => {
 
   return (
     <div style={containerStyles}>
-      <Card title="Quêtes en cours" style={cardStyles}>
+      <Card
+        title="Quêtes en cours"
+        style={cardStyles}
+        className="responsive-100w"
+      >
         <div
           style={{
             display: "flex",

@@ -205,6 +205,22 @@ img {
   margin-bottom: 25px;
 }
 
+/** DASHBOARD **/
+
+.dahsboard-container {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.dahsboard-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 /** REPSONSIVE **/
 
 @media screen and (max-width: 640px) {
@@ -228,5 +244,22 @@ img {
   }
   .quest-header-style {
     display: block;
+  }
+  .responsive-100w {
+    width: 100% !important;
+  }
+  .dahsboard-part {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .responsive-100w {
+    width: 100% !important;
+  }
+  .dahsboard-part {
+    flex-direction: column;
+    width: 100%;
   }
 }

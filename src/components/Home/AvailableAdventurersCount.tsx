@@ -32,7 +32,11 @@ const AvailableAdventurersCount = () => {
 
   return (
     <div style={containerStyles}>
-      <Card title="Aventuriers disponibles" style={cardStyles}>
+      <Card
+        title="Aventuriers disponibles"
+        style={cardStyles}
+        className="responsive-100w"
+      >
         <div
           style={{
             display: "flex",

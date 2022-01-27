@@ -32,7 +32,11 @@ const RequestsAvailableCount = () => {
 
   return (
     <div style={containerStyles}>
-      <Card title="Requêtes disponibles" style={cardStyles}>
+      <Card
+        title="Requêtes disponibles"
+        style={cardStyles}
+        className="responsive-100w"
+      >
         <div
           style={{
             display: "flex",

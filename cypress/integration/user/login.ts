@@ -23,6 +23,6 @@ describe("login", () => {
       .get(".login-btn-cy")
       .click()
       .url()
-      .should("include", "/requests");
+      .should("include", "/dashboard");
   });
 });

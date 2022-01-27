@@ -7,34 +7,12 @@ import TransactionHistory from "../components/Home/TransactionHistory";
 const Dashboard = () => {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexFlow: "column",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: 24,
-            marginBottom: 24,
-          }}
-        >
+      <div className="dahsboard-container">
+        <div className="dahsboard-part">
           <TransactionHistory />
           <LastFiveTransaction />
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: 24,
-            marginBottom: 24,
-          }}
-        >
+        <div className="dahsboard-part">
           <RequestsAvailable />
           <PendingQuestsCount />
           <AvailableAdventurersCount />
