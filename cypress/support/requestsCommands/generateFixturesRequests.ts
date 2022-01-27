@@ -8,10 +8,10 @@ export const generateRequest = (number: number = 2) =>
       name: `La requète ${faker.company.companyName()}`,
       description: `${faker.lorem.words(20)}`,
       bounty: `${faker.datatype.number()}`,
-      duration: `${faker.datatype.number()}`,
       amount: `${faker.datatype.number()}`,
       awardedExperience: `${faker.datatype.number()}`,
-      dataDebut: `${faker.date.future()}`,
+      dateDebut: `${faker.date.future()}`,
+      dateFin: `${faker.date.future()}`,
       _id: `${faker.datatype.uuid()}`,
       requiredProfiles: [
         {

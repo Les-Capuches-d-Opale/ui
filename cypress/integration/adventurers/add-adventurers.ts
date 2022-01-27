@@ -36,8 +36,9 @@ describe("add adventurers", () => {
       .type("120")
       .get(".form-add-adventurers-xp-cy")
       .type("150")
-      .get("select")
+      .get("#modal-request-form select")
       .select("Archer")
+      .first()
       .get(".btn-add-cy")
       .click()
 

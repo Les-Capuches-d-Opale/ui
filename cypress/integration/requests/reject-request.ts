@@ -5,7 +5,8 @@ describe("reject adventurers", () => {
   });
 
   it("should refused request", () => {
-    cy.get("body")
+    cy.visit("/requests")
+      .get("body")
       .then(($body) => {
         if ($body.find(".reject-btn-cy").length) {
           return ".reject-btn-cy";

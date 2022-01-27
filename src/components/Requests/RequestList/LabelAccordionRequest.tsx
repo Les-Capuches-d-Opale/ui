@@ -22,6 +22,7 @@ const Label: FC<Request> = ({
   dateFin,
   dateDebut,
   status,
+  awardedExperience,
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [isOpenValidationRefuse, setOpenValidationRefuse] =
@@ -49,6 +50,9 @@ const Label: FC<Request> = ({
         </div>
         <div>
           <p>Prime :{bounty} PO</p>
+        </div>
+        <div>
+          <p>Exéprience : {awardedExperience}</p>
         </div>
       </div>
       {requiredProfiles && requiredProfiles.length > 0 && !isRejected && (
