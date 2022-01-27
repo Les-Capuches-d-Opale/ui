@@ -2,11 +2,11 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { NavLink } from "react-router-dom";
 import { layout } from "../../../utils/breakpoints";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
-import Routes, { MenuItem } from "../../sdk/routes";
-import CenterBlock from "../Core/CenterBlock";
-import SidebarWallet from "./SidebarWallet";
+import { ReactComponent as Logo } from "../../../assets/logo.svg";
+import Routes, { MenuItem } from "../../../sdk/routes";
+import CenterBlock from "../../Core/CenterBlock";
 import SignoutLabel from "./SignoutLabel";
+import SidebarWallet from "../../Sidebar/SidebarWallet";
 
 export const menuItem: MenuItem[] = [
   {

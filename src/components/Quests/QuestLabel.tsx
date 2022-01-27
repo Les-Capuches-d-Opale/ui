@@ -7,8 +7,6 @@ import StatusIndicator from "./StatusIndicator";
 const contentLabel: CSSProperties = {
   display: "flex",
   alignItems: "center",
-  width: "200px",
-  justifyContent: "flex-end",
   fontSize: "0.725rem",
   color: "rgba(178,178,178,1)",
 };
@@ -33,7 +31,7 @@ const QuestLabel = ({ label, adventurers, questStatus }: Props) => {
   return (
     <div className="quest-label">
       <p>{label}</p>
-      <div style={{ justifyContent: "flex-end" }}>
+      <div>
         {questStatus === QuestStatus.Accepted ? (
           <div className={"status " + questStatus} style={contentLabel}>
             {questStatus}

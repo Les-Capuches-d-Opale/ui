@@ -7,7 +7,7 @@ interface Props {
 
 const BadgeList = ({ requiredProfiles }: Props) => {
   return (
-    <div>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       {requiredProfiles &&
         requiredProfiles.length > 0 &&
         requiredProfiles.map((profile, i) => {

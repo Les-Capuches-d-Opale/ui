@@ -118,6 +118,13 @@ img {
 .quest-label > div {
   width: 50%;
   display: flex;
+  justify-content: flex-end;
+}
+
+.quest-header-style {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
 }
 
 /** QUESTS STATUS **/
@@ -187,4 +194,39 @@ img {
 .count-of-list p {
   font-style: italic;
   font-weight: bold;
+}
+
+/** ADVENTURERS **/
+
+.adventurers-filter {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  margin-bottom: 25px;
+}
+
+/** REPSONSIVE **/
+
+@media screen and (max-width: 640px) {
+  .label-request {
+    display: block;
+  }
+  .label-request-info {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .adventurers-filter {
+    flex-direction: column;
+  }
+  .quest-label {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .quest-label > div {
+    width: 100%;
+  }
+  .quest-header-style {
+    display: block;
+  }
 }

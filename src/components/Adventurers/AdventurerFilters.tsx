@@ -72,14 +72,7 @@ const AdventurerFilters = ({ onFilterChange }: Props) => {
   }, [nameValue, isAvailableNowValue, minLevelValue, specialityValue]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        columnGap: 30,
-        marginBottom: 25,
-      }}
-    >
+    <div className="adventurers-filter">
       <Input
         type="text"
         label="Nom"
