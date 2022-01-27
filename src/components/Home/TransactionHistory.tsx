@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { Card, Chart, Dataset } from "react-rainbow-components";
 import request from "../../axios";
 import { Transaction, TransactionType } from "../../sdk/transaction";
-import Container from "../Core/Container";
 import { format, sub } from "date-fns";
 
 const containerStyles = {
@@ -11,6 +10,8 @@ const containerStyles = {
 };
 
 const cardStyles = {
+  height: 410,
+  width: 750,
   paddingRight: "24px",
   paddingLeft: "24px",
 };
@@ -64,48 +65,46 @@ const TransactionHistory = () => {
   }
 
   return (
-    <Container>
-      <div style={containerStyles}>
-        <Card title="Historique des transactions" style={cardStyles}>
-          <div>
-            <Chart labels={labelsDate} type="bar">
-              <Dataset
-                title="Récompenses de quêtes"
-                values={transactionsQuestBounty.map(
-                  (transaction: Transaction) => transaction.amount
-                )}
-                backgroundColor="#1de9b6"
-                borderColor="#1de9b6"
-              />
-              <Dataset
-                title="Paiements aventuriers"
-                values={transactionsAdventurerPayment.map(
-                  (transaction: Transaction) => transaction.amount
-                )}
-                backgroundColor="#01b6f5"
-                borderColor="#01b6f5"
-              />
-              <Dataset
-                title="Achats"
-                values={transactionsPurchase.map(
-                  (transaction: Transaction) => transaction.amount
-                )}
-                backgroundColor="#fe4849"
-                borderColor="#fe4849"
-              />
-              <Dataset
-                title="Taxes"
-                values={transactionsTax.map(
-                  (transaction: Transaction) => transaction.amount
-                )}
-                backgroundColor="#ffcc00"
-                borderColor="#ffcc00"
-              />
-            </Chart>
-          </div>
-        </Card>
-      </div>
-    </Container>
+    <div style={containerStyles}>
+      <Card title="Historique des transactions" style={cardStyles}>
+        <div>
+          <Chart labels={labelsDate} type="bar">
+            <Dataset
+              title="Récompenses de quêtes"
+              values={transactionsQuestBounty.map(
+                (transaction: Transaction) => transaction.amount
+              )}
+              backgroundColor="#1de9b6"
+              borderColor="#1de9b6"
+            />
+            <Dataset
+              title="Paiements aventuriers"
+              values={transactionsAdventurerPayment.map(
+                (transaction: Transaction) => transaction.amount
+              )}
+              backgroundColor="#01b6f5"
+              borderColor="#01b6f5"
+            />
+            <Dataset
+              title="Achats"
+              values={transactionsPurchase.map(
+                (transaction: Transaction) => transaction.amount
+              )}
+              backgroundColor="#fe4849"
+              borderColor="#fe4849"
+            />
+            <Dataset
+              title="Taxes"
+              values={transactionsTax.map(
+                (transaction: Transaction) => transaction.amount
+              )}
+              backgroundColor="#ffcc00"
+              borderColor="#ffcc00"
+            />
+          </Chart>
+        </div>
+      </Card>
+    </div>
   );
 };
 
