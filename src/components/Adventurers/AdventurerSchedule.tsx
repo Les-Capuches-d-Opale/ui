@@ -1,12 +1,23 @@
+import { format, parseISO } from "date-fns";
 import { useState } from "react";
+import { useQuery } from "react-query";
 import { Modal, WeeklyCalendar } from "react-rainbow-components";
 import { CalendarEvent } from "react-rainbow-components/components/WeeklyCalendar";
-
+import request from "../../axios";
+import { Unavailabilities } from "../../sdk/adventurers";
 export interface PropsAdventurerSchedule {
   adventurerId: string;
   isOpen: boolean;
   setOpen: (value: boolean) => void;
 }
+
+const COLORS = {
+  DayOf: { backgroundColor: "rgba(145,220,193,1)", color: "rgba(0,171,142,1)" },
+  Request: {
+    backgroundColor: "rgba(253,230,230,1)",
+    color: "rgba(254,72,73,1)",
+  },
+};
 
 const firstDay = new Date();
 firstDay.setDate(firstDay.getDate() - firstDay.getDay());
@@ -96,7 +107,43 @@ const AdventurerSchedule = ({
   isOpen = false,
   setOpen,
 }: PropsAdventurerSchedule) => {
+  console.log(adventurerId);
   const [currentWeek, setCurrentWeek] = useState<Date>(new Date());
+
+  const { data, error, isLoading } = useQuery<Unavailabilities[], Error>(
+    "get unavailabilities",
+    () =>
+      request
+        .get(`/adventurers/${adventurerId}/unavailability`)
+        .then((res) => res.data)
+  );
+
+  const toto: any = data?.map((unavailability, i) => {
+    console.log(
+      "date",
+      format(parseISO(unavailability.dateStart), "yyyy-MM-dd")
+      // format(
+      //   new Date("2022-23-01T00:00:00.000Z"),
+      //   "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"
+      // )
+      // parseISO("2022-23-01T00:00:00.000Z"),
+      // format(new Date("2022-23-01T00:00:00.000Z"), "MM/dd/yyyy 'at' h:m a")
+      // format(
+      //   parse(unavailability.dateStart, "yyyy-MM-dd HH:mm:ss", new Date()),
+      //   "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"
+      // )
+    );
+    return {
+      id: `${i}`,
+      title: "Tahimi",
+      startDate: new Date(Date.parse(unavailability.dateStart)),
+
+      endDate: new Date(daysOfWeek[3].setHours(7, 0, 0, 0)),
+    };
+  });
+
+  console.log(toto);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -105,7 +152,7 @@ const AdventurerSchedule = ({
     >
       <h1 style={{ textAlign: "center" }}>Emploi du temps de l'aventurier</h1>
       <WeeklyCalendar
-        events={events}
+        events={toto}
         currentWeek={currentWeek}
         onWeekChange={({ week }) => setCurrentWeek(week)}
         onEventClick={(event) => alert(event.title)}
