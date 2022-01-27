@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format, parseISO } from "date-fns";
 import React from "react";
 import { Request } from "../../sdk/request";
-import { getEndDate } from "../../utils/getEndDate";
 
 const content: React.CSSProperties = {
   display: "flex",
@@ -42,7 +41,7 @@ const InfoHeader = ({ requestInfo }: Props) => {
         </p>
         <p style={info}>
           <strong style={strongStyle}>Date de fin : </strong>
-          {getEndDate(requestInfo.dateDebut, requestInfo.duration)}
+          {format(parseISO(requestInfo.dateFin), "dd/MM/yyyy")}
         </p>
       </div>
     </div>

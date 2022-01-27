@@ -30,7 +30,7 @@ h2 {
 }
 
 .container {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   padding-bottom: 50px;
 }
@@ -118,6 +118,13 @@ img {
 .quest-label > div {
   width: 50%;
   display: flex;
+  justify-content: flex-end;
+}
+
+.quest-header-style {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
 }
 
 /** QUESTS STATUS **/
@@ -174,4 +181,52 @@ img {
 .error-outlined-btn {
   color: rgb(254, 72, 73) !important;
   border-color: rgb(254, 72, 73) !important;
+}
+
+/** COUNTS **/
+
+.count-of-list {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.count-of-list p {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/** ADVENTURERS **/
+
+.adventurers-filter {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  margin-bottom: 25px;
+}
+
+/** REPSONSIVE **/
+
+@media screen and (max-width: 640px) {
+  .label-request {
+    display: block;
+  }
+  .label-request-info {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .adventurers-filter {
+    flex-direction: column;
+  }
+  .quest-label {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .quest-label > div {
+    width: 100%;
+  }
+  .quest-header-style {
+    display: block;
+  }
 }

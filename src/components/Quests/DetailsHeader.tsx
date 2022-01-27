@@ -8,12 +8,6 @@ const avatarLarge: React.CSSProperties = {
   height: 150,
 };
 
-const headerStyles: React.CSSProperties = {
-  display: "flex",
-  justifyContent: "flex-start",
-  marginBottom: "50px",
-};
-
 const headerRightStyles: React.CSSProperties = {
   display: "flex",
   flex: 1,
@@ -39,7 +33,7 @@ interface Props {
 
 const DetailsHeader = ({ requestDetails }: Props) => {
   return (
-    <div style={headerStyles}>
+    <div className="quest-header-style">
       <Avatar style={avatarLarge} src="https://picsum.photos/150/150" />
       <div style={headerRightStyles}>
         <div style={headerTitle}>

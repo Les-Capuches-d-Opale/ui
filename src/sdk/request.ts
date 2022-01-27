@@ -8,7 +8,7 @@ export type Request = {
   pictureUrl: string;
   questGiver: string;
   bounty: number;
-  duration: number;
+  dateFin: string;
   dateDebut: string;
   requiredProfiles: AdventurerProfile[];
   status: QuestStatus;
@@ -26,7 +26,7 @@ export type RequestToCreate = {
   pictureUrl: string;
   questGiver: string;
   bounty: number;
-  duration: number;
+  dateFin: Date;
   dateDebut: Date;
   requiredProfiles: AdventurerProfileWidthId[];
   status: QuestStatus;
@@ -35,4 +35,5 @@ export type RequestToCreate = {
 
 export type RequestListType = {
   requests: Request[];
+  counts: number;
 };

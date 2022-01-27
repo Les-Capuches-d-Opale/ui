@@ -1,18 +1,24 @@
 import { useQuery } from "react-query";
 import request from "../axios";
+import { Spinner } from "react-rainbow-components";
 import QuestList from "../components/Quests/QuestList";
-import { Quests } from "../sdk/quest";
+import { QuestsList } from "../sdk/quest";
 
-const Quest = () => {
-  const { data } = useQuery<Quests[], Error>("quests list", () =>
-    request.get("quests").then((res) => res.data)
+const QuestPage = () => {
+  const { data, error, isLoading } = useQuery<QuestsList, Error>(
+    "quests list",
+    () => request.get("quests").then((res) => res.data)
   );
 
   return (
     <>
-      <QuestList quests={data} />
+      {isLoading || error ? (
+        <Spinner className="loader-cy" />
+      ) : (
+        <QuestList {...data!} />
+      )}
     </>
   );
 };
 
-export default Quest;
+export default QuestPage;

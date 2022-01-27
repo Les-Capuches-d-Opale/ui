@@ -14,14 +14,12 @@ import {
   Select,
   Textarea,
 } from "react-rainbow-components";
-import request from "../axios";
-import { Speciality } from "../sdk/speciality";
-import { Request, RequestToCreate } from "../sdk/request";
-import { format } from "date-fns";
-import { QuestStatus } from "../sdk/quest";
-import daysToSeconds from "../utils/daysToSeconds";
-import { AdventurerProfile } from "../sdk/adventurers";
 import { Option } from "react-rainbow-components/components/Select";
+import request from "../axios";
+import { AdventurerProfile } from "../sdk/adventurers";
+import { QuestStatus } from "../sdk/quest";
+import { Request, RequestToCreate } from "../sdk/request";
+import { Speciality } from "../sdk/speciality";
 
 type ModalRequestFormType = {
   isOpen: boolean;
@@ -38,7 +36,8 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     { speciality: string; experience: number }[]
   >([]);
   const dateNow = new Date(Date.now());
-  const [dateTime, setDateTime] = useState(dateNow);
+  const [dateDebut, setDateDebut] = useState(dateNow);
+  const [dateFin, setDateFin] = useState(dateNow);
 
   const handleOnSelectSpeciality = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -65,17 +64,6 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
     });
   }
 
-  const initialState = {
-    name: "",
-    description: "",
-    awardedExperience: 0,
-    bounty: 0,
-    dateDebut: null,
-    duration: 0,
-    questGiver: "",
-    pictureUrl: "",
-    requiredProfiles: null,
-  };
   const { control, handleSubmit, reset } = useForm<Request>();
 
   const handleModalClose = () => {
@@ -121,23 +109,18 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
   >((params) => request.post("requests", params));
 
   const onSubmit = handleSubmit(async (data) => {
-    const durationToCreate: number = daysToSeconds(data.duration);
-
-    const dateToSend = format(dateTime, "dd-MM-yyyy");
-
     const requestToCreate: RequestToCreate = {
       name: data.name,
       description: data.description,
       awardedExperience: +data.awardedExperience,
       bounty: +data.bounty,
-      dateDebut: dateTime,
-      duration: durationToCreate,
+      dateDebut: dateDebut,
+      dateFin: dateFin,
       questGiver: data.questGiver,
       pictureUrl: data.pictureUrl,
       requiredProfiles: requiredProfilesToSend,
       status: QuestStatus.Unassigned,
     };
-
     await mutateAsync(requestToCreate);
     handleModalClose();
   });
@@ -167,7 +150,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 label="Nom de la requête"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-name-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -197,7 +180,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 required
                 label="Donneur de quête"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-giver-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -212,7 +195,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             <Textarea
               required
               label="Description"
-              className="rainbow-p-around_medium"
+              className="rainbow-p-around_medium form-add-request-desc-cy"
               value={value}
               onChange={onChange}
             />
@@ -237,7 +220,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 min={0}
                 label="Prime"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-prime-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -255,25 +238,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 min={0}
                 label="Expérience"
                 style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
-                value={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="duration"
-            defaultValue={0}
-            render={({ field: { value, onChange } }) => (
-              <Input
-                required
-                isCentered
-                type="number"
-                min={0}
-                label="Durée (en jours)"
-                style={{ width: "100%" }}
-                className="rainbow-p-around_medium"
+                className="rainbow-p-around_medium form-add-request-axp-cy"
                 value={value}
                 onChange={onChange}
               />
@@ -282,14 +247,31 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
           <Controller
             control={control}
             name="dateDebut"
-            defaultValue={dateTime.toLocaleDateString()}
+            defaultValue={dateDebut.toLocaleDateString()}
             render={() => (
               <DateTimePicker
                 id="datetimepicker-1"
                 label="Date de début"
-                value={dateTime}
+                value={dateDebut}
                 onChange={(value) => {
-                  setDateTime(value);
+                  setDateDebut(value);
+                }}
+                formatStyle="large"
+                hour24
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="dateFin"
+            defaultValue={dateFin.toLocaleDateString()}
+            render={() => (
+              <DateTimePicker
+                id="datetimepicker-1"
+                label="Date de fin"
+                value={dateFin}
+                onChange={(value) => {
+                  setDateFin(value);
                 }}
                 formatStyle="large"
                 hour24
@@ -325,6 +307,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
               value={adventurerExp}
               onChange={handleOnSelectExp}
               style={{ margin: "12px" }}
+              className="form-add-request-xp-cy"
             />
             <div>
               <ButtonIcon
@@ -334,6 +317,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                 icon={<FontAwesomeIcon icon={faPlus} />}
                 onClick={() => handleAddAdventurer(speciality)}
                 style={{ marginTop: "24px" }}
+                className="btn-add-req-profile"
               />
             </div>
           </div>
@@ -358,10 +342,12 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                       alignItems: "center",
                     }}
                     key={i}
-                    className="rainbow-m-around_medium"
+                    className="rainbow-m-around_medium "
                     variant="outline-brand"
                   >
-                    {profile.speciality?.name} {profile.experience}XP
+                    <span className="badge-add-req-profile-cy">
+                      {profile.speciality?.name} {profile.experience}XP
+                    </span>
                     <ButtonIcon
                       variant="neutral"
                       size="small"
@@ -369,6 +355,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
                       icon={<FontAwesomeIcon icon={faTimes} />}
                       onClick={() => handleRemoveAdventurer(i)}
                       style={{ marginLeft: "8px" }}
+                      className="badge-del-req-profile-cy"
                     />
                   </Badge>
                 );
@@ -381,7 +368,7 @@ const ModalRequestForm: FC<ModalRequestFormType> = ({ isOpen, setOpen }) => {
             label="Valider"
             shaded
             variant="brand"
-            className="rainbow-m-around_medium"
+            className="rainbow-m-around_medium btn-add-cy"
             disabled={requiredProfiles.length === 0}
           />
         </div>

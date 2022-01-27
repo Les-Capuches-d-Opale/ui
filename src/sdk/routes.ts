@@ -1,5 +1,6 @@
 enum Routes {
-  HOME = "/requests",
+  HOME = "/dashboard",
+  REQUESTS = "/requests",
   LOGIN = "/login",
   ADVENTURERS = "/adventurers",
   ADVENTURER = "/adventurers/:id",
@@ -7,6 +8,8 @@ enum Routes {
   ITEM = "/items/:id",
   QUESTS = "/quests",
   QUEST = "/quests/:id",
+  SHOPS = "/shop-items",
+  SHOP = "/shop-items/:id",
 }
 export default Routes;
 
