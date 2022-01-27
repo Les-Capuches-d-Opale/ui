@@ -1,14 +1,16 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { format, parseISO } from "date-fns";
-import { FC, useState } from "react";
+import { addDays, format, isBefore, parseISO } from "date-fns";
+import { FC, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {
   Accordion,
   AccordionSection,
   ButtonIcon,
+  Spinner,
 } from "react-rainbow-components";
 import request from "../../../axios";
+import { QuestStatus } from "../../../sdk/quest";
 import { Request, RequestListType } from "../../../sdk/request";
 import Container from "../../Core/Container";
 import CountOfList from "../../Core/CountOfList";
@@ -21,9 +23,26 @@ export interface QueryParams {
   name?: string;
   bountyMin?: number;
   bountyMax?: number;
+  awardedExperience?: number;
+  rejected?: boolean;
+  asap?: boolean;
+  questGiver?: string;
 }
 
-const RequestList: FC<RequestListType> = ({ requests, counts }) => {
+async function fetchRequests(queryParams: QueryParams) {
+  const { data } = await request.get("/requests", {
+    params: {
+      name: queryParams.name ? queryParams.name : undefined,
+      bountyMin: queryParams.bountyMin,
+      bountyMax: queryParams.bountyMax,
+      awardedExperience: queryParams.awardedExperience,
+      questGiver: queryParams.questGiver,
+    },
+  });
+  return data;
+}
+
+const RequestList: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnClick = () => {
@@ -34,19 +53,27 @@ const RequestList: FC<RequestListType> = ({ requests, counts }) => {
 
   const { isLoading, data: dataRequest } = useQuery<RequestListType>(
     ["request", filters],
-    ({ queryKey }) =>
-      request
-        .get("/requests", {
-          params: {
-            bountyMin: (queryKey[1] as QueryParams).bountyMin,
-            bountyMax: (queryKey[1] as QueryParams).bountyMax,
-            name: (queryKey[1] as QueryParams).name,
-          },
-        })
-        .then((res) => res.data)
+    () => fetchRequests(filters),
+    { staleTime: 5000 }
   );
 
-  const requestData = dataRequest?.requests || requests;
+  const requestData = useMemo(() => {
+    if (filters.rejected) {
+      return dataRequest?.requests.filter(
+        (request) => request.status !== QuestStatus.Rejected
+      );
+    }
+    if (filters.asap) {
+      const today = new Date();
+      return dataRequest?.requests.filter((request) =>
+        isBefore(
+          new Date(format(parseISO(request.dateFin), "yyyy-MM-dd")),
+          addDays(today, 5)
+        )
+      );
+    }
+    return dataRequest?.requests;
+  }, [dataRequest]);
 
   return (
     <Container>
@@ -70,13 +97,15 @@ const RequestList: FC<RequestListType> = ({ requests, counts }) => {
           <ModalRequestForm isOpen={isOpen} setOpen={setIsOpen} />
         </span>
       </div>
-      {!requests ||
-        (requests.length === 0 && <p> Pas de requètes à affecter</p>)}
-      <Filter setFiltered={setFilters} filtered={filters} />
-      <CountOfList>{counts} requètes</CountOfList>
-      {requests && requests.length > 0 && (
+      {isLoading && <Spinner className="loader-cy" />}
+      {(!requestData || requestData.length === 0) && (
+        <p> Pas de requètes à affecter</p>
+      )}
+      <Filter setFiltered={setFilters} />
+      <CountOfList>{dataRequest?.counts} requètes</CountOfList>
+      {requestData && requestData.length > 0 && (
         <Accordion className="accordion-req-cy">
-          {requests.map((req) => {
+          {requestData.map((req) => {
             const requestToDisplay: Request = {
               _id: req._id,
               awardedExperience: req.awardedExperience,
